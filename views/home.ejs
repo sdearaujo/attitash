@@ -26,6 +26,15 @@
           padding-right: 5px;
         }
       }
+
+      #trends h5{
+        text-align: center;
+      }
+
+      #trends table tbody tr td,
+      #trends table thead tr th{
+        text-align: center;
+      }
     </style>
     <link href="bootstrap/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -55,17 +64,17 @@
           <a class="brand" href="#"><%= title %></a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link">@<%= username %></a>
+              Logged in as <a href="#" class="navbar-link">@<%= user %></a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">@Connect</a></li>
-              <li><a href="#">#Discover</a></li>
+              <li class="active"><a href="#"><i class="icon-home"></i> Home</a></li>
+              <li><a href="#">@ Connect</a></li>
+              <li><a href="#"># Discover</a></li>
               <li><a href="#">Me</a></li>
               <li>
               	<form class="navbar-search form-search">
                   <input type="text" class="search-query" placeholder="Search" data-provide="typeahead" autocomplete="off">
-                  <button type="submit" class="btn btn-mini"><i class="icon-search"></i></button>
+                  <button type="submit" class="btn btn-mini btn-inverse"><i class="icon-search icon-white"></i></button>
                 </form>
   			  </li>
             </ul>
@@ -77,24 +86,37 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
+          <div id="trends" class="well sidebar-nav">
+            <h5><%= userName %></h5>  
+            <img class="img-rounded offset1" src="images/attitash-dev-prof-pic.jpeg" />
+            <a href="#">view profile page</a>
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th>Tashs</th>
+                  <th>Following</th>
+                  <th>Followers</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>5</td>
+                  <td>3</td>
+                  <td>7</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li class="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
+              <li class="nav-header">Trends</li>
+              <li><a href="#">#attitash</a></li>
+              <li><a href="#">#cs326</a></li>
+              <li><a href="#">#jingleheimer</a></li>
+              <li><a href="#">#roflmao</a></li>
+              <li><a href="#">#balsamiq</a></li>
+              <li><a href="#">#betterthantwitter</a></li>
+              <li><a href="#">#tash</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -105,16 +127,6 @@
             <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
           </div>
           <div class="row-fluid">
-            <div class="span4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
             <div class="span4">
               <h2>Heading</h2>
               <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>

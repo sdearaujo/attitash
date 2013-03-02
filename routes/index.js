@@ -10,6 +10,7 @@ exports.index = function(req, res){
 exports.home = function(req, res){
   res.render('home', { 
   	title: 'Attitash',
-  	username: 'AttitashDev'
+  	user: 'AttitashDev',
+  	userName: 'John Jacob Jingleheimer Schmidt'
   });
 };
