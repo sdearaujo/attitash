@@ -1,29 +1,34 @@
 <% include headernav.ejs %> <!-- header and top-level nav bar -->
 <div class="container">
   <div class="row-fluid">
-    <div class="span3">
-      <div id="trends" class="well sidebar-nav">
-        <h5><%= userName %></h5>  
-        <img class="img-rounded offset1" src="images/attitash-dev-prof-pic.jpeg" />
-        <a href="#">view profile page</a>
+    <div class="span4">
+      <div id="dash" class="well well-small clearfix">
         <table class="table table-condensed">
           <thead>
             <tr>
-              <th>Tashs</th>
-              <th>Following</th>
-              <th>Followers</th>
-            </tr>
-          </thead>
-          <tbody>
+              <td width="5%">
+                <img class="img-rounded offset1" src="images/attitash-dev-prof-pic.jpeg" />
+              </td>
+              <td width="95%">
+                <a href="#"><h5><%= userName %></a><span><p><small>view profile page</small></p></span></h5>
+              </td>
+            </tr> 
             <tr>
               <td>5</td>
               <td>3</td>
               <td>7</td>
+            </tr> 
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tashs</td>
+              <td>Following</td>
+              <td>Followers</td>
             </tr>
           </tbody>
         </table>
       </div>
-    <div class="well sidebar-nav">
+    <div class="well">
       <ul class="nav nav-list">
         <li class="nav-header">People you may know</li>
         <li>
@@ -50,47 +55,38 @@
       </ul>
     </div><!--/.well -->
   </div><!--/span-->
-  <div class="span9">
+  <div class="span8">
 
-    <table id="tashs" class="table table-hover">
-      <tbody>
-        <tr>
-          <td width="8%">
-            <a href="#"><img class="img-rounded" src="images/kramer.jpg" /></a>
-          </td>
-          <td width="90%">
-            <span class="pull-right"><h6><small>March 6, 2013</small></h6><br></span>
-            <span><a href="#"><strong>Cosmo Kramer</strong></a> <small><strong>@Assman</strong></small></span>
-            <p>I just got a new license plate, and that makes me the Assman! #giddyup</p>
-          </td>
-        </tr>
-        <tr>
-          <td width="8%">
-            <a href="#"><img class="img-rounded" src="images/kramer.jpg" /></a>
-          </td>
-          <td width="90%">
-            <span class="pull-right"><h6><small>March 6, 2013</small></h6><br></span>
-            <span><a href="#"><strong>Cosmo Kramer</strong></a> <small><strong>@Assman</strong></small></span>
-            <p>I just got a new license plate, and that makes me the Assman! #giddyup</p>
-          </td>
-        </tr>
-        <!-- <tr>
-          <td class="tash-thumb">
-            <a href="#">
-              <img class="img-rounded" src="images/kramer.jpg" alt="Kramer" />
-            </a>
-          </td>
-          <td>
-            <a href="#">Cosmo Kramer @Assman</a>
-            I just got this new license plate - and now I'm the Assman! #giddyup
-          </td>
-        </tr> -->
-      </tbody>
-    </table>
+    <ul id="tashs" class="nav nav-stacked">
+      <li>
+        <div class="media">
+          <a class="pull-left" href="#">
+            <img class="media-object img-rounded" src="images/windows.png">
+          </a>
+        <div class="media-body">
+          <span class="pull-right date">Mar 6</span>
+          <h5 class="media-heading"><a href="#">Windows</a> <small>@Windows</small></h5>
+          Windows 8 is off to a worse start than Vista! #letsgo #metro
+        </div>
+        </div>
+      </li>
+      <li>
+        <div class="media">
+          <a class="pull-left" href="#">
+            <img class="media-object img-rounded" src="images/twitter.png">
+          </a>
+        <div class="media-body">
+          <span class="pull-right date">Mar 6</span>
+          <h5 class="media-heading"><a href="#">Twitter</a> <small>@Twitter</small></h5>
+          Attitash has stolen all of our users! #ohno #attitash
+        </div>
+        </div>
+      </li>
+    </ul>
 
-  </div><!--/span9-->
+  </div><!--/span8-->
 </div><!--/row-->
 
-</div><!--/.fluid-container-->
+</div><!--/container-->
 
 <% include footer.ejs %> <!-- footer and bootstrap scripts -->

@@ -11,7 +11,7 @@ exports.home = function(req, res){
   res.render('home', { 
   	title: 'Attitash',
   	user: 'AttitashDev',
-  	userName: 'John Jacob Jingleheimer Schmidt'
+  	userName: 'AttitashDev'
   });
 };
 
