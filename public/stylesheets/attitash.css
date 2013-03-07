@@ -1,4 +1,6 @@
 body {
+
+        background: url(/images/gplaypatternblue.png) repeat fixed;
         padding-top: 60px;
         padding-bottom: 40px;
       }
@@ -97,3 +99,35 @@ body {
         color: #999999;
         font-size: 85%;
       }
+      .center.navbar .nav,
+.center.navbar .nav > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+    *zoom:1; /* hasLayout ie7 trigger */
+    vertical-align: top;
+}
+
+.center .navbar-inner {
+    text-align:center;
+}
+.center .dropdown-menu {
+    text-align: left;
+}
+
+textarea { 
+    width: 500px;
+    height: 100px;
+    resize: none; 
+}
+
+input-mysize { width: 150px 
+}
+navtextcolor{
+  color:#ffffff;
+}
+.navbar-fixed-top {
+  top: 0;
+  z-index: 1050;
+
+}
