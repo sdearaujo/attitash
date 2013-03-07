@@ -1,6 +1,5 @@
 <% include headernav.ejs %> <!-- header and top-level nav bar -->
 
-  <body>
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span4">
@@ -46,10 +45,10 @@
         </div><!--/span-->
         <div class="span8">
           <div class="well2">
-          <div id="trends" class="well sidebar-nav">
-            <img class="img-rounded offset4" src="images/attitash-dev-prof-pic-large.jpeg" />
-            <h5><%= userName %></h5>  
-            <h5>@<%= userName %></h5>  
+          <div id="profile" class="well sidebar-nav">
+            <img class="displayed img-polaroid" src="images/attitash-dev-prof-pic-large.jpeg" />
+            <h3><%= userName %></h3>  
+            <h4>@<%= userName %></h4>  
             <table class="table table-condensed">
               <thead>
                 <tr>
@@ -87,7 +86,6 @@
                 </tr>
               </tbody>
             </table>
-
           </div>
           </div><!--/row-->
           <div class="span8">

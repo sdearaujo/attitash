@@ -20,8 +20,8 @@
 
 
       .container-fluid{
-        padding: 0px 256px 0px 256px;
-
+        padding: 0px 200px 0px 200px;
+      } 
       .container-fluid.home{
         padding: 0px 200px 0px 200px;
 
@@ -142,7 +142,9 @@ padding-left: 15px;
 padding-right: 15px;
 padding-top: 20px;
 }
+
 .navbar-inverse .navbar-search .search-query {
+  padding: 5px 15px;
   color: #ffffff;
   background-color: #515151;
   border-color: #111111;
@@ -155,6 +157,19 @@ padding-top: 20px;
           transition: none;
 }
 
+.navbar-inverse .navbar-search .search-query:focus,
+.navbar-inverse .navbar-search .search-query.focused {
+  padding: 5px 15px;
+  color: #333333;
+  text-shadow: 0 1px 0 #ffffff;
+  background-color: #ffffff;
+  border: 0;
+  outline: 0;
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+     -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
 .navbar-search {
     position: relative;
     padding-top: 5px;
@@ -162,7 +177,7 @@ padding-top: 20px;
   
 .navbar-search .search-query {
     padding-left: 29px !important;
-    padding-top: 5px !important;
+    padding-top: 6px !important;
 }
 
 .navbar-search .icon-search {
@@ -171,3 +186,15 @@ padding-top: 20px;
     left: 11px;
     background-image: url("http://twitter.github.com/bootstrap/assets/img/glyphicons-halflings.png");
 }
+
+h3{
+  text-align: center
+}
+h4{
+  text-align: center
+}
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+  }
