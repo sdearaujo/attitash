@@ -1,8 +1,8 @@
-body {
+  body {
 
         background: url(/images/gplaypatternblue.png) repeat fixed;
-        padding-top: 60px;
-        padding-bottom: 40px;
+        padding-top: 40px;
+        padding-bottom: 0px;
       }
 
       .sidebar-nav {
@@ -19,7 +19,7 @@ body {
       }
 
       .container-fluid{
-        padding: 0px 200px 0px 200px;
+        padding: 0px 256px 0px 256px;
       }
 
       #dash h5,
@@ -129,5 +129,39 @@ navtextcolor{
 .navbar-fixed-top {
   top: 0;
   z-index: 1050;
+}
+.row-fluid {
+background: rgba(256, 256, 256, .5);
+padding-left: 15px;
+padding-right: 15px;
+padding-top: 20px;
+}
+.navbar-inverse .navbar-search .search-query {
+  color: #ffffff;
+  background-color: #515151;
+  border-color: #111111;
+  -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.1), 0 0px 0 rgba(255, 255, 255, 0.15);
+     -moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.1), 0 0px 0 rgba(255, 255, 255, 0.15);
+          box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.1), 0 0px 0 rgba(255, 255, 255, 0.15);
+  -webkit-transition: none;
+     -moz-transition: none;
+       -o-transition: none;
+          transition: none;
+}
 
+.navbar-search {
+    position: relative;
+    padding-top: 5px;
+}
+  
+.navbar-search .search-query {
+    padding-left: 29px !important;
+    padding-top: 5px !important;
+}
+
+.navbar-search .icon-search {
+    position: absolute;
+    top: 6px;
+    left: 11px;
+    background-image: url("http://twitter.github.com/bootstrap/assets/img/glyphicons-halflings.png");
 }
