@@ -47,16 +47,16 @@
         <% } %>
       </ul>
     </div>
-    <div class="well sidebar-nav">
-      <ul class="nav nav-list">
+    <div class="well well-small">
+      <ul id="trends" class="nav nav-stacked">
         <li class="nav-header">Trends</li>
-        <li><a href="#">#attitash</a></li>
-        <li><a href="#">#cs326</a></li>
-        <li><a href="#">#jingleheimer</a></li>
-        <li><a href="#">#roflmao</a></li>
-        <li><a href="#">#balsamiq</a></li>
-        <li><a href="#">#betterthantwitter</a></li>
-        <li><a href="#">#tash</a></li>
+        <% for(var i = 0; i < trends.length; i++) { %>
+          <li>
+            <div class="media-body">
+              <h6 class="media-heading"><a href="#">#<%= trends[i] %></a></h6>
+            </div>
+          </li>
+        <% } %>
       </ul>
     </div><!--/.well -->
   </div><!--/span-->

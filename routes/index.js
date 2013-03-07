@@ -41,7 +41,8 @@ exports.home = function(req, res){
   			username: "Seinfeld", 
   			followed_by: "Twitter"
   		}
-  	]
+  	],
+  	trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
   });
 };
 
