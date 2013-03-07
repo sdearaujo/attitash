@@ -67,14 +67,20 @@
               <h3 id="myModalLabel">What's going on?</h3>
                  </div>
               <div class="modal-body">
-                <div class="divDialogElements">
-                <textarea name="input" type="text" placeholder="Enter your tash here!"></textarea>
+                <span id="chars_left"><small>140</small></span>
+                <form id="send_tash">
+                <textarea id="new_tash" type="text" placeholder="Compose New Tash..."></textarea>
+                <div class="alert alert-success">
+                Tash Sent!
+                </div>
+                <div class="alert alert-error">
+                Tash must have at least one character!
                 </div>
               </div>  
               <div class="modal-footer">
-             <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">
-            <i class="icon-ok icon-white"></i> Tash
-             </button>
+              <p class="pull-left" <span id="chars_left">Characters left: <small>140</small></span></p>
+             <input type="submit" class="btn btn-primary" value="Tash">
+             </form>
               </ul>
                </div>
                 </div>
