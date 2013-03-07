@@ -18,7 +18,7 @@ body {
         }
       }
 
-      .container-fluid{
+      .container-fluid.home{
         padding: 0px 200px 0px 200px;
       }
 
@@ -65,6 +65,7 @@ body {
         border-bottom: 1px solid #eeeeee;
         border-left: 1px solid #eeeeee;
         border-right: 1px solid #eeeeee;
+        background: #fff;
       }
 
       #suggest-follow li,
