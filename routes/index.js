@@ -14,3 +14,10 @@ exports.home = function(req, res){
   	userName: 'John Jacob Jingleheimer Schmidt'
   });
 };
+exports.me = function(req, res){
+	res.render('me', { 
+  	title: 'Attitash',
+  	user: 'AttitashDev',
+  	userName: 'John Jacob Jingleheimer Schmidt'
+  });
+};

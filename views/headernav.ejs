@@ -1,59 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title><%= title %> &middot; Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <!-- Le styles -->
-    <link href="bootstrap/docs/assets/css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
 
-      @media (max-width: 980px) {
-        /* Enable use of floated navbar text */
-        .navbar-text.pull-right {
-          float: none;
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-      }
-
-      #trends h5{
-        text-align: center;
-      }
-
-      #trends table tbody tr td,
-      #trends table thead tr th{
-        text-align: center;
-      }
-    </style>
-    <link href="bootstrap/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="bootstrap/docs/assets/js/html5shiv.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="bootstrap/docs/assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap/docs/assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="bootstrap/docs/assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="bootstrap/docs/assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="bootstrap/docs/assets/ico/favicon.png">
-  </head>
-
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top center">
       <div class="navbar-inner">
         <div class="container-fluid">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -61,23 +8,57 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#"><%= title %></a>
+          
           <div class="nav-collapse collapse">
-            <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link">@<%= user %></a>
-            </p>
             <ul class="nav">
-              <li class="active"><a href="#"><i class="icon-home"></i> Home</a></li>
-              <li><a href="#">@ Connect</a></li>
-              <li><a href="#"># Discover</a></li>
-              <li><a href="#">Me</a></li>
+              <li class="active"><a href="home"><i class="icon-home"></i> Home</a></li>
+              <li><a href="#"><navtextcolor>@</navtextcolor> Connect</a></li>
+              <li><a href="#"><navtextcolor>#</navtextcolor> Discover</a></li>
+              <li><a href="me"><i class="icon-user icon-white"></i> Me</a></li>
+              <li><a class="brand" href="#"><img class="img-navbar inline" src = images/attitashnavlogo.png></a></li>
               <li>
-              	<form class="navbar-search form-search">
-                  <input type="text" class="search-query" placeholder="Search" data-provide="typeahead" autocomplete="off">
-                  <button type="submit" class="btn btn-mini btn-inverse"><i class="icon-search icon-white"></i></button>
+              	<form class="navbar-search">
+                  <input type="text" class="search-query span3" placeholder="Search" data-provide="typeahead" autocomplete="off" >
+                  <div class="icon-search"></div>
                 </form>
   			  </li>
+              <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+              <li class="nav-header">Edit profile</li>
+              <li><a href="#">@<%= user %></a></li>
+              <li class="divider"></li>
+              <li><a href="#">Direct messages</a></li>
+              <li><a href="#">Lists</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Help</a></li>
+              <li><a href="#">Keyboard Shortcuts</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Settings</a></li>
+              <li><a href="#">Sign out</a></li>
             </ul>
+              </li>
+
+            <!-- Button to trigger modal -->
+              <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal"><i class="icon-pencil icon-white"></i></a>
+              <!-- Modal -->
+              <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">What's going on?</h3>
+                 </div>
+              <div class="modal-body">
+                <div class="divDialogElements">
+                <textarea name="input" type="text" placeholder="Enter your tash here!"></textarea>
+                </div>
+              </div>  
+              <div class="modal-footer">
+             <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">
+            <i class="icon-ok icon-white"></i> Tash
+             </button>
+              </ul>
+               </div>
+                </div>
           </div><!--/.nav-collapse -->
         </div>
       </div>
