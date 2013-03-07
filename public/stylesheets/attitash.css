@@ -16,6 +16,13 @@ body {
         }
       }
 
+      .container,
+      .navbar-static-top .container,
+      .navbar-fixed-top .container,
+      .navbar-fixed-bottom .container {
+        width: 940px !important;
+      }
+
       #dash h5,
       #dash table tr td,
       #dash table tr th{
@@ -26,11 +33,11 @@ body {
         margin-right: 10px;
       }
 
-      #tashs .media-heading a{
+      .media-heading a{
         color: #333;
       }
 
-      #tashs .media-heading a:hover{
+      .media-heading a:hover{
         color: #0084B4;
       }
 
@@ -60,12 +67,25 @@ body {
         border-right: 1px solid #eeeeee;
       }
 
+      #suggest-follow li,
+      #suggest-follow .nav-header{
+        padding: 0px 0px 10px 0px;
+      }
+
+      #suggest-follow .media-body h5{
+        line-height: 14px;
+      }
+
       #tashs li:hover{
         cursor: pointer;
         background: #f5f5f5;
       }
 
       .media-heading{
+        margin: 0;
+      }
+
+      .nav{
         margin: 0;
       }
 
