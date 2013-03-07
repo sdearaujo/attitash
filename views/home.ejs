@@ -1,5 +1,5 @@
 <% include headernav.ejs %> <!-- header and top-level nav bar -->
-<div class="container">
+<div class="container-fluid">
   <div class="row-fluid">
     <div class="span4">
       <div id="dash" class="well well-small clearfix">
@@ -21,9 +21,9 @@
           </thead>
           <tbody>
             <tr>
-              <td>Tashs</td>
-              <td>Following</td>
-              <td>Followers</td>
+              <td><strong>Tashs</strong></td>
+              <td><strong>Following</strong></td>
+              <td><strong>Followers</strong></td>
             </tr>
           </tbody>
         </table>
@@ -31,42 +31,20 @@
     <div class="well well-small">
       <ul id="suggest-follow" class="nav nav-stacked">
         <li class="nav-header">People you may know</li>
-        <li>
+        <% for(var i=0; i<who_to_follow.length; i++) { %>
+          <li>
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="images/george.jpg">
+              <img class="media-object img-rounded" src="<%= who_to_follow[i].img_src %>">
             </a>
-          <div class="media-body">
-            <h5 class="media-heading"><a href="#">George Costanza</a> <small>@Costanza</small><br>
-            <small>Followed by <a href="#"><u>Windows</u></a> and 4 others</small></h5>
-            <a class="btn btn-primary btn-mini">Follow</a>
+            <div class="media-body">
+              <h5 class="media-heading"><a href="#"><%= who_to_follow[i].name %></a> <small>@<%= who_to_follow[i].username %></small><br>
+              <small>Followed by <a href="#"><u><%= who_to_follow[i].followed_by %></u></a> and 4 others</small></h5>
+              <a class="btn btn-primary btn-mini">Follow</a>
+            </div>
           </div>
-          </div>
-        </li>
-        <li>
-          <div class="media">
-            <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="images/kramer.jpg">
-            </a>
-          <div class="media-body">
-            <h5 class="media-heading"><a href="#">Cosmo Kramer</a> <small>@K-Man</small><br>
-            <small>Followed by <a href="#"><u>Jerry Seinfeld</u></a> and 12 others</small></h5>
-            <a class="btn btn-primary btn-mini">Follow</a>
-          </div>
-          </div>
-        </li>
-        <li>
-          <div class="media">
-            <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="images/sein.jpg">
-            </a>
-          <div class="media-body">
-            <h5 class="media-heading"><a href="#">Jerry Seinfeld</a> <small>@Seinfeld</small><br>
-            <small>Followed by <a href="#"><u>Twitter</u></a> and 7 others</small></h5>
-            <a class="btn btn-primary btn-mini">Follow</a>
-          </div>
-          </div>
-        </li>
+          </li>
+        <% } %>
       </ul>
     </div>
     <div class="well sidebar-nav">
@@ -83,37 +61,23 @@
     </div><!--/.well -->
   </div><!--/span-->
   <div class="span8">
-
     <ul id="tashs" class="nav nav-stacked">
-      <li>
-        <div class="media">
-          <a class="pull-left" href="#">
-            <img class="media-object img-rounded" src="images/windows.png">
-          </a>
-        <div class="media-body">
-          <span class="pull-right date">Mar 6</span>
-          <h5 class="media-heading"><a href="#">Windows</a> <small>@Windows</small></h5>
-          Windows 8 is off to a worse start than Vista! #letsgo #metro
-        </div>
-        </div>
-      </li>
-      <li>
-        <div class="media">
-          <a class="pull-left" href="#">
-            <img class="media-object img-rounded" src="images/twitter.png">
-          </a>
-        <div class="media-body">
-          <span class="pull-right date">Mar 6</span>
-          <h5 class="media-heading"><a href="#">Twitter</a> <small>@Twitter</small></h5>
-          Attitash has stolen all of our users! #ohno #attitash
-        </div>
-        </div>
-      </li>
+      <% for(var i=0; i<tashs.length; i++) { %>
+        <li>
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object img-rounded" src="<%= tashs[i].img_src %>">
+            </a>
+            <div class="media-body">
+              <span class="pull-right date">Mar 6</span>
+              <h5 class="media-heading"><a href="#"><%= tashs[i].name %></a> <small>@<%= tashs[i].username %></small></h5>
+              <%= tashs[i].tash_text %>
+            </div>
+          </div>
+        </li>
+      <% } %>
     </ul>
-
   </div><!--/span8-->
 </div><!--/row-->
-
 </div><!--/container-->
-
 <% include footer.ejs %> <!-- footer and bootstrap scripts -->
