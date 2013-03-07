@@ -1,6 +1,8 @@
-<footer>
-  <p>&copy; Attitash 2013</p>
-</footer>
+<div class="container-fluid">
+    <footer>
+        <p>&copy; Attitash 2013</p>
+    </footer>
+</div>
 
 <!-- Le javascript
 ================================================== -->
@@ -23,6 +25,29 @@
     $('.search-query').typeahead({
         source: ['Jerry Seinfeld', 'George Costanza', 'Cosmo Kramer', 'John Coschigano', 'Brain Dragunas', 'Samuel Nascimento', 'Anthony Battaglia'],
         });
+</script>
+
+<script>
+    $('#new_tash').keyup(function () { $('#chars_left > small').text(140-$('#new_tash').val().length) });
+    $('#new_tash').keydown(function(e){
+        //if it's too long and the key pressed isn't backspace or delete
+        if($(this).val().length >= 140 && e.which !== 8 && e.which !== 46){ 
+            return false;
+        }
+    });
+    $('#send_tash').submit(function(e) {
+        e.preventDefault();
+        if($('#new_tash').val().length < 1){
+            $('.alert-error').fadeIn(200).delay(4000).fadeOut(200);
+            return false;
+        }
+        $('#tashs').prepend(
+            '<li><div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="images/attitash-dev-prof-pic.jpeg"></a><div class="media-body"><span class="pull-right date">Mar 6</span><h5 class="media-heading"><a href="#">AttitashDev</a> <small>@AttitashDev</small></h5>' + $('#new_tash').val() + '</div></div></li>');
+        $('#new_tash').val("");
+        $('#chars_left > small').text("140");
+        $('.alert-success').fadeIn(200).delay(4000).fadeOut(1000);
+        return false;
+    });
 </script>
 
 </body>

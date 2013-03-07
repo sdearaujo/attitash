@@ -88,6 +88,11 @@ body {
         margin: 0;
       }
 
+      .alert-success,
+      .alert-error{
+        display: none;
+      }
+
       .date{
         color: #999999;
         font-size: 85%;
