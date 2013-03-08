@@ -40,49 +40,43 @@
                   <input type="text" class="search-query span3" placeholder="Search" data-provide="typeahead" autocomplete="off" >
                   <div class="icon-search"></div>
                 </form>
-  			  </li>
-              <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-              <li class="nav-header">Edit profile</li>
-              <li><a href="#">@<%= user %></a></li>
-              <li class="divider"></li>
-              <li><a href="#">Direct messages</a></li>
-              <li><a href="#">Lists</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Help</a></li>
-              <li><a href="#">Keyboard Shortcuts</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Settings</a></li>
-              <li><a href="#">Sign out</a></li>
-            </ul>
               </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li class="nav-header">Edit profile</li>
+                  <li><a href="#">@<%= user %></a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Direct messages</a></li>
+                  <li><a href="#">Lists</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Help</a></li>
+                  <li><a href="#">Keyboard Shortcuts</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Settings</a></li>
+                  <li><a href="#">Sign out</a></li>
+                </ul>
+              </li>
+            </ul>
 
             <!-- Button to trigger modal -->
               <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal"><i class="icon-pencil icon-white"></i></a>
               <!-- Modal -->
               <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h3 id="myModalLabel">What's going on?</h3>
-                 </div>
-              <div class="modal-body">
-                <form id="send_tash">
-                <textarea id="new_tash" type="text" placeholder="Compose New Tash..."></textarea>
-                <div class="alert alert-success">
-                Tash Sent!
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h3 id="myModalLabel">What's going on?</h3>
                 </div>
-                <div class="alert alert-error">
-                Tash must have at least one character!
+                <div class="modal-body">
+                  <form id="send_tash_modal">
+                    <textarea class="new_tash" type="text" placeholder="Compose New Tash..."></textarea>
+                    <div class="modal-footer">
+                      <p class="pull-left"> <span class="chars_left">Characters left: <small>140</small></span></p>
+                      <input type="submit" class="btn btn-primary" value="Tash">
+                    </div>
+                  </form>
                 </div>
-              </div>  
-              <div class="modal-footer">
-              <p class="pull-left" <span id="chars_left">Characters left: <small>140</small></span></p>
-             <input type="submit" class="btn btn-primary" value="Tash">
-             </form>
-              </ul>
-               </div>
-                </div>
+              </div>                          
           </div><!--/.nav-collapse -->
         </div>
       </div>

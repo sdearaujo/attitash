@@ -18,14 +18,9 @@
         }
       }
 
-
       .container-fluid{
         padding: 0px 200px 0px 200px;
       } 
-      .container-fluid.home{
-        padding: 0px 200px 0px 200px;
-
-      }
 
       #dash h5,
       #dash table tr td,
@@ -225,4 +220,8 @@ text-align: center;
   cursor: default;
   background-color: #006dcc;
   border-bottom-color: transparent;
+}
+
+.navbar-inner > .container-fluid{
+  padding: 0;
 }
