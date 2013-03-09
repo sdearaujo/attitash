@@ -133,9 +133,7 @@ navtextcolor{
 }
 .row-fluid {
 background: rgba(256, 256, 256, .5);
-padding-left: 15px;
-padding-right: 15px;
-padding-top: 20px;
+padding: 20px 15px 20px 15px;
 }
 
 .navbar-inverse .navbar-search .search-query {
