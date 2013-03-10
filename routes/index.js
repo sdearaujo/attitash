@@ -188,13 +188,6 @@ exports.me = function(req, res){
     ],
     trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
   });
-  
-  exports.settings = function(req, res){
-  	res.render('settings', {
-	title: 'Attitash',
-  	user: 'AttitashDev',
-  	userName: 'John Jacob Jingleheimer Schmidt'
-};
 };
 
 exports.login = function(req, res){
@@ -205,3 +198,11 @@ exports.login = function(req, res){
 exports.register = function(req, res){
   res.render('register', {  title: 'Attitash' });
 };
+
+exports.settings = function(req, res){
+  	res.render('settings', {
+	title: 'Attitash',
+  	user: 'AttitashDev',
+  	userName: 'John Jacob Jingleheimer Schmidt'
+	}
+)};
