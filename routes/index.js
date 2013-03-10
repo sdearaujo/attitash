@@ -190,10 +190,93 @@ exports.me = function(req, res){
   });
 };
 
+exports.discover = function(req, res){
+  res.render('discover', { 
+    title: 'Attitash',
+    user: 'AttitashDev',
+    userName: 'AttitashDev',
+    tashs: [
+      { img_src: "images/attitash-dev-prof-pic.jpeg",
+        name: "AttitashDev",
+        username: "AttitashDev", 
+        tash_text: "test"
+      },
+      { img_src: "images/attitash-dev-prof-pic.jpeg",
+        name: "AttitashDev",
+        username: "AttitashDev", 
+        tash_text: "test"
+      },
+      { img_src: "images/attitash-dev-prof-pic.jpeg",
+        name: "AttitashDev",
+        username: "AttitashDev", 
+        tash_text: "test"
+      },
+      { img_src: "images/attitash-dev-prof-pic.jpeg",
+        name: "AttitashDev",
+        username: "AttitashDev", 
+        tash_text: "test"
+      },
+      { img_src: "images/attitash-dev-prof-pic.jpeg",
+        name: "AttitashDev",
+        username: "AttitashDev", 
+        tash_text: "test"
+      },
+      { img_src: "images/attitash-dev-prof-pic.jpeg",
+        name: "AttitashDev",
+        username: "AttitashDev", 
+        tash_text: "test"
+      },
+      { img_src: "images/attitash-dev-prof-pic.jpeg",
+        name: "AttitashDev",
+        username: "AttitashDev", 
+        tash_text: "test"
+      },
+      { img_src: "images/attitash-dev-prof-pic.jpeg",
+        name: "AttitashDev",
+        username: "AttitashDev", 
+        tash_text: "test"
+      },
+      { img_src: "images/attitash-dev-prof-pic.jpeg",
+        name: "AttitashDev",
+        username: "AttitashDev", 
+        tash_text: "test"
+      },
+      { img_src: "images/attitash-dev-prof-pic.jpeg",
+        name: "AttitashDev",
+        username: "AttitashDev", 
+        tash_text: "test"
+      },
+      { img_src: "images/attitash-dev-prof-pic.jpeg",
+        name: "AttitashDev",
+        username: "AttitashDev", 
+        tash_text: "test"
+      },
+      
+    ],
+    who_to_follow: [
+      { img_src: "images/george.jpg",
+        name: "George Costanza",
+        username: "Costanza", 
+        followed_by: "Windows"
+      },
+      { img_src: "images/kramer.jpg",
+        name: "Cosmo Kramer",
+        username: "K-Man", 
+        followed_by: "Jerry Seinfeld"
+      },
+      { img_src: "images/sein.jpg",
+        name: "Jerry Seinfeld",
+        username: "Seinfeld", 
+        followed_by: "Twitter"
+      }
+    ],
+    trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
+  });
+};
+
 exports.login = function(req, res){
   res.render('login', { title: 'Attitash' });
 };
-
 
 exports.register = function(req, res){
   res.render('register', {  title: 'Attitash' });

@@ -1,3 +1,4 @@
+  @import 'bootstrap.less';
   body {
 
         background: url(/images/gplaypatternblue.png) repeat fixed;
@@ -63,6 +64,15 @@
       #tashs li{
         padding: 10px 10px 20px 10px;
         border-bottom: 1px solid #eeeeee;
+        border-left: 1px solid #eeeeee;
+        border-right: 1px solid #eeeeee;
+        background: #fff;
+      }
+
+      #fattashs li{
+        padding: 10px 10px 20px 10px;
+        height: 400px;
+        border-bottom: 10px solid #eeeeee;
         border-left: 1px solid #eeeeee;
         border-right: 1px solid #eeeeee;
         background: #fff;
@@ -231,4 +241,13 @@ textarea#styled {
     height: 30px;
     width: 100%;
     padding: 3px;
+}
+.tailoredtash {
+    height: 50px;
+    width: 660px;
+    padding: 10px 10px 20px 10px;
+    border-bottom: 1px solid #eeeeee;
+    border-left: 1px solid #eeeeee;
+    border-right: 1px solid #eeeeee;
+    background: #f5f5f5
 }
