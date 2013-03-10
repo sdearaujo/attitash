@@ -28,11 +28,11 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
+app.get('/', routes.login);
 app.get('/users', user.list);
 app.get('/home', routes.home);
 app.get('/me', routes.me);
-app.get('/login', routes.login);
+// app.get('/login', routes.login);
 app.get('/register', routes.register);
 
 
