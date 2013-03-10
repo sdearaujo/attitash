@@ -223,3 +223,12 @@ text-align: center;
 .navbar-inner > .container-fluid{
   padding: 0;
 }
+textarea#styled {
+  width: 306px;
+  height: 30px;
+}
+.expand {
+    height: 30px;
+    width: 100%;
+    padding: 3px;
+}

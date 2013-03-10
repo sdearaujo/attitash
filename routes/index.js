@@ -105,6 +105,10 @@ exports.home = function(req, res){
   	],
   	trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
   });
+
+    $('textarea.expand').focus(function () {
+    $(this).animate({ height: "4em" }, 500); 
+});
 };
 
 exports.me = function(req, res){
