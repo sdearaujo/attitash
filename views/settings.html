@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+
+<% include headernav.ejs %> <!-- header and top-level nav bar -->
+<head>
+<script type="text/javascript" src="http://www.lifehurdle.com/js/jquery-1.6.1.min.js"></script>
+
+</head>
+
+<body>
+
+<table cellspacing="2" cellpadding="2" border="0" width="800">
+<tr>
+	<td width= "35%>
+		<div class="well"></div>
+		<div class="btn-group btn-group-vertical">
+			<button class="btn" name="vbuttons" value="account">Account</button>
+			<button class="btn" name="vbuttons" value="password">Password</button>
+			<button class="btn" name="vbuttons" value="profile">Profile</button>
+		</div>
+		<div class="well"></div>
+	</td>
+	<td>
+		<div id="divaccount">
+			Account
+			<br>
+			Change your basic account,language, Tweet Privacy and Location Settings.
+			<form name="accountinfo" id="accountinfo" action="" method="post">
+				<table cellspacing="2" cellpadding="2" border="0">
+				<tr>
+					<td><input type="text" name="UserName" value="UserName"></td>
+				</tr>
+				<tr>
+					<<input type="text" name="Password" value="Password">></td>
+				</tr>
+				<tr>
+					<td>
+						<div class="dropdown">
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+								<li><a tabindex="-1" href="#">Action</a></li>
+								<li><a tabindex="-1" href="#">Another action</a></li>
+								<li><a tabindex="-1" href="#">Something else here</a></li>
+								<li class="divider"></li>
+								<li><a tabindex="-1" href="#">Separated link</a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="dropdown">
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+								<li><a tabindex="-1" href="#">Action</a></li>
+								<li><a tabindex="-1" href="#">Another action</a></li>
+								<li><a tabindex="-1" href="#">Something else here</a></li>
+								<li class="divider"></li>
+								<li><a tabindex="-1" href="#">Separated link</a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+				</table>
+			</form>
+			
+		</div> 
+		<div id="divpassword">
+			Password
+			<br>
+			Change your password or recover your current one.
+			<form name="password" id="password" action="" method="post">
+				<table align="center" cellspacing="2" cellpadding="2" border="0">
+					<tr>
+						<td>Current Password<input type="password" name="currpass" value="currpass"></td>
+					</tr>
+					<tr>
+						<td>New Password<input type="password" name="newpass" value="newpass"></td>
+					</tr>
+					<tr>
+						<td>Verify Password<input type="password" name="verpass" value="verpass"></td>
+					</tr>
+				</table>
+			</form>
+			
+		</div>
+		<div id="divprofile">
+		Profile
+		<br>
+		This information appears on your public profile, search results, and beyond.
+		<table align="center" cellspacing="2" cellpadding="2" border="0">
+		<tr>
+			<td>Photo
+				<ul class="thumbnails">
+					<li class="span4">
+						<div class="thumbnail">
+						<img data-src="holder.js/300x200" alt="">
+						<h3>Thumbnail label</h3>
+						<p>Thumbnail caption...</p>
+						</div>
+					</li>
+				</ul>
+				<div class="dropdown">
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<li><a tabindex="-1" href="#">Choose existint photo</a></li>
+						<li><a tabindex="-1" href="#">Take photo</a></li>
+						<li><a tabindex="-1" href="#">Remove photo</a></li>
+						<li class="divider"></li>
+						<li><a tabindex="-1" href="#">Separated link</a></li>
+					</ul>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			Header
+				<ul class="thumbnails">
+					<li class="span4">
+						<div class="thumbnail">
+						<img data-src="holder.js/300x200" alt="">
+						<h3>Thumbnail label</h3>
+						<p>Thumbnail caption...</p>
+						</div>
+					</li>
+				</ul>
+				<button class="btn">Change Header</button>
+			</td>
+		</tr>
+		<tr>
+			<td>Name 
+			<input type="text" name="name" value="name">
+			</td>
+		</tr>
+		<tr>
+			<td>Location
+			<input type="text" name="location" value="location">
+			</td>
+		</tr>
+		<tr>
+			<td>Website
+			<input type="text" name="website" value="website">
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<button class="btn">Save Changes</button>
+			</td>
+		</tr>
+		</table>
+
+		</div>
+	</td>
+</tr>
+</table>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<% include footer.ejs %> <!-- footer and bootstrap scripts -->

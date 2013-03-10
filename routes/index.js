@@ -13,4 +13,10 @@ exports.home = function(req, res){
   	user: 'AttitashDev',
   	userName: 'John Jacob Jingleheimer Schmidt'
   });
+  
+  exports.settings = function(req, res){
+  	res.render('settings', {
+	title: 'Attitash',
+  	user: 'AttitashDev',
+  	userName: 'John Jacob Jingleheimer Schmidt'
 };
