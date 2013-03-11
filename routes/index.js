@@ -6,6 +6,11 @@ exports.home = function(req, res){
     title: 'Attitash',
     user: 'AttitashDev',
     userName: 'AttitashDev',
+    // mock tash values.<br>
+    // img_src: location of image, to be placed in "img src="img_src value"<br>
+    // name: account name<br>
+    // username: account handle<br>
+    // tash_text: text content of the mock tash
     tashs: [
       { img_src: "https://si0.twimg.com/profile_images/81302971/facebook_favicon_large_2_normal.png",
         name: "Facebook",
@@ -101,6 +106,7 @@ exports.home = function(req, res){
   });
 };
 
+// route for me page
 exports.me = function(req, res){
   res.render('me', { 
     title: 'Attitash',
@@ -185,6 +191,7 @@ exports.me = function(req, res){
   });
 };
 
+// route for discover page
 exports.discover = function(req, res){
   res.render('discover', { 
     title: 'Attitash',
@@ -269,10 +276,12 @@ exports.discover = function(req, res){
   });
 };
 
+//route for login page
 exports.login = function(req, res){
   res.render('login', { title: 'Attitash' });
 };
 
+//route for register page
 exports.register = function(req, res){
   res.render('register', {  title: 'Attitash' });
 };

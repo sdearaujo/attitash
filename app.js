@@ -27,6 +27,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+// request handlers for various pages, routes to functions
 app.get('/', routes.login);
 app.get('/home', routes.home);
 app.get('/me', routes.me);
