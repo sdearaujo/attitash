@@ -1,7 +1,5 @@
 <% include headernav.ejs %> <!-- header and top-level nav bar -->
 
-<!DOCTYPE HTML>
-
 <div class="container-fluid home">
   <div class="row-fluid">
     <div class="span4">
@@ -13,7 +11,7 @@
                 <a href="/me"><img class="img-rounded offset1" src="images/attitash-dev-prof-pic.jpeg" /></a>
               </td>
               <td align="left">
-                <a href="/me"><h5><%= userName %></a></h5>
+                <a href="#"><h5><%= userName %></a></h5>
               </td>
             </tr> 
 		  </thead>
@@ -116,7 +114,7 @@
 			<table align="center" cellspacing="2" cellpadding="2" border="0">
 				<tr>
 					<td>Photo
-						<a href="/me"><img class="img-rounded offset1" src="images/attitash-dev-prof-pic.jpeg" /></a>
+						<a href="#"><img class="img-rounded offset1" src="images/attitash-dev-prof-pic.jpeg" /></a>
 						<div class="dropdown">
 							<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 								<li><a tabindex="-1" href="#">Choose existint photo</a></li>
@@ -132,7 +130,7 @@
 					<td>
 
 					Header
-						<a href="/me"><img class="img-rounded offset1" src="images/gplaypatternblue.png" /></a>
+						<a href="#"><img class="img-rounded offset1" src="images/gplaypatternblue.png" /></a>
 						<button class="btn">Change Header</button><br><br>
 					</td>
 				</tr>
@@ -172,5 +170,5 @@
 </div><!--/row-->
 </div><!--/container-->
 
-<% include footer.ejs %> <!-- footer and bootstrap scripts -->
 <script type="text/javascript" src="lib/settings.js"></script>
+<% include footer.ejs %> <!-- footer and bootstrap scripts -->
