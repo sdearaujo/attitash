@@ -1,0 +1,72 @@
+<% include headernav.ejs %> <!-- header and top-level nav bar -->
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span4">
+          <div id="navigation">
+            <ul class="nav nav-tabs nav-stacked"> 
+            <li class="active"><a href="#">Tashs</a></li>     
+            <li><a href="#">Activity</a></li>  
+            <li><a href="#">Who to follow</a></li>   
+            <li><a href="#">Find friends</a></li>   
+            <li><a href="#">Browse categories</a></li> 
+          </div>
+          <div class="well well-small">
+      <ul id="suggest-follow" class="nav nav-stacked">
+        <li class="nav-header">People you may know</li>
+        <% for(var i=0; i<who_to_follow.length; i++) { %>
+          <li>
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object img-rounded" src="<%= who_to_follow[i].img_src %>">
+            </a>
+            <div class="media-body">
+              <h5 class="media-heading"><a href="#"><%= who_to_follow[i].name %></a> <small>@<%= who_to_follow[i].username %></small><br>
+              <small>Followed by <a href="#"><u><%= who_to_follow[i].followed_by %></u></a> and 4 others</small></h5>
+              <a class="btn btn-primary btn-mini">Follow</a>
+            </div>
+          </div>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+    <div class="well well-small">
+      <ul id="trends" class="nav nav-stacked">
+        <li class="nav-header">Trends</li>
+        <% for(var i = 0; i < trends.length; i++) { %>
+          <li>
+            <div class="media-body">
+              <h6 class="media-heading"><a href="#">#<%= trends[i] %></a></h6>
+            </div>
+          </li>
+        <% } %>
+      </ul>
+    </div><!--/.well -->
+        </div><!--/span-->
+          <div class="span8">
+ <div class="well well-small">
+      <ul id="suggest-follow" class="nav nav-stacked">
+
+      </ul>
+    </div>
+    <ul id="fattashs" class="nav nav-stacked">
+      <% for(var i=0; i<tashs.length; i++) { %>
+        <li>
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object img-rounded" src="<%= tashs[i].img_src %>">
+            </a>
+            <div class="media-body">
+              <span class="pull-right date">Mar 6</span>
+              <h5 class="media-heading"><a href="#"><%= tashs[i].name %></a> <small>@<%= tashs[i].username %></small></h5>
+              <%= tashs[i].tash_text %>
+            </div>
+          </div>
+        </li>
+      <% } %>
+    </ul>
+  </div><!--/span8-->
+</div><!--/row-->
+</div><!--/container-->
+
+<% include footer.ejs %> <!-- footer and bootstrap scripts -->

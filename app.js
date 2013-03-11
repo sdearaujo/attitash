@@ -35,6 +35,7 @@ app.get('/me', routes.me);
 app.get('/register', routes.register);
 app.get('/discover', routes.discover);
 app.get('/register', routes.register);
+app.get('/connect', routes.connect);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
