@@ -1,10 +1,5 @@
-/*
- * GET home page.
- */
 
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
-};
+// Route for getting the home page.  Provides values for mock tashs.
 
 exports.home = function(req, res){
   res.render('home', { 
