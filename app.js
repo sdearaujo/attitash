@@ -4,7 +4,6 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
   , http = require('http')
   , path = require('path');
 
@@ -28,8 +27,8 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+// request handlers for various pages, routes to functions
 app.get('/', routes.login);
-app.get('/users', user.list);
 app.get('/home', routes.home);
 app.get('/me', routes.me);
 app.get('/discover', routes.discover);
