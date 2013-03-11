@@ -9,8 +9,13 @@ body {
 }
 
 #loginContent{
-	margin-left:110px;
-	margin-top: 90px;
+	margin-left:600px;
+	margin-top: 160px;
+}
+
+#loginForm{
+	margin-left:160px;
+        margin-top: 20px;
 }
 
 
