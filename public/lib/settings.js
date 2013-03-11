@@ -10,16 +10,16 @@ $(document).ready(function(){
   var selected = this.value;
 
 	if (lastselected==''){
-		$('#div' + buttontype).fadeIn(300);
+		$('#div' + selected).fadeIn(300);
 			}
 	else{
 		$('#div'+ lastselected).fadeOut(300, function() {
-		   $('#div' + slected).fadeIn(300);
+		   $('#div' + selected).fadeIn(300);
 		  });//function() {
 	}//if (selected==''){
 	lastselected = selected;
-  });// $('input[name="PaymentType"]').change(function() {
-	}
+  });// 
+	
 
   
 });//$(document).ready(function(){

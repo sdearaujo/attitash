@@ -5,5 +5,13 @@ body {
 }
 
 #buttonLine{
-	margin-left:215px;
+	margin-left:140px;
+	margin-top:10px;
+}
+
+#registerBackground{
+	width: 390px;
+	margin-left: 680px;
+	padding-left: 120px;
+	margin-top: 40px;
 }
