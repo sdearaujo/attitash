@@ -30,7 +30,10 @@ app.configure('development', function(){
 app.get('/', routes.login);
 app.get('/home', routes.home);
 app.get('/me', routes.me);
+app.get('/discover', routes.discover);
+// app.get('/login', routes.login);
 app.get('/register', routes.register);
+
 
 
 http.createServer(app).listen(app.get('port'), function(){
