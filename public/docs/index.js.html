@@ -39,7 +39,7 @@
         </td>
         <td class="code highlight"><div class="highlight"><pre><span class="nx">exports</span><span class="p">.</span><span class="nx">home</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="p">{</span> 
-    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash&#39;</span><span class="p">,</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Home&#39;</span><span class="p">,</span>
     <span class="nx">user</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
     <span class="nx">userName</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
 
@@ -52,10 +52,10 @@
   <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
 </div>
 <p>mock tash values.<br>
-img_src: location of image, to be placed in "img src="img_src value"<br>
-name: account name<br>
-username: account handle<br>
-tash_text: text content of the mock tash</p>
+<b>img_src:</b> location of image, to be placed in "img src="img_src value"<br>
+<b>name:</b> account name<br>
+<b>username:</b> account handle<br>
+<b>tash_text:</b> text content of the mock tash</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
     <span class="nx">tashs</span><span class="o">:</span> <span class="p">[</span>
@@ -162,12 +162,12 @@ tash_text: text content of the mock tash</p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
 </div>
-<p>route for me page</p>
+<p>Route for Me page</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">me</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;me&#39;</span><span class="p">,</span> <span class="p">{</span> 
-    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash&#39;</span><span class="p">,</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Me&#39;</span><span class="p">,</span>
     <span class="nx">user</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
     <span class="nx">userName</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
     <span class="nx">tashs</span><span class="o">:</span> <span class="p">[</span>
@@ -258,71 +258,87 @@ tash_text: text content of the mock tash</p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
 </div>
-<p>route for discover page</p>
+<p>Route for Discover page</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">discover</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;discover&#39;</span><span class="p">,</span> <span class="p">{</span> 
-    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash&#39;</span><span class="p">,</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Discover&#39;</span><span class="p">,</span>
     <span class="nx">user</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
     <span class="nx">userName</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
     <span class="nx">tashs</span><span class="o">:</span> <span class="p">[</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
+      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/81302971/facebook_favicon_large_2_normal.png&quot;</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Facebook&quot;</span><span class="p">,</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;facebook&quot;</span><span class="p">,</span> 
+        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;@Twitter we&#39;re losing all of our users too! #Attitash&quot;</span><span class="p">,</span>
+        <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/81302971/facebook_favicon_large_2_normal.png&quot;</span>
       <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
+      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/windows.png&quot;</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Windows&quot;</span><span class="p">,</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Windows&quot;</span><span class="p">,</span> 
+        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Windows 8 is off to a worse start than Vista! #letsgo #metro&quot;</span>
       <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
+      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/twitter.png&quot;</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Twitter&quot;</span><span class="p">,</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Twitter&quot;</span><span class="p">,</span> 
+        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Attitash has stolen all of our users! #ohno #attitash&quot;</span>  
+
       <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
+      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2479480809/mz1rwdt3gafsda7vc3bc_normal.png&quot;</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;NHL&quot;</span><span class="p">,</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;NHL&quot;</span><span class="p">,</span> 
+        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Can anybody stop the @Blackhawks? #wow&quot;</span>
       <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
+      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/1639045599/twcilogo_blue_300_normal.png&quot;</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;The Weather Channel&quot;</span><span class="p">,</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;weatherchannel&quot;</span><span class="p">,</span> 
+        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;More crappy weather expected for Amherst, MA #whatasurprise&quot;</span>
       <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
+      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/1980294624/DJT_Headshot_V2_normal.jpg&quot;</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Donald Trump&quot;</span><span class="p">,</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;realDonaldTrump&quot;</span><span class="p">,</span> 
+        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Invested $500K in @AttitashDev months before launch #easiestmoneyiveevermade&quot;</span>
       <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
+      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2176846885/-5-1_normal.jpeg&quot;</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;TechCrunch&quot;</span><span class="p">,</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;TechCrunch&quot;</span><span class="p">,</span> 
+        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Meet the new social media application that&#39;s leaving Twitter wondering what happened #Attitash&quot;</span>
       <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
+      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/1824717932/Forbes_Icon_normal.png&quot;</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Forbes&quot;</span><span class="p">,</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Forbes&quot;</span><span class="p">,</span> 
+        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;@AttitashDev raises $500M in Series A funding #goodbyetwitter&quot;</span>
       <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
+      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2622227823/gjh9bijjnrnrb8hderzb_normal.jpeg&quot;</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Life At Google&quot;</span><span class="p">,</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;googlejobs&quot;</span><span class="p">,</span> 
+        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Really hope @AttitashDev comes and works for us someday #googleplusstinks&quot;</span>
       <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
+      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/1325797300/2804546757_5d034c1d29_normal.jpg&quot;</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Most Interesting Man In The World&quot;</span><span class="p">,</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;DosEquisMan&quot;</span><span class="p">,</span> 
+        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;I don&#39;t always use social media, but when I do...I use #Attitash&quot;</span>
       <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
+      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2945466711/12e018532d913494d841f79da5dd70bf_normal.png&quot;</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;LinkedIn&quot;</span><span class="p">,</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;LinkedIn&quot;</span><span class="p">,</span> 
+        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Why we&#39;re choosing #Attitash over Twitter #becauseitsbetter&quot;</span>
       <span class="p">},</span>
-      
+      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2733309600/9d7fe1c410d086364129c720e089ebf2_normal.jpeg&quot;</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Kate Upton&quot;</span><span class="p">,</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;KateUpton&quot;</span><span class="p">,</span> 
+        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Hey @AttitashDev guys...call me? :)&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2186836571/128x128_twitter_bbc_world_normal.jpg&quot;</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;BBC News (World)&quot;</span><span class="p">,</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;BBCWorld&quot;</span><span class="p">,</span> 
+        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;#Attitash is largest social network in the world, Twitter a distant 2nd #whatsatweetanyway&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/937374385/Mark_Zuckerberg_szykuja_3268108_normal.jpg&quot;</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Mark Zuckerberg&quot;</span><span class="p">,</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;zuckerberg&quot;</span><span class="p">,</span> 
+        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Sooo I just used #Attitash for the first time...#shuttingdownfacebook #thisiswaycooler&quot;</span>
+      <span class="p">},</span>
     <span class="p">],</span>
     <span class="nx">who_to_follow</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/george.jpg&quot;</span><span class="p">,</span>
@@ -354,11 +370,11 @@ tash_text: text content of the mock tash</p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
 </div>
-<p>route for login page</p>
+<p>Route for Login page</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">login</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash&#39;</span> <span class="p">});</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Login&#39;</span> <span class="p">});</span>
 <span class="p">};</span>
 
 
@@ -370,11 +386,31 @@ tash_text: text content of the mock tash</p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
 </div>
-<p>route for register page</p>
+<p>Route for Register page</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">register</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;register&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash&#39;</span> <span class="p">});</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;register&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Register&#39;</span> <span class="p">});</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>Route for Settings page</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">settings</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;settings&#39;</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash&#39;</span><span class="p">,</span>
+      <span class="nx">user</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
+      <span class="nx">userName</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span>
+    <span class="p">})</span>
 <span class="p">};</span>
 </pre></div>
         </td>

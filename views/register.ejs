@@ -4,16 +4,17 @@
   <head>
     <script src="bootstrap/docs/assets/js/jquery.min.js"></script>
     <script src="bootstrap/docs/assets/js/bootstrap.min.js"></script>
-    <title>register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <link rel="stylesheet" href="bootstrap/docs/assets/css/bootstrap.css">
     <link rel="stylesheet" href="bootstrap/docs/assets/css/bootstrap-responsive.css"> 
     <link href="stylesheets/register.css" rel="stylesheet" type="text/css">
+    <link href="stylesheets/attitash.css" rel="stylesheet">
+    <title><%= title %></title>
   </head>
   
   <body>
-    <div class="well">
+    <div id="registerBackground" class="well">
       <div id="myTabContent" class="tab-content">
         <div class="tab-pane active in" id="home">
           <h1>Register</h1>
@@ -31,7 +32,8 @@
             <label>Email</label>
             <input type="email" value="john@jingleheimer.com" class="input-xlarge">
             <div id="buttonLine">
-              <button class="btn btn-primary">Submit</button>
+              <button class="btn btn-primary" href="/">Submit</button>
+	      <button class="btn btn-primary" href="/">Cancel</button>
             </div>
           </form>
         </div>

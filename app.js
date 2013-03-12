@@ -30,12 +30,12 @@ app.configure('development', function(){
 // request handlers for various pages, routes to functions
 app.get('/', routes.login);
 app.get('/home', routes.home);
+app.get('/settings', routes.settings);
 app.get('/me', routes.me);
-app.get('/discover', routes.discover);
-// app.get('/login', routes.login);
 app.get('/register', routes.register);
-app.get('settings'), routes.settings);
-
+app.get('/discover', routes.discover);
+app.get('/register', routes.register);
+app.get('/connect', routes.connect);
 
 
 http.createServer(app).listen(app.get('port'), function(){
