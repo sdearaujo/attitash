@@ -34,6 +34,7 @@ app.get('/me', routes.me);
 app.get('/discover', routes.discover);
 // app.get('/login', routes.login);
 app.get('/register', routes.register);
+app.get('settings'), routes.settings);
 
 
 
