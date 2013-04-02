@@ -3,7 +3,7 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
+  , user = require('./routes')
   , http = require('http')
   , path = require('path');
 
@@ -28,14 +28,14 @@ app.configure('development', function(){
 });
 
 // request handlers for various pages, routes to functions
-app.get('/', routes.login);
-app.get('/home', routes.home);
-app.get('/settings', routes.settings);
-app.get('/me', routes.me);
-app.get('/register', routes.register);
-app.get('/discover', routes.discover);
-app.get('/register', routes.register);
-app.get('/connect', routes.connect);
+app.get('/', user.login);
+app.get('/user/home', user.home);
+app.get('/user/settings', user.settings);
+app.get('/user/me', user.me);
+app.get('/user/register', user.register);
+app.get('/user/discover', user.discover);
+app.get('/user/register', user.register);
+app.get('/user/connect', user.connect);
 
 
 http.createServer(app).listen(app.get('port'), function(){
