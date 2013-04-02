@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  
   <head>
     <meta charset="utf-8">
     <title><%= title %></title>
@@ -20,51 +19,19 @@
     </style>
   </head>
   <body>
-  <div id="loginContent">
-    <div class="row">
-      <div class="span6">
-        <img src="images/logo.png" name="logo" class="img-rounded inline" id="logo" />
-       </div>
-      <div class="span4">
-      </div>
+    <div class="login-fluid">
+       <div class="span6">
+      <div class="well well-small">
+        <img src="images/logo.png" name="logo" class="img-rounded inline" id="logo"/></br>
+    <form id="loginForm" method="post" action="/user/auth">
+          <input name="" type="email" placeholder="Username" class="textfield"></br>
+            <input name="" type="password" placeholder="Password"> </br>
+          <a class="btn btn-primary"> Login </a> 
+          <a class="btn btn-primary" href="/register"> Register </a> 
+        </form>
     </div>
-    <form id="loginForm">
-      <div class="row">
-        <div class="span3">
-          <input name="" type="email" placeholder="Username" class="textfield">
-          <div class="control-group">
-            <label for="textinput5">
-            </label>
-            <input name="" type="password" placeholder="Password">
-          </div>
-          <div id="buttonLine" align="right">
-          <a class="btn btn-primary" href="/home">
-            <div style="text-align: center;">
-              Login
-            </div>
-          </a>
-          <a class="btn btn-primary" href="/register">
-            <div style="text-align: center;">
-              Register
-            </div>
-          </a>
-        </div>
-        </div>
-        <div class="span6">
-        </div>
-      </div>
-      <div class="control-group">
-        <label for="">
-        </label>
-      </div>
-      <div class="control-group">
-      </div>
-      <div class="control-group">
-      </div>
-    </form>
-    <div class="container">
-    </div>
-    </div>
+</div>  
+</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
     </script>
     <script src="bootstrap/docs/assets/js/bootstrap.js">
