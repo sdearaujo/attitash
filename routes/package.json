@@ -1,0 +1,8 @@
+{
+    "name"     : "user routes",
+    "verstion" : "0.0.1",
+    "author"   : "Tim Richards <richards@cs.umass.edu>",
+    "description" : "a library for user routes",
+    "main": "./user-after.js"
+}
+

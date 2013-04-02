@@ -28,14 +28,10 @@ app.configure('development', function(){
 });
 
 // request handlers for various pages, routes to functions
-app.get('/', user.login);
+app.get('/user/login', user.login);
 app.get('/user/home', user.home);
-app.get('/user/settings', user.settings);
-app.get('/user/me', user.me);
-app.get('/user/register', user.register);
-app.get('/user/discover', user.discover);
-app.get('/user/register', user.register);
-app.get('/user/connect', user.connect);
+app.post('/user/auth'  , user.auth);
+
 
 
 http.createServer(app).listen(app.get('port'), function(){
