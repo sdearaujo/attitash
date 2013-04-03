@@ -14,7 +14,7 @@ Here is a list of the files and the additions we made:
 - data/trend.db.js: represent our trend table in the database
 - data/user.db.js: represent our user table in the database
 
-Functionalitie Who's Online?
+Functionality Who's Online?
 - The user can see a list of people that are online at the moment
 
 ======================================
