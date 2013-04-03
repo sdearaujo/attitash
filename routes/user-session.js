@@ -153,26 +153,36 @@ exports.register = function(req, res){
 exports.me = function(req, res) {
   // TDR: added session support
   var user = req.session.user;
+  console.log("user: " + user.username);
   if (user === undefined || online[user.uid] === undefined) {
     req.flash('auth', 'Not logged in!');
     res.redirect('/login');
   }
   else {
- res.render('me', { 
-    title: 'Attitash - Home',
-    message: 'Login Successful!',
-    username: user.username,
-    users : online,
-    password: user.password,
-    // mock tash values.<br>
-    // <b>img_src:</b> location of image, to be placed in "img src="img_src value"<br>
-    // <b>name:</b> account name<br>
-    // <b>username:</b> account handle<br>
-    // <b>tash_text:</b> text content of the mock tash
-    tashs: [],
-    who_to_follow: [],
-    trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
-  });}
+    tashsdb.getTashsByUsername(user.username, function(error, tashs){
+      if(error){
+
+      }
+      else{
+        console.log("tashs: " + tashs);
+        res.render('me', { 
+          title: 'Attitash - Home',
+          message: 'Login Successful!',
+          username: user.username,
+          users : online,
+          password: user.password,
+          // mock tash values.<br>
+          // <b>img_src:</b> location of image, to be placed in "img src="img_src value"<br>
+          // <b>name:</b> account name<br>
+          // <b>username:</b> account handle<br>
+          // <b>tash_text:</b> text content of the mock tash
+          tashs: tashs,
+          who_to_follow: [],
+          trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
+        });
+      }
+    });
+  }
 };
 
 exports.discover = function(req, res) {
