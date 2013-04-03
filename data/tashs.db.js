@@ -1,7 +1,7 @@
 var tash = require('../lib/tash.js');
 var userdb = require('../data/user.db.js');
 
-// ## In Memory Tashs Database
+// # In Memory Tashs Database
 var tashsdb = [
 	tash.createTash('anthony', "Test Tash anthony"),
 	tash.createTash('brian', "Test Tash brian"),

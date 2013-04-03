@@ -1,8 +1,7 @@
+// Modules required to get the function to create users 
 var user = require('../lib/user.js');
 
-var _uid = 0;
-
-// ## In Memory User database
+// # In Memory User database
 var userdb = [
   user.createUser('anthony', 'anthony', 'Anthony', 'Battaglia', 'anthony@battaglia.com'),
   user.createUser('brian', 'brian', 'Brian', 'Dragunas', 'brian@dragunas.com'),
