@@ -108,12 +108,12 @@ exports.home = function(req, res) {
         username: "facebook", 
         tash_text: "@Twitter we're losing all of our users too! #Attitash"
       },
-      { img_src: "images/windows.png",
+      { img_src: "/images/windows.png",
         name: "Windows",
         username: "Windows", 
         tash_text: "Windows 8 is off to a worse start than Vista! #letsgo #metro"
       },
-      { img_src: "images/twitter.png",
+      { img_src: "/images/twitter.png",
         name: "Twitter",
         username: "Twitter", 
         tash_text: "Attitash has stolen all of our users! #ohno #attitash"  
@@ -222,12 +222,12 @@ exports.me = function(req, res) {
         username: "facebook", 
         tash_text: "@Twitter we're losing all of our users too! #Attitash"
       },
-      { img_src: "images/windows.png",
+      { img_src: "/images/windows.png",
         name: "Windows",
         username: "Windows", 
         tash_text: "Windows 8 is off to a worse start than Vista! #letsgo #metro"
       },
-      { img_src: "images/twitter.png",
+      { img_src: "/images/twitter.png",
         name: "Twitter",
         username: "Twitter", 
         tash_text: "Attitash has stolen all of our users! #ohno #attitash"  
@@ -336,12 +336,12 @@ exports.discover = function(req, res) {
         username: "facebook", 
         tash_text: "@Twitter we're losing all of our users too! #Attitash"
       },
-      { img_src: "images/windows.png",
+      { img_src: "/images/windows.png",
         name: "Windows",
         username: "Windows", 
         tash_text: "Windows 8 is off to a worse start than Vista! #letsgo #metro"
       },
-      { img_src: "images/twitter.png",
+      { img_src: "/images/twitter.png",
         name: "Twitter",
         username: "Twitter", 
         tash_text: "Attitash has stolen all of our users! #ohno #attitash"  
@@ -450,12 +450,12 @@ exports.connect = function(req, res) {
         username: "facebook", 
         tash_text: "@Twitter we're losing all of our users too! #Attitash"
       },
-      { img_src: "images/windows.png",
+      { img_src: "/images/windows.png",
         name: "Windows",
         username: "Windows", 
         tash_text: "Windows 8 is off to a worse start than Vista! #letsgo #metro"
       },
-      { img_src: "images/twitter.png",
+      { img_src: "/images/twitter.png",
         name: "Twitter",
         username: "Twitter", 
         tash_text: "Attitash has stolen all of our users! #ohno #attitash"  

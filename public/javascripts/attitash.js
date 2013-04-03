@@ -19,7 +19,7 @@ $('#send_tash .new_tash,#send_tash_modal .new_tash').keyup(function (){
             return false;
         }
         $('#tashs').prepend(
-            '<li><div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="images/attitash-dev-prof-pic.jpeg"></a><div class="media-body"><span class="pull-right date">Mar 6</span><h5 class="media-heading"><a href="#">AttitashDev</a> <small>@AttitashDev</small></h5>' + $(queryString).val() + '</div></div></li>');
+            '<li><div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg"></a><div class="media-body"><span class="pull-right date">Mar 6</span><h5 class="media-heading"><a href="#">AttitashDev</a> <small>@AttitashDev</small></h5>' + $(queryString).val() + '</div></div></li>');
         $(queryString).val("");
         var textLabel = '#' + $(this).attr('id') + ' .chars_left > small';
         $(textLabel).text("140");
