@@ -68,6 +68,15 @@
         <% } %>
       </ul>
     </div><!--/.well -->
+    <div class="well well-small">
+      <ul id="trends" class="nav nav-stacked">
+        <li class="nav-header">Who's Online?</li>
+        <ul>
+    <% for(var userid in users) { %>
+      <li><%= users[userid].username %></li>
+    <% } %>
+      </ul></ul>
+    </div><!--/.well -->
   </div><!--/span-->
   <div class="span8">
     <ul id="tashs" class="nav nav-stacked">

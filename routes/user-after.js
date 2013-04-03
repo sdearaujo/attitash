@@ -140,6 +140,7 @@ exports.home = function(req, res){
     title: 'Attitash - Home',
     message: 'Login Successful!',
     username: user.username,
+    users : online,
     password: user.password,
     // mock tash values.<br>
     // <b>img_src:</b> location of image, to be placed in "img src="img_src value"<br>
@@ -597,6 +598,6 @@ exports.settings = function(req, res){
     res.render('settings', {
       title: 'Attitash',
       user: 'AttitashDev',
-      userName: 'AttitashDev'
+      username: 'AttitashDev'
     })
 };
