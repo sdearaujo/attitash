@@ -190,6 +190,7 @@ exports.me = function(req, res) {
           // <b>username:</b> account handle<br>
           // <b>tash_text:</b> text content of the mock tash
           tashs: tashs,
+          numtashes: tashs.length,
           who_to_follow: [],
           trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
         });
