@@ -1,5 +1,13 @@
-//Route for Me page
+// ## me
+// Route for me page
 exports.me = function(req, res){
+// call the me view with the following parameters:
+	// <b>title:</b> Attitash - Me
+    // <b>user:</b> AttitashDev
+    // <b>username:</b> AttitashDev
+    // <b>tashs:</b> array of fake tashs 
+	// <b>who_to_follow:</b> array of fake profiles
+	// <b>trends:</b> array of fake trends
   res.render('me', { 
     title: 'Attitash - Me',
     user: 'AttitashDev',
@@ -83,8 +91,16 @@ exports.me = function(req, res){
   });
 };
 
-//Route for Discover page
+// ## discover
+// Route for discover page
 exports.discover = function(req, res){
+// call the discover view with the following parameters:
+	// <b>title:</b> Attitash - Discover
+    // <b>user:</b> AttitashDev
+    // <b>username:</b> AttitashDev
+    // <b>tashs:</b> array of fake tashs 
+	// <b>who_to_follow:</b> array of fake profiles
+	// <b>trends:</b> array of fake trends
   res.render('discover', { 
     title: 'Attitash - Discover',
     user: 'AttitashDev',
@@ -184,7 +200,16 @@ exports.discover = function(req, res){
   });
 };
 
+// ## connect
+// Route for connect page
 exports.connect= function(req, res){
+// call the connect view with the following parameters:
+	// <b>title:</b> Attitash - Connect
+    // <b>user:</b> AttitashDev
+    // <b>username:</b> AttitashDev
+    // <b>tashs:</b> array of fake tashs 
+	// <b>who_to_follow:</b> array of fake profiles
+	// <b>trends:</b> array of fake trends
   res.render('connect', { 
     title: 'Attitash - Connect',
     user: 'AttitashDev',
@@ -284,13 +309,21 @@ exports.connect= function(req, res){
   });
 };
 
-//Route for Register page
+// ## register
+// Route for register page
 exports.register = function(req, res){
+// call the register view with the following parameters:
+	// <b>title:</b> Attitash - Register
   res.render('register', {  title: 'Attitash - Register' });
 };
 
-//Route for Settings page
+// ## settings
+// Route for settings page
 exports.settings = function(req, res){
+	// call the settings view with the following parameters:
+    // <b>title:</b> Attitash
+    // <b>user:</b> AttitashDev
+    // <b>username:</b> AttitashDev
   	res.render('settings', {
       title: 'Attitash',
       user: 'AttitashDev',

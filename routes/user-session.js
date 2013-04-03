@@ -1,3 +1,4 @@
+// Packages required to get the data stored in the server 
 var userdb = require('../data/user.db.js');
 var tashsdb = require('../data/tashs.db.js');
 var trendsdb = require('../data/trends.db.js');
@@ -39,7 +40,8 @@ exports.login = function(req, res){
 // Performs **basic** user authentication.
 exports.auth = function(req, res) {
   // TDR: redirect if logged in:
-  var user = req.session.user;
+  //get the user from the session
+var user = req.session.user;
 
   // TDR: do the check as described in the `exports.login` function.
   if (user !== undefined && online[user.uid] !== undefined) {
@@ -68,21 +70,29 @@ exports.auth = function(req, res) {
   }
 };
 
+// ## addUser
+// Provides a route to create a new user.
 exports.addUser = function(req, res){
+  //values obtained from the form
   var username = req.body.username;
   var password = req.body.password;
   var fname = req.body.fname;
   var lname = req.body.lname;
   var email = req.body.email;
-
+	
+	// check if the values are not undefined
   if(username && password && fname && lname && email){
+	// create a new user object
     var u = user.createUser(username, password, fname, lname, email);
+	// insert the user object in the database
     userdb.insert(u, function(error, user){
       if(error){
+	  // if some error occurred, show the error to the user and redirect to the register page
         req.flash('auth', error)
         res.redirect('/register');
       }
       else{
+	  // if the user was inserted in the database correctly, put the user in the session and in the array of online users and redirect to the login page
         req.session.user = user;
         online[user.uid] = user;
         res.redirect('/login');  
@@ -91,11 +101,17 @@ exports.addUser = function(req, res){
   }
 };
 
+// ## tash
+// Create a new tash.
 exports.tash = function(req, res){
-  var user = req.session.user;
+	
+  //get the user from the session
+var user = req.session.user;
+  //insert the tash in the database
   tashsdb.insert(tash.createTash(user.username, req.body.tash_text), function(error, tash){
     if(error){}
     else{
+	//if everything worked, redirect to the home page
       res.redirect('/home');
     }
   });
@@ -104,44 +120,65 @@ exports.tash = function(req, res){
 // ## logout
 // Deletes user info & session - then redirects to login.
 exports.logout = function(req, res) {
-  var user = req.session.user;
+	
+  //get the user from the session
+var user = req.session.user;
+  //if the user is not logged, show the message "Not logged in!" and redirect to the login page
   if (user === undefined || online[user.uid] === undefined) {
     req.flash('auth', 'Not logged in!');
     res.redirect('/login');
     return;
   }
 
+  //remove the user from the the array of online users
   if (online[user.uid] !== undefined) {
     delete online[user.uid];
   }
 
+  //delete the user from the session
   delete req.session.user;
+  //redirect to login page
   res.redirect('/login');
 };
 
 // ## home
-// The home user view.
+// Route for home page
 exports.home = function(req, res) {
-  // TDR: added session support
+  
+  //get the user from the session
   var user = req.session.user;
+  //if the user is not logged, show the message "Not logged in!" and redirect to the login page
   if (user === undefined || online[user.uid] === undefined) {
     req.flash('auth', 'Not logged in!');
     res.redirect('/login');
   }
   else {
+  // create variable to keep the trends and tashs.
     var trends = [], tashs = [];
+	// get the trends from the database
     trendsdb.getTrends(function(error, ts){
       if(error){}
       else{
         trends = ts;
       }
     });
+	// get the tashs for this user from the database
     tashsdb.getTashsByUsername(user.username, function(error, ts){
       if(error){}
       else{
         tashs = ts;
       }
     });
+	// call the home view with the following parameters:
+	// <b>title:</b> Attitash - Home
+    // <b>message:</b> empty
+    // <b>notification:</b> empty
+    // <b>username:</b> username from the session
+    // <b>users:</b> array of online users
+    // <b>who_to_follow:</b> empty array
+    // <b>tashs:</b> tashs for this user from the database
+    // <b>numtashes:</b> quantity of tashs
+    // <b>trends:</b> trends from the database
     res.render('home', { 
     title: 'Attitash - Home',
     message: '',
@@ -155,29 +192,44 @@ exports.home = function(req, res) {
   });}
 };
 
+
+//Route for Register page
+
 exports.online = function(req, res) {
   res.render('online', { title : 'Users Online',
                          users : online });
 };
 
-//Route for Register page
+// ## register
+// Route for register page
+
 exports.register = function(req, res){
+	// call the register view with the following parameters:
+	// <b>title:</b> Attitash - Register
   res.render('register', {  title: 'Attitash - Register' });
 };
 
+// ## me
+// Route for me page
 exports.me = function(req, res) {
-  // TDR: added session support
-  var user = req.session.user;
+  //get the user from the session
+var user = req.session.user;
+	//if the user is not logged, show the message "Not logged in!" and redirect to the login page
   if (user === undefined || online[user.uid] === undefined) {
     req.flash('auth', 'Not logged in!');
     res.redirect('/login');
   }
   else {
+  // get the tashs for this user from the database
     tashsdb.getTashsByUsername(user.username, function(error, tashs){
-      if(error){
-
-      }
+      if(error){}
       else{
+	  // call the me view with the following parameters:
+	// <b>title:</b> Attitash - Home
+    // <b>message:</b> Login Successful!
+    // <b>username:</b> username from this user
+    // <b>users:</b> array of online users
+    // <b>password:</b> password for this user
         res.render('me', { 
           title: 'Attitash - Home',
           message: 'Login Successful!',
@@ -194,14 +246,23 @@ exports.me = function(req, res) {
   }
 };
 
+// ## discover
+// Route for discover page
 exports.discover = function(req, res) {
-  // TDR: added session support
-  var user = req.session.user;
+  //get the user from the session
+var user = req.session.user;
+//if the user is not logged, show the message "Not logged in!" and redirect to the login page
   if (user === undefined || online[user.uid] === undefined) {
     req.flash('auth', 'Not logged in!');
     res.redirect('/login');
   }
   else {
+   // call the discover view with the following parameters:
+   // <b>title:</b> Attitash - Home
+    // <b>message:</b> Login Successful!
+    // <b>username:</b> username from this user
+    // <b>users:</b> array of online users
+    // <b>password:</b> password for this user
  res.render('discover', { 
     title: 'Attitash - Home',
     message: 'Login Successful!',
@@ -214,14 +275,23 @@ exports.discover = function(req, res) {
   });}
 };
 
+// ## connect
+// Route for connect page
 exports.connect = function(req, res) {
-  // TDR: added session support
-  var user = req.session.user;
+  //get the user from the session
+var user = req.session.user;
+//if the user is not logged, show the message "Not logged in!" and redirect to the login page
   if (user === undefined || online[user.uid] === undefined) {
     req.flash('auth', 'Not logged in!');
     res.redirect('/login');
   }
   else {
+  // call the connect view with the following parameters:
+   // <b>title:</b> Attitash - Home
+    // <b>message:</b> Login Successful!
+    // <b>username:</b> username from this user
+    // <b>users:</b> array of online users
+    // <b>password:</b> password for this user
  res.render('connect', { 
     title: 'Attitash - Home',
     message: 'Login Successful!',
@@ -235,12 +305,28 @@ exports.connect = function(req, res) {
 };
 
 
-//Route for Settings page
+// ## settings
+// Route for settings page
 exports.settings = function(req, res){
+//get the user from the session
+var user = req.session.user;
+//if the user is not logged, show the message "Not logged in!" and redirect to the login page
+  if (user === undefined || online[user.uid] === undefined) {
+    req.flash('auth', 'Not logged in!');
+    res.redirect('/login');
+  }
+  else {
+  // call the settings view with the following parameters:
+   // <b>title:</b> Attitash
+    // <b>user:</b> AttitashDev
+    // <b>username:</b> AttitashDev
+    
     res.render('settings', {
       title: 'Attitash',
       user: 'AttitashDev',
       username: 'AttitashDev'
     })
+  }
+
 };
 
