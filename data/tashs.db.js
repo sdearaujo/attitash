@@ -10,6 +10,19 @@ var tashsdb = [
 
 exports.insert = function(tash, cb){
 	tashsdb.push(tash);
-	console.log(tashsdb);
+	tashsdb.sort(function (t1, t2) {
+		return t1.date < t2.date;
+    });
 	cb(undefined, tash);
+};
+
+exports.getTashsByUsername = function(username, cb){
+  var tashs = [];
+  for (var i = 0; i < tashsdb.length; i++) {
+    var t = tashsdb[i];
+    if(t.author === username){
+      	tashs.push(t);
+    }
+  }
+  cb(undefined, tashs);
 };
