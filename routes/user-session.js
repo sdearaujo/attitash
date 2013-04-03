@@ -192,6 +192,9 @@ exports.home = function(req, res) {
   });}
 };
 
+
+//Route for Register page
+
 exports.online = function(req, res) {
   res.render('online', { title : 'Users Online',
                          users : online });
@@ -199,6 +202,7 @@ exports.online = function(req, res) {
 
 // ## register
 // Route for register page
+
 exports.register = function(req, res){
 	// call the register view with the following parameters:
 	// <b>title:</b> Attitash - Register
