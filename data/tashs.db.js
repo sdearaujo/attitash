@@ -10,7 +10,6 @@ var tashsdb = [
 
 exports.insert = function(tash, cb){
 	tashsdb.push(tash);
-	console.log(tashsdb);
 	cb(undefined, tash);
 };
 
@@ -19,10 +18,8 @@ exports.getTashsByUsername = function(username, cb){
   for (var i = 0; i < tashsdb.length; i++) {
     var t = tashsdb[i];
     if(t.author === username){
-    	console.log(t.author + " === " + username);
       	tashs.push(t);
     }
   }
-  console.log("tashsDB: " + tashs);
   cb(undefined, tashs);
 };

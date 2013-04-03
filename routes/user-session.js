@@ -94,9 +94,7 @@ exports.addUser = function(req, res){
 exports.tash = function(req, res){
   var user = req.session.user;
   tashsdb.insert(tash.createTash(user.username, req.body.tash_text), function(error, tash){
-    if(error){
-      console.log(error);
-    }
+    if(error){}
     else{
       res.redirect('/home');
     }
@@ -152,6 +150,7 @@ exports.home = function(req, res) {
     users : online,
     who_to_follow: [],
     tashs: tashs,
+    numtashes: tashs.length,
     trends: trends
   });}
 };
@@ -169,7 +168,6 @@ exports.register = function(req, res){
 exports.me = function(req, res) {
   // TDR: added session support
   var user = req.session.user;
-  console.log("user: " + user.username);
   if (user === undefined || online[user.uid] === undefined) {
     req.flash('auth', 'Not logged in!');
     res.redirect('/login');
@@ -180,7 +178,6 @@ exports.me = function(req, res) {
 
       }
       else{
-        console.log("tashs: " + tashs);
         res.render('me', { 
           title: 'Attitash - Home',
           message: 'Login Successful!',
