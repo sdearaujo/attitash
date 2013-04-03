@@ -10,6 +10,9 @@ var tashsdb = [
 
 exports.insert = function(tash, cb){
 	tashsdb.push(tash);
+	tashsdb.sort(function (t1, t2) {
+		return t1.date < t2.date;
+    });
 	cb(undefined, tash);
 };
 
