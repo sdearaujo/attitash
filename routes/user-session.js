@@ -1,7 +1,9 @@
 var userdb = require('../data/user.db.js');
 var tashsdb = require('../data/tashs.db.js');
+var trendsdb = require('../data/trends.db.js');
 var user = require('../lib/user.js');
 var tash = require('../lib/tash.js');
+var trend = require('../lib/trend.js');
 
 // A logged in "database":
 var online = {};
@@ -129,6 +131,19 @@ exports.home = function(req, res) {
     res.redirect('/login');
   }
   else {
+    var trends = [], tashs = [];
+    trendsdb.getTrends(function(error, ts){
+      if(error){}
+      else{
+        trends = ts;
+      }
+    });
+    tashsdb.getTashsByUsername(user.username, function(error, ts){
+      if(error){}
+      else{
+        tashs = ts;
+      }
+    });
     res.render('home', { 
     title: 'Attitash - Home',
     message: '',
@@ -136,7 +151,8 @@ exports.home = function(req, res) {
     username: user.username,
     users : online,
     who_to_follow: [],
-    trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
+    tashs: tashs,
+    trends: trends
   });}
 };
 

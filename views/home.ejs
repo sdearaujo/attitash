@@ -81,19 +81,21 @@
   </div><!--/span-->
   <div class="span8">
     <ul id="tashs" class="nav nav-stacked">
-      <li>
+      <% for(var i=0; i<tashs.length; i++) { %>
+        <li>
           <div class="media">
             <a class="pull-left" href="#">
               <img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg">
             </a>
             <div class="media-body">
-              <span class="pull-right date">Apr 3</span>
-              <h5 class="media-heading"><a href="#">Attitash Co.</a> <small>@Attitash</small></h5>
-              Welcome to #Attitash!
+              <span class="pull-right date">Mar 6</span>
+              <h5 class="media-heading"><a href="#"><%= tashs[i].author %></a> <small>@<%= tashs[i].author %></small></h5>
+              <%= tashs[i].text %>
             </div>
           </div>
-      </li>  
-    </ul> 
+        </li>
+      <% } %>
+    </ul>
   </div><!--/span8-->
 </div><!--/row-->
 </div><!--/container-->
