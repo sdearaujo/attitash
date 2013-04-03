@@ -3,7 +3,7 @@
  */
 
 var express = require('express')
-  , user = require('./routes')
+  , user = require('./routes/user-session.js')
   , http = require('http')
   , path = require('path')
   , flash = require('connect-flash');
@@ -30,22 +30,20 @@ app.configure('development', function(){
 });
 
 // request handlers for various pages, routes to functions
-app.get('/user/login', user.login);
-app.get('/user/home', user.home);
-app.post('/user/login'  , user.auth);
-app.get ('/user/logout', user.logout);
-app.get('/user/settings', user.settings);
-app.get('/user/me', user.me);
-app.get('/user/register', user.register);
-app.get('/user/discover', user.discover);
-app.get('/user/register', user.register);
-app.get('/user/connect', user.connect);
+app.get('/', user.login);
+app.get('/login', user.login);
+app.post('/login'  , user.auth);
 
+app.get('/home', user.home);
+app.get ('/logout', user.logout);
+app.get('/settings', user.settings);
+app.get('/me', user.me);
+app.get('/register', user.register);
 app.post('/register', user.addUser);
+app.get('/discover', user.discover);
+app.get('/connect', user.connect);
 
-app.get('/user/follow', user.follow);
-
-
+app.post('/tash/create', user.tash);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
