@@ -184,11 +184,6 @@ exports.me = function(req, res) {
           username: user.username,
           users : online,
           password: user.password,
-          // mock tash values.<br>
-          // <b>img_src:</b> location of image, to be placed in "img src="img_src value"<br>
-          // <b>name:</b> account name<br>
-          // <b>username:</b> account handle<br>
-          // <b>tash_text:</b> text content of the mock tash
           tashs: tashs,
           numtashes: tashs.length,
           who_to_follow: [],
@@ -213,11 +208,6 @@ exports.discover = function(req, res) {
     username: user.username,
     users : online,
     password: user.password,
-    // mock tash values.<br>
-    // <b>img_src:</b> location of image, to be placed in "img src="img_src value"<br>
-    // <b>name:</b> account name<br>
-    // <b>username:</b> account handle<br>
-    // <b>tash_text:</b> text content of the mock tash
     tashs: [],
     who_to_follow: [],
     trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
@@ -238,11 +228,6 @@ exports.connect = function(req, res) {
     username: user.username,
     users : online,
     password: user.password,
-    // mock tash values.<br>
-    // <b>img_src:</b> location of image, to be placed in "img src="img_src value"<br>
-    // <b>name:</b> account name<br>
-    // <b>username:</b> account handle<br>
-    // <b>tash_text:</b> text content of the mock tash
     tashs: [],
     who_to_follow: [],
     trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]

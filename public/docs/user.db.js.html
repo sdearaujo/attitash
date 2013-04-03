@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>user.db.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "", thisFile = "home/anthonyb/dev/attitash//user.db.js", defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h2">
+        <a href="#in-memory-user-database">In Memory User database</a>
+      </div>
+      <div class="heading h2">
+        <a href="#insert">insert</a>
+      </div>
+      <div class="heading h1">
+        <a href="#add-user-to-the-database">Add user to the database</a>
+      </div>
+      <div class="heading h2">
+        <a href="#authenticate">authenticate</a>
+      </div>
+      <div class="heading h1">
+        <a href="#authenticate-that-the-user-exists-in-the-database-via-username-and-password">Authenticate that the user exists in the database via username and password</a>
+      </div>
+      <div class="heading h2">
+        <a href="#getuser">getUser</a>
+      </div>
+      <div class="heading h1">
+        <a href="#get-specific-user-by-username">Get Specific User by username</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>user.db.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../lib/user.js&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">_uid</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="in-memory-user-database">
+  <h2>
+    <a href="#in-memory-user-database" class="pilcrow">&#182;</a>
+    In Memory User database
+  </h2>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">userdb</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="nx">user</span><span class="p">.</span><span class="nx">createUser</span><span class="p">(</span><span class="s1">&#39;anthony&#39;</span><span class="p">,</span> <span class="s1">&#39;anthony&#39;</span><span class="p">,</span> <span class="s1">&#39;Anthony&#39;</span><span class="p">,</span> <span class="s1">&#39;Battaglia&#39;</span><span class="p">,</span> <span class="s1">&#39;anthony@battaglia.com&#39;</span><span class="p">),</span>
+  <span class="nx">user</span><span class="p">.</span><span class="nx">createUser</span><span class="p">(</span><span class="s1">&#39;brian&#39;</span><span class="p">,</span> <span class="s1">&#39;brian&#39;</span><span class="p">,</span> <span class="s1">&#39;Brian&#39;</span><span class="p">,</span> <span class="s1">&#39;Dragunas&#39;</span><span class="p">,</span> <span class="s1">&#39;brian@dragunas.com&#39;</span><span class="p">),</span>
+  <span class="nx">user</span><span class="p">.</span><span class="nx">createUser</span><span class="p">(</span><span class="s1">&#39;john&#39;</span><span class="p">,</span> <span class="s1">&#39;john&#39;</span><span class="p">,</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Coschigano&#39;</span><span class="p">,</span> <span class="s1">&#39;john@coschigano.com&#39;</span><span class="p">),</span>
+  <span class="nx">user</span><span class="p">.</span><span class="nx">createUser</span><span class="p">(</span><span class="s1">&#39;sam&#39;</span><span class="p">,</span> <span class="s1">&#39;sam&#39;</span><span class="p">,</span> <span class="s1">&#39;Samuel&#39;</span><span class="p">,</span> <span class="s1">&#39;Nascimento&#39;</span><span class="p">,</span> <span class="s1">&#39;samuel@nascimento.com&#39;</span><span class="p">)</span>
+<span class="p">];</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="insert">
+  <h2>
+    <a href="#insert" class="pilcrow">&#182;</a>
+    insert
+  </h2>
+</div>
+
+
+
+<div class="pilwrap" id="add-user-to-the-database">
+  <h1>
+    <a href="#add-user-to-the-database" class="pilcrow">&#182;</a>
+    Add user to the database
+  </h1>
+</div>
+
+
+<p>@param {object} user User to be stored (need to check for existing keys!)</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">insert</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">callback</span><span class="p">){</span>
+  <span class="nx">userdb</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
+  <span class="nx">callback</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="authenticate">
+  <h2>
+    <a href="#authenticate" class="pilcrow">&#182;</a>
+    authenticate
+  </h2>
+</div>
+
+
+
+<div class="pilwrap" id="authenticate-that-the-user-exists-in-the-database-via-username-and-password">
+  <h1>
+    <a href="#authenticate-that-the-user-exists-in-the-database-via-username-and-password" class="pilcrow">&#182;</a>
+    Authenticate that the user exists in the database via username and password
+  </h1>
+</div>
+
+
+<p>@param {string} username Username
+@param {string} passwrod Password</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">authenticate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">userdb</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nx">userdb</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">username</span> <span class="o">===</span> <span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">password</span> <span class="o">===</span> <span class="nx">password</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">u</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;password is not correct&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;user not found&#39;</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="getuser">
+  <h2>
+    <a href="#getuser" class="pilcrow">&#182;</a>
+    getUser
+  </h2>
+</div>
+
+
+
+<div class="pilwrap" id="get-specific-user-by-username">
+  <h1>
+    <a href="#get-specific-user-by-username" class="pilcrow">&#182;</a>
+    Get Specific User by username
+  </h1>
+</div>
+
+
+<p>@param {string} username The user to get</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getUser</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">userdb</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nx">userdb</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">username</span> <span class="o">===</span> <span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">u</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;user not found&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

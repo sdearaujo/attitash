@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>trends.db.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "", thisFile = "home/anthonyb/dev/attitash//trends.db.js", defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h2">
+        <a href="#in-memory-trends-database">In Memory Trends Database</a>
+      </div>
+      <div class="heading h2">
+        <a href="#insert">insert</a>
+      </div>
+      <div class="heading h1">
+        <a href="#insert-trend-into--db-">Insert Trend into "db"</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>trends.db.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">tash</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../lib/tash.js&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">userdb</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../data/user.db.js&#39;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="in-memory-trends-database">
+  <h2>
+    <a href="#in-memory-trends-database" class="pilcrow">&#182;</a>
+    In Memory Trends Database
+  </h2>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">trendsdb</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;attitash&quot;</span><span class="p">,</span> <span class="s2">&quot;cs326&quot;</span><span class="p">,</span> <span class="s2">&quot;jingleheimer&quot;</span><span class="p">,</span> <span class="s2">&quot;roflmao&quot;</span><span class="p">,</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">,</span> <span class="s2">&quot;betterthantwitter&quot;</span><span class="p">,</span> <span class="s2">&quot;tash&quot;</span><span class="p">];</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="insert">
+  <h2>
+    <a href="#insert" class="pilcrow">&#182;</a>
+    insert
+  </h2>
+</div>
+
+
+
+<div class="pilwrap" id="insert-trend-into--db-">
+  <h1>
+    <a href="#insert-trend-into--db-" class="pilcrow">&#182;</a>
+    Insert Trend into "db"
+  </h1>
+</div>
+
+
+<p>@param {Object} trend Object being stored</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">insert</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tag</span><span class="p">,</span> <span class="nx">cb</span><span class="p">){</span>
+  <span class="nx">trendsdb</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">trend</span><span class="p">);</span>
+  <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">trend</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getTrends</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cb</span><span class="p">){</span>
+  <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">trendsdb</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

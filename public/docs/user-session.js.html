@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>user-session.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "", thisFile = "home/anthonyb/dev/attitash//user-session.js", defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h1">
+        <a href="#user-server-side-routes">User Server-Side Routes</a>
+      </div>
+      <div class="heading h2">
+        <a href="#login">login</a>
+      </div>
+      <div class="heading h2">
+        <a href="#auth">auth</a>
+      </div>
+      <div class="heading h2">
+        <a href="#logout">logout</a>
+      </div>
+      <div class="heading h2">
+        <a href="#home">home</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>user-session.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">userdb</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../data/user.db.js&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">tashsdb</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../data/tashs.db.js&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">trendsdb</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../data/trends.db.js&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../lib/user.js&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">tash</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../lib/tash.js&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">trend</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../lib/trend.js&#39;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>A logged in "database":</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">online</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="kd">var</span> <span class="nx">notification</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="user-server-side-routes">
+  <h1>
+    <a href="#user-server-side-routes" class="pilcrow">&#182;</a>
+    User Server-Side Routes
+  </h1>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="login">
+  <h2>
+    <a href="#login" class="pilcrow">&#182;</a>
+    login
+  </h2>
+</div>
+
+
+<p>Provides a user login view.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">login</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>Grab any messages being sent to use from redirect.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">authmessage</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>TDR: redirect if logged in:</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">user</span>  <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>TDR: If the user is already logged in - we redirect to the
+home application view. We must check both that the <code>userid</code>
+and the <code>online[userid]</code> are undefined. The reason is that
+the cookie may still be stored on the client even if the
+server has been restarted.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="o">&amp;&amp;</span> <span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uid</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/home&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>Render the login view if this is a new login.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span>   <span class="o">:</span> <span class="s1">&#39;User Login&#39;</span><span class="p">,</span>
+                          <span class="nx">message</span> <span class="o">:</span> <span class="nx">authmessage</span> <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="auth">
+  <h2>
+    <a href="#auth" class="pilcrow">&#182;</a>
+    auth
+  </h2>
+</div>
+
+
+<p>Performs <strong>basic</strong> user authentication.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">auth</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>TDR: redirect if logged in:</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>TDR: do the check as described in the <code>exports.login</code> function.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="o">&amp;&amp;</span> <span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uid</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/home&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>Pull the values from the form.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">username</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">password</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>Perform the user lookup.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">userdb</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<p>If there is an error we "flash" a message to the
+redirected route <code>/user/login</code>.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<p>Store the user in our in memory database.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uid</span><span class="p">]</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<p>Redirect to home.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/home&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">addUser</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">username</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">password</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">fname</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">fname</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">lname</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">lname</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">email</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">;</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="nx">username</span> <span class="o">&amp;&amp;</span> <span class="nx">password</span> <span class="o">&amp;&amp;</span> <span class="nx">fname</span> <span class="o">&amp;&amp;</span> <span class="nx">lname</span> <span class="o">&amp;&amp;</span> <span class="nx">email</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">createUser</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">fname</span><span class="p">,</span> <span class="nx">lname</span><span class="p">,</span> <span class="nx">email</span><span class="p">);</span>
+    <span class="nx">userdb</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="nx">u</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">user</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/register&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span><span class="p">{</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+        <span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uid</span><span class="p">]</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>  
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">tash</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+  <span class="nx">tashsdb</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="nx">tash</span><span class="p">.</span><span class="nx">createTash</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">tash_text</span><span class="p">),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">tash</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">error</span><span class="p">){}</span>
+    <span class="k">else</span><span class="p">{</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/home&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="logout">
+  <h2>
+    <a href="#logout" class="pilcrow">&#182;</a>
+    logout
+  </h2>
+</div>
+
+
+<p>Deletes user info &amp; session - then redirects to login.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">logout</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="o">||</span> <span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uid</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;Not logged in!&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uid</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">delete</span> <span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uid</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="k">delete</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="home">
+  <h2>
+    <a href="#home" class="pilcrow">&#182;</a>
+    home
+  </h2>
+</div>
+
+
+<p>The home user view.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">home</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+<p>TDR: added session support</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="o">||</span> <span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uid</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;Not logged in!&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">trends</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">tashs</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="nx">trendsdb</span><span class="p">.</span><span class="nx">getTrends</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">ts</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">error</span><span class="p">){}</span>
+      <span class="k">else</span><span class="p">{</span>
+        <span class="nx">trends</span> <span class="o">=</span> <span class="nx">ts</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="nx">tashsdb</span><span class="p">.</span><span class="nx">getTashsByUsername</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">ts</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">error</span><span class="p">){}</span>
+      <span class="k">else</span><span class="p">{</span>
+        <span class="nx">tashs</span> <span class="o">=</span> <span class="nx">ts</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="p">{</span> 
+    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Home&#39;</span><span class="p">,</span>
+    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="nx">notification</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="nx">username</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span>
+    <span class="nx">users</span> <span class="o">:</span> <span class="nx">online</span><span class="p">,</span>
+    <span class="nx">who_to_follow</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">tashs</span><span class="o">:</span> <span class="nx">tashs</span><span class="p">,</span>
+    <span class="nx">numtashes</span><span class="o">:</span> <span class="nx">tashs</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+    <span class="nx">trends</span><span class="o">:</span> <span class="nx">trends</span>
+  <span class="p">});}</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">online</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;online&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Users Online&#39;</span><span class="p">,</span>
+                         <span class="nx">users</span> <span class="o">:</span> <span class="nx">online</span> <span class="p">});</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+<p>Route for Register page</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">register</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;register&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Register&#39;</span> <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">me</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
+</div>
+<p>TDR: added session support</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="o">||</span> <span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uid</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;Not logged in!&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">tashsdb</span><span class="p">.</span><span class="nx">getTashsByUsername</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">tashs</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+
+      <span class="p">}</span>
+      <span class="k">else</span><span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;me&#39;</span><span class="p">,</span> <span class="p">{</span> 
+          <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Home&#39;</span><span class="p">,</span>
+          <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Login Successful!&#39;</span><span class="p">,</span>
+          <span class="nx">username</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span>
+          <span class="nx">users</span> <span class="o">:</span> <span class="nx">online</span><span class="p">,</span>
+          <span class="nx">password</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span>
+          <span class="nx">tashs</span><span class="o">:</span> <span class="nx">tashs</span><span class="p">,</span>
+          <span class="nx">numtashes</span><span class="o">:</span> <span class="nx">tashs</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+          <span class="nx">who_to_follow</span><span class="o">:</span> <span class="p">[],</span>
+          <span class="nx">trends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;attitash&quot;</span><span class="p">,</span> <span class="s2">&quot;cs326&quot;</span><span class="p">,</span> <span class="s2">&quot;jingleheimer&quot;</span><span class="p">,</span> <span class="s2">&quot;roflmao&quot;</span><span class="p">,</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">,</span> <span class="s2">&quot;betterthantwitter&quot;</span><span class="p">,</span> <span class="s2">&quot;tash&quot;</span><span class="p">]</span>
+        <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">discover</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
+</div>
+<p>TDR: added session support</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="o">||</span> <span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uid</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;Not logged in!&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+ <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;discover&#39;</span><span class="p">,</span> <span class="p">{</span> 
+    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Home&#39;</span><span class="p">,</span>
+    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Login Successful!&#39;</span><span class="p">,</span>
+    <span class="nx">username</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span>
+    <span class="nx">users</span> <span class="o">:</span> <span class="nx">online</span><span class="p">,</span>
+    <span class="nx">password</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span>
+    <span class="nx">tashs</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">who_to_follow</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">trends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;attitash&quot;</span><span class="p">,</span> <span class="s2">&quot;cs326&quot;</span><span class="p">,</span> <span class="s2">&quot;jingleheimer&quot;</span><span class="p">,</span> <span class="s2">&quot;roflmao&quot;</span><span class="p">,</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">,</span> <span class="s2">&quot;betterthantwitter&quot;</span><span class="p">,</span> <span class="s2">&quot;tash&quot;</span><span class="p">]</span>
+  <span class="p">});}</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">connect</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-23" id="section-23">&#182;</a>
+</div>
+<p>TDR: added session support</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="o">||</span> <span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uid</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;Not logged in!&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+ <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;connect&#39;</span><span class="p">,</span> <span class="p">{</span> 
+    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Home&#39;</span><span class="p">,</span>
+    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Login Successful!&#39;</span><span class="p">,</span>
+    <span class="nx">username</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span>
+    <span class="nx">users</span> <span class="o">:</span> <span class="nx">online</span><span class="p">,</span>
+    <span class="nx">password</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span>
+    <span class="nx">tashs</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">who_to_follow</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">trends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;attitash&quot;</span><span class="p">,</span> <span class="s2">&quot;cs326&quot;</span><span class="p">,</span> <span class="s2">&quot;jingleheimer&quot;</span><span class="p">,</span> <span class="s2">&quot;roflmao&quot;</span><span class="p">,</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">,</span> <span class="s2">&quot;betterthantwitter&quot;</span><span class="p">,</span> <span class="s2">&quot;tash&quot;</span><span class="p">]</span>
+  <span class="p">});}</span>
+<span class="p">};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-24" id="section-24">&#182;</a>
+</div>
+<p>Route for Settings page</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">settings</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;settings&#39;</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash&#39;</span><span class="p">,</span>
+      <span class="nx">user</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
+      <span class="nx">username</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span>
+    <span class="p">})</span>
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>
