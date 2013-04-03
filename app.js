@@ -32,7 +32,7 @@ app.configure('development', function(){
 // request handlers for various pages, routes to functions
 app.get('/user/login', user.login);
 app.get('/user/home', user.home);
-app.post('/user/auth'  , user.auth);
+app.post('/user/login'  , user.auth);
 app.get ('/user/logout', user.logout);
 app.get('/user/settings', user.settings);
 app.get('/user/me', user.me);
@@ -40,6 +40,10 @@ app.get('/user/register', user.register);
 app.get('/user/discover', user.discover);
 app.get('/user/register', user.register);
 app.get('/user/connect', user.connect);
+
+app.post('/register', user.addUser);
+
+app.get('/user/follow', user.follow);
 
 
 

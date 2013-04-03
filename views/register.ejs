@@ -18,22 +18,21 @@
       <div id="myTabContent" class="tab-content">
         <div class="tab-pane active in" id="home">
           <h1>Register</h1>
-          <form id="tab">
+          <form method="post" action="/register" id="tab">
             <label>First Name</label>
-            <input type="text" value="John" class="input-xlarge">
+            <input name="fname" type="text" value="Test" class="input-xlarge">
             <label>Last Name</label>
-            <input type="text" value="Jacob Jingleheimer" class="input-xlarge">
+            <input name="lname" type="text" value="User" class="input-xlarge">
             <label>Username</label>
-            <input type="text" value="johnjacobjingleheimer" class="input-xlarge">
+            <input name="username" type="text" value="TestUser" class="input-xlarge">
             <label>Password</label>
-            <input type="password" value="Password" class="input-xlarge">
+            <input name="password" type="password" value="password" class="input-xlarge">
             <label>Confirm Password</label>
-            <input type="password" value="Password" class="input-xlarge">
+            <input type="password" value="password" class="input-xlarge">
             <label>Email</label>
-            <input type="email" value="john@jingleheimer.com" class="input-xlarge">
+            <input name="email" type="email" value="test-user@attitash.com" class="input-xlarge">
             <div id="buttonLine">
-              <button class="btn btn-primary" href="/">Submit</button>
-	      <button class="btn btn-primary" href="/">Cancel</button>
+              <button class="btn btn-primary">Submit</button>
             </div>
           </form>
         </div>

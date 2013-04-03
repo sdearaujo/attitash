@@ -1,6 +1,7 @@
 <% include headernav.ejs %> <!-- header and top-level nav bar -->
 
 <div class="container-fluid home">
+  <div id="notification" class="span12"><%= notification %></div>
   <div class="row-fluid">
     <div class="span4">
       <div id="dash" class="well well-small">
@@ -11,14 +12,14 @@
                 <a href="/me"><img class="img-rounded offset1" src="/images/attitash-dev-prof-pic.jpeg" /></a>
               </td>
               <td>
-                <div><%= message %></div><br>
+                <!-- <div><%= message %></div><br> -->
                 <a href="/user/me"><h5><%= username %></a></h5>
               </td>
             </tr> 
             <tr>
-              <td>5</td>
               <td>3</td>
-              <td>7</td>
+              <td>1</td>
+              <td>1</td>
             </tr> 
           </thead>
           <tbody>
@@ -44,12 +45,12 @@
           <li>
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="<%= who_to_follow[i].img_src %>">
+              <img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg">
             </a>
             <div class="media-body">
-              <h5 class="media-heading"><a href="#"><%= who_to_follow[i].name %></a> <small>@<%= who_to_follow[i].username %></small><br>
-              <small>Followed by <a href="#"><u><%= who_to_follow[i].followed_by %></u></a> and 4 others</small></h5>
-              <a class="btn btn-primary btn-mini">Follow</a>
+              <h5 class="media-heading"><a href="#"><%= who_to_follow[i].fname %> <%= who_to_follow[i].lname %></a> <small>@<%= who_to_follow[i].username %></small><br>
+              <!-- <small>Followed by <a href="#"><u><%= who_to_follow[i].followers[0] %></u></a> and 4 others</small> --></h5>
+              <a class="btn btn-primary btn-mini btn-follow" href="/user/follow?&followee=<%= who_to_follow[i].username %>">Follow</a>
             </div>
           </div>
           </li>
@@ -69,7 +70,7 @@
       </ul>
     </div><!--/.well -->
     <div class="well well-small">
-      <ul id="trends" class="nav nav-stacked">
+      <ul class="nav nav-stacked">
         <li class="nav-header">Who's Online?</li>
         <ul>
     <% for(var userid in users) { %>
@@ -80,21 +81,19 @@
   </div><!--/span-->
   <div class="span8">
     <ul id="tashs" class="nav nav-stacked">
-      <% for(var i=0; i<tashs.length; i++) { %>
-        <li>
+      <li>
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="<%= tashs[i].img_src %>">
+              <img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg">
             </a>
             <div class="media-body">
-              <span class="pull-right date">Mar 6</span>
-              <h5 class="media-heading"><a href="#"><%= tashs[i].name %></a> <small>@<%= tashs[i].username %></small></h5>
-              <%= tashs[i].tash_text %>
+              <span class="pull-right date">Apr 3</span>
+              <h5 class="media-heading"><a href="#">Attitash Co.</a> <small>@Attitash</small></h5>
+              Welcome to #Attitash!
             </div>
           </div>
-        </li>
-      <% } %>
-    </ul>
+      </li>  
+    </ul> 
   </div><!--/span8-->
 </div><!--/row-->
 </div><!--/container-->
