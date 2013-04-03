@@ -140,11 +140,6 @@ exports.home = function(req, res) {
   });}
 };
 
-exports.online = function(req, res) {
-  res.render('online', { title : 'Users Online',
-                         users : online });
-};
-
 //Route for Register page
 exports.register = function(req, res){
   res.render('register', {  title: 'Attitash - Register' });
