@@ -31,6 +31,12 @@ app.configure('development', function(){
 app.get('/user/login', user.login);
 app.get('/user/home', user.home);
 app.post('/user/auth'  , user.auth);
+app.get('/user/settings', user.settings);
+app.get('/user/me', user.me);
+app.get('/user/register', user.register);
+app.get('/user/discover', user.discover);
+app.get('/user/register', user.register);
+app.get('/user/connect', user.connect);
 
 
 
