@@ -5,7 +5,8 @@
 var express = require('express')
   , user = require('./routes')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , flash = require('connect-flash');
 
 var app = express();
 
@@ -19,6 +20,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
+  app.use(flash());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 });
@@ -31,6 +33,7 @@ app.configure('development', function(){
 app.get('/user/login', user.login);
 app.get('/user/home', user.home);
 app.post('/user/auth'  , user.auth);
+app.get ('/user/logout', user.logout);
 app.get('/user/settings', user.settings);
 app.get('/user/me', user.me);
 app.get('/user/register', user.register);
