@@ -10,7 +10,7 @@ var tashsdb = [
 ];
 
 // ## insert
-// #Stores a tash object in the "db"
+// ###Stores a tash object in the "db"
 // @param {object} tash The tash object to be stored
 // @param {Function} cb Callback
 exports.insert = function(tash, cb){
@@ -21,8 +21,8 @@ exports.insert = function(tash, cb){
 	cb(undefined, tash);
 };
 
-// ##getTashByUsername
-// #Retrieve tashes by a specified user
+// ## getTashByUsername
+// ###Retrieve tashes by a specified user
 // @param {string} username user whose tashes we want
 // @param {Function} cb Callback
 exports.getTashsByUsername = function(username, cb){
