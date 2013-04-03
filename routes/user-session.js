@@ -1,4 +1,4 @@
-// Packages required to get the data stored in the server 
+// Modules required to get the data stored
 var userdb = require('../data/user.db.js');
 var tashsdb = require('../data/tashs.db.js');
 var trendsdb = require('../data/trends.db.js');
