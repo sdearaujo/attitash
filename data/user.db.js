@@ -51,4 +51,34 @@ exports.getUser = function(username, cb){
     }
   }
   cb('user not found');
+};
+
+exports.getFollowersForUsername = function(username, cb){
+  for(var i = 0; i < userdb.length; i++){
+    var u = userdb[i];
+    if(u.username === username){
+      cb(undefined, u.followers);
+     }
+  }
+  cb('error getting followers');
+};
+
+exports.getPotentialFollowers = function(username, cb){
+  var flwrs;
+  var who_to_follow = [];
+  for(var i = 0; i < userdb.length; i++){
+    var u = userdb[i];
+    if(u.username === username){
+      flwrs = u.followers;
+    }
+  }
+  for(var i = 0; i < userdb.length; i++){
+    for(var j = 0; j < flwrs.length; j++){
+      if(userdb[i].username !== flwrs[j]){
+        who_to_follow.push(userdb[i]);
+      }
+    }
+  }
+  cb(undefined, who_to_follow);
 }
+
