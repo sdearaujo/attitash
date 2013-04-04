@@ -1,4 +1,4 @@
-// Packages required to get the data stored in the server 
+// Modules required to get the data stored
 var userdb = require('../data/user.db.js');
 var tashsdb = require('../data/tashs.db.js');
 var trendsdb = require('../data/trends.db.js');
@@ -108,8 +108,16 @@ exports.tash = function(req, res){
 	
   //get the user from the session
 var user = req.session.user;
+
+// get the text for the tash
+var text;
+if(req.body.tash_text === undefined){
+	text = req.body.tash_text_modal;
+}else{
+	text = req.body.tash_text;
+}
   //insert the tash in the database
-  tashsdb.insert(tash.createTash(user.username, req.body.tash_text), function(error, tash){
+  tashsdb.insert(tash.createTash(user.username, text), function(error, tash){
     if(error){}
     else{
 	//if everything worked, redirect to the home page
@@ -250,11 +258,6 @@ var user = req.session.user;
           username: user.username,
           users : online,
           password: user.password,
-          // mock tash values.<br>
-          // <b>img_src:</b> location of image, to be placed in "img src="img_src value"<br>
-          // <b>name:</b> account name<br>
-          // <b>username:</b> account handle<br>
-          // <b>tash_text:</b> text content of the mock tash
           tashs: tashs,
           numtashes: tashs.length,
           who_to_follow: [],
@@ -288,11 +291,6 @@ var user = req.session.user;
     username: user.username,
     users : online,
     password: user.password,
-    // mock tash values.<br>
-    // <b>img_src:</b> location of image, to be placed in "img src="img_src value"<br>
-    // <b>name:</b> account name<br>
-    // <b>username:</b> account handle<br>
-    // <b>tash_text:</b> text content of the mock tash
     tashs: [],
     who_to_follow: [],
     trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
@@ -322,11 +320,6 @@ var user = req.session.user;
     username: user.username,
     users : online,
     password: user.password,
-    // mock tash values.<br>
-    // <b>img_src:</b> location of image, to be placed in "img src="img_src value"<br>
-    // <b>name:</b> account name<br>
-    // <b>username:</b> account handle<br>
-    // <b>tash_text:</b> text content of the mock tash
     tashs: [],
     who_to_follow: [],
     trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
