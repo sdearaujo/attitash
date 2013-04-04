@@ -163,7 +163,7 @@ exports.home = function(req, res) {
   }
   else {
   // create variable to keep the trends and tashs.
-    var trends = [], tashs = [], who_to_follow = [];
+    var trends = [], tashs = [], who_to_follow = [], followers = [], following = [];
 	// get the trends from the database
     trendsdb.getTrends(function(error, ts){
       if(error){}
@@ -185,6 +185,20 @@ exports.home = function(req, res) {
         who_to_follow = flwrs;
       }
     });
+    userdb.getFollowersForUsername(user.username, function(error, flwrs){
+      if(error){}
+      else{
+        followers = flwrs;
+      }
+    });
+
+     userdb.getUsersUserIsFollowing(user.username, function(error, flwrs){
+      if(error){}
+      else{
+        following = flwrs;
+      }
+    });
+
     res.render('home', { 
       title: 'Attitash - Home',
       message: '',
@@ -194,6 +208,8 @@ exports.home = function(req, res) {
       who_to_follow: who_to_follow,
       tashs: tashs,
       numtashes: tashs.length,
+      numfollowing: following.length,
+      numfollowers: followers.length,
       trends: trends
   });}
 };
