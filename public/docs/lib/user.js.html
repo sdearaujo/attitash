@@ -3,12 +3,12 @@
 <head>
   <title>user.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" media="all" href="doc-style.css" />
-  <script src="doc-filelist.js"></script>
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
   <script>
-    var relativeDir = "", thisFile = "home/anthonyb/dev/attitash//user.js", defaultSidebar = true;
+    var relativeDir = "../", thisFile = "home/samuel//lib/user.js", defaultSidebar = true;
   </script>
-  <script src="doc-script.js"></script>
+  <script src="../doc-script.js"></script>
 </head>
 <body>
   <div id="sidebar_wrapper">
@@ -44,10 +44,22 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
 </div>
-
+<p>Modules required to get the user data stored </p>
         </td>
         <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">userdb</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../data/user.db.js&#39;</span><span class="p">);</span>
 
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>variable to represent the increment of user ID in the database</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
 <span class="kd">var</span> <span class="nx">_uid</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
 

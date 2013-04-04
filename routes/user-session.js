@@ -107,8 +107,16 @@ exports.tash = function(req, res){
 	
   //get the user from the session
 var user = req.session.user;
+
+// get the text for the tash
+var text;
+if(req.body.tash_text === undefined){
+	text = req.body.tash_text_modal;
+}else{
+	text = req.body.tash_text;
+}
   //insert the tash in the database
-  tashsdb.insert(tash.createTash(user.username, req.body.tash_text), function(error, tash){
+  tashsdb.insert(tash.createTash(user.username, text), function(error, tash){
     if(error){}
     else{
 	//if everything worked, redirect to the home page

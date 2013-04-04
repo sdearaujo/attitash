@@ -3,12 +3,12 @@
 <head>
   <title>user-session.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" media="all" href="doc-style.css" />
-  <script src="doc-filelist.js"></script>
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
   <script>
-    var relativeDir = "", thisFile = "home/anthonyb/dev/attitash//user-session.js", defaultSidebar = true;
+    var relativeDir = "../", thisFile = "home/samuel//routes/user-session.js", defaultSidebar = true;
   </script>
-  <script src="doc-script.js"></script>
+  <script src="../doc-script.js"></script>
 </head>
 <body>
   <div id="sidebar_wrapper">
@@ -71,7 +71,7 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
 </div>
-<p>Packages required to get the data stored in the server </p>
+<p>Modules required to get the data stored</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">userdb</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../data/user.db.js&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">tashsdb</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../data/tashs.db.js&#39;</span><span class="p">);</span>
@@ -465,6 +465,7 @@ redirected route <code>/user/login</code>.</p>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
 
+
 </pre></div>
         </td>
       </tr>
@@ -473,10 +474,28 @@ redirected route <code>/user/login</code>.</p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-26" id="section-26">&#182;</a>
 </div>
+<p>get the text for the tash</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">text</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">tash_text</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">){</span>
+  <span class="nx">text</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">tash_text_modal</span><span class="p">;</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+  <span class="nx">text</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">tash_text</span><span class="p">;</span>
+<span class="p">}</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-27" id="section-27">&#182;</a>
+</div>
 <p>insert the tash in the database</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">tashsdb</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="nx">tash</span><span class="p">.</span><span class="nx">createTash</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">tash_text</span><span class="p">),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">tash</span><span class="p">){</span>
+  <span class="nx">tashsdb</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="nx">tash</span><span class="p">.</span><span class="nx">createTash</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span> <span class="nx">text</span><span class="p">),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">tash</span><span class="p">){</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">error</span><span class="p">){}</span>
     <span class="k">else</span><span class="p">{</span>
 
@@ -486,7 +505,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-27" id="section-27">&#182;</a>
+  <a class="pilcrow" href="#section-28" id="section-28">&#182;</a>
 </div>
 <p>if everything worked, redirect to the home page</p>
         </td>
@@ -522,7 +541,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-29" id="section-29">&#182;</a>
+  <a class="pilcrow" href="#section-30" id="section-30">&#182;</a>
 </div>
 <p>get the user from the session</p>
         </td>
@@ -535,7 +554,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-30" id="section-30">&#182;</a>
+  <a class="pilcrow" href="#section-31" id="section-31">&#182;</a>
 </div>
 <p>if the user is not logged, show the message "Not logged in!" and redirect to the login page</p>
         </td>
@@ -553,7 +572,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-31" id="section-31">&#182;</a>
+  <a class="pilcrow" href="#section-32" id="section-32">&#182;</a>
 </div>
 <p>remove the user from the the array of online users</p>
         </td>
@@ -569,7 +588,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-32" id="section-32">&#182;</a>
+  <a class="pilcrow" href="#section-33" id="section-33">&#182;</a>
 </div>
 <p>delete the user from the session</p>
         </td>
@@ -582,7 +601,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-33" id="section-33">&#182;</a>
+  <a class="pilcrow" href="#section-34" id="section-34">&#182;</a>
 </div>
 <p>redirect to login page</p>
         </td>
@@ -616,7 +635,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-35" id="section-35">&#182;</a>
+  <a class="pilcrow" href="#section-36" id="section-36">&#182;</a>
 </div>
 <p>get the user from the session</p>
         </td>
@@ -629,7 +648,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-36" id="section-36">&#182;</a>
+  <a class="pilcrow" href="#section-37" id="section-37">&#182;</a>
 </div>
 <p>if the user is not logged, show the message "Not logged in!" and redirect to the login page</p>
         </td>
@@ -646,7 +665,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-37" id="section-37">&#182;</a>
+  <a class="pilcrow" href="#section-38" id="section-38">&#182;</a>
 </div>
 <p>create variable to keep the trends and tashs.</p>
         </td>
@@ -659,7 +678,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-38" id="section-38">&#182;</a>
+  <a class="pilcrow" href="#section-39" id="section-39">&#182;</a>
 </div>
 <p>get the trends from the database</p>
         </td>
@@ -677,7 +696,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-39" id="section-39">&#182;</a>
+  <a class="pilcrow" href="#section-40" id="section-40">&#182;</a>
 </div>
 <p>get the tashs for this user from the database</p>
         </td>
@@ -695,7 +714,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-40" id="section-40">&#182;</a>
+  <a class="pilcrow" href="#section-41" id="section-41">&#182;</a>
 </div>
 <p>call the home view with the following parameters:
 <b>title:</b> Attitash - Home
@@ -730,7 +749,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-41" id="section-41">&#182;</a>
+  <a class="pilcrow" href="#section-42" id="section-42">&#182;</a>
 </div>
 <p>Route for Register page</p>
         </td>
@@ -767,7 +786,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-43" id="section-43">&#182;</a>
+  <a class="pilcrow" href="#section-44" id="section-44">&#182;</a>
 </div>
 <p>call the register view with the following parameters:
 <b>title:</b> Attitash - Register</p>
@@ -801,7 +820,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-45" id="section-45">&#182;</a>
+  <a class="pilcrow" href="#section-46" id="section-46">&#182;</a>
 </div>
 <p>get the user from the session</p>
         </td>
@@ -814,7 +833,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-46" id="section-46">&#182;</a>
+  <a class="pilcrow" href="#section-47" id="section-47">&#182;</a>
 </div>
 <p>if the user is not logged, show the message "Not logged in!" and redirect to the login page</p>
         </td>
@@ -831,7 +850,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-47" id="section-47">&#182;</a>
+  <a class="pilcrow" href="#section-48" id="section-48">&#182;</a>
 </div>
 <p>get the tashs for this user from the database</p>
         </td>
@@ -846,7 +865,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-48" id="section-48">&#182;</a>
+  <a class="pilcrow" href="#section-49" id="section-49">&#182;</a>
 </div>
 <p>call the me view with the following parameters:
 <b>title:</b> Attitash - Home
@@ -897,7 +916,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-50" id="section-50">&#182;</a>
+  <a class="pilcrow" href="#section-51" id="section-51">&#182;</a>
 </div>
 <p>get the user from the session</p>
         </td>
@@ -910,7 +929,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-51" id="section-51">&#182;</a>
+  <a class="pilcrow" href="#section-52" id="section-52">&#182;</a>
 </div>
 <p>if the user is not logged, show the message "Not logged in!" and redirect to the login page</p>
         </td>
@@ -927,7 +946,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-52" id="section-52">&#182;</a>
+  <a class="pilcrow" href="#section-53" id="section-53">&#182;</a>
 </div>
 <p>call the discover view with the following parameters:
 <b>title:</b> Attitash - Home
@@ -974,7 +993,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-54" id="section-54">&#182;</a>
+  <a class="pilcrow" href="#section-55" id="section-55">&#182;</a>
 </div>
 <p>get the user from the session</p>
         </td>
@@ -987,7 +1006,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-55" id="section-55">&#182;</a>
+  <a class="pilcrow" href="#section-56" id="section-56">&#182;</a>
 </div>
 <p>if the user is not logged, show the message "Not logged in!" and redirect to the login page</p>
         </td>
@@ -1004,7 +1023,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-56" id="section-56">&#182;</a>
+  <a class="pilcrow" href="#section-57" id="section-57">&#182;</a>
 </div>
 <p>call the connect view with the following parameters:
 <b>title:</b> Attitash - Home
@@ -1052,7 +1071,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-58" id="section-58">&#182;</a>
+  <a class="pilcrow" href="#section-59" id="section-59">&#182;</a>
 </div>
 <p>get the user from the session</p>
         </td>
@@ -1065,7 +1084,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-59" id="section-59">&#182;</a>
+  <a class="pilcrow" href="#section-60" id="section-60">&#182;</a>
 </div>
 <p>if the user is not logged, show the message "Not logged in!" and redirect to the login page</p>
         </td>
@@ -1082,7 +1101,7 @@ redirected route <code>/user/login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-60" id="section-60">&#182;</a>
+  <a class="pilcrow" href="#section-61" id="section-61">&#182;</a>
 </div>
 <p>call the settings view with the following parameters:
 <b>title:</b> Attitash
