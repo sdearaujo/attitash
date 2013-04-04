@@ -153,32 +153,22 @@ exports.home = function(req, res) {
     res.redirect('/login');
   }
   else {
-  // create variable to keep the trends and tashs.
+    // create variable to keep the trends and tashs.
     var trends = [], tashs = [];
-	// get the trends from the database
+    // get the trends from the database
     trendsdb.getTrends(function(error, ts){
       if(error){}
       else{
         trends = ts;
       }
     });
-	// get the tashs for this user from the database
+    // get the tashs for this user from the database
     tashsdb.getTashsByUsername(user.username, function(error, ts){
       if(error){}
       else{
         tashs = ts;
       }
     });
-	// call the home view with the following parameters:
-	// <b>title:</b> Attitash - Home
-    // <b>message:</b> empty
-    // <b>notification:</b> empty
-    // <b>username:</b> username from the session
-    // <b>users:</b> array of online users
-    // <b>who_to_follow:</b> empty array
-    // <b>tashs:</b> tashs for this user from the database
-    // <b>numtashes:</b> quantity of tashs
-    // <b>trends:</b> trends from the database
     res.render('home', { 
     title: 'Attitash - Home',
     message: '',
@@ -192,9 +182,6 @@ exports.home = function(req, res) {
   });}
 };
 
-
-//Route for Register page
-
 exports.online = function(req, res) {
   res.render('online', { title : 'Users Online',
                          users : online });
@@ -204,9 +191,15 @@ exports.online = function(req, res) {
 // Route for register page
 
 exports.register = function(req, res){
-	// call the register view with the following parameters:
-	// <b>title:</b> Attitash - Register
-  res.render('register', {  title: 'Attitash - Register' });
+  //get the user from the session
+  var user = req.session.user;
+  //if the user is not logged, show the message "Not logged in!" and redirect to the login page
+  if (user !== undefined || online[user.uid] !== undefined) {
+    res.redirect('/home');
+  }
+  else{
+    res.render('register', {  title: 'Attitash - Register' });
+  }
 };
 
 // ## me
@@ -224,12 +217,6 @@ var user = req.session.user;
     tashsdb.getTashsByUsername(user.username, function(error, tashs){
       if(error){}
       else{
-	  // call the me view with the following parameters:
-	// <b>title:</b> Attitash - Home
-    // <b>message:</b> Login Successful!
-    // <b>username:</b> username from this user
-    // <b>users:</b> array of online users
-    // <b>password:</b> password for this user
         res.render('me', { 
           title: 'Attitash - Home',
           message: 'Login Successful!',
@@ -257,22 +244,23 @@ var user = req.session.user;
     res.redirect('/login');
   }
   else {
-   // call the discover view with the following parameters:
-   // <b>title:</b> Attitash - Home
-    // <b>message:</b> Login Successful!
-    // <b>username:</b> username from this user
-    // <b>users:</b> array of online users
-    // <b>password:</b> password for this user
- res.render('discover', { 
-    title: 'Attitash - Home',
-    message: 'Login Successful!',
-    username: user.username,
-    users : online,
-    password: user.password,
-    tashs: [],
-    who_to_follow: [],
-    trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
-  });}
+    var trends = [];
+    // get the trends from the database
+    trendsdb.getTrends(function(error, ts){
+      if(error){}
+      else{
+        trends = ts;
+      }
+    });
+    res.render('discover', { 
+      title: 'Attitash - Home',
+      username: user.username,
+      users : online,
+      password: user.password,
+      tashs: [],
+      who_to_follow: [],
+      trends: trends
+    });}
 };
 
 // ## connect
@@ -286,24 +274,25 @@ var user = req.session.user;
     res.redirect('/login');
   }
   else {
-  // call the connect view with the following parameters:
-   // <b>title:</b> Attitash - Home
-    // <b>message:</b> Login Successful!
-    // <b>username:</b> username from this user
-    // <b>users:</b> array of online users
-    // <b>password:</b> password for this user
- res.render('connect', { 
-    title: 'Attitash - Home',
-    message: 'Login Successful!',
-    username: user.username,
-    users : online,
-    password: user.password,
-    tashs: [],
-    who_to_follow: [],
-    trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
-  });}
+    var trends = [], tashs = [];
+    // get the trends from the database
+    trendsdb.getTrends(function(error, ts){
+      if(error){}
+      else{
+        trends = ts;
+      }
+    });
+    res.render('connect', { 
+      title: 'Attitash - Home',
+      message: 'Login Successful!',
+      username: user.username,
+      users : online,
+      password: user.password,
+      tashs: [],
+      who_to_follow: [],
+      trends: trends
+    });}
 };
-
 
 // ## settings
 // Route for settings page
@@ -316,17 +305,11 @@ var user = req.session.user;
     res.redirect('/login');
   }
   else {
-  // call the settings view with the following parameters:
-   // <b>title:</b> Attitash
-    // <b>user:</b> AttitashDev
-    // <b>username:</b> AttitashDev
-    
     res.render('settings', {
-      title: 'Attitash',
-      user: 'AttitashDev',
-      username: 'AttitashDev'
+      title: 'Attitash - Settings',
+      user: user.fname,
+      username: user.username
     })
   }
 
 };
-
