@@ -21,6 +21,7 @@ exports.login = function(req, res){
 
   // TDR: redirect if logged in:
   var user  = req.session.user;
+  console.log(user);
 
   // TDR: If the user is already logged in - we redirect to the
   // home application view. We must check both that the `userid`
@@ -242,8 +243,7 @@ exports.online = function(req, res) {
 exports.register = function(req, res){
   //get the user from the session
   var user = req.session.user;
-  //if the user is not logged, show the message "Not logged in!" and redirect to the login page
-  if (user !== undefined || online[user.uid] !== undefined) {
+  if (user !== undefined && online[user.uid] !== undefined) {
     res.redirect('/home');
   }
   else{
@@ -255,7 +255,7 @@ exports.register = function(req, res){
 // Route for me page
 exports.me = function(req, res) {
   //get the user from the session
-var user = req.session.user;
+  var user = req.session.user;
 	//if the user is not logged, show the message "Not logged in!" and redirect to the login page
   if (user === undefined || online[user.uid] === undefined) {
     req.flash('auth', 'Not logged in!');
