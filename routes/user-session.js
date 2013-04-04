@@ -163,7 +163,7 @@ exports.home = function(req, res) {
   }
   else {
   // create variable to keep the trends and tashs.
-    var trends = [], tashs = [], who_to_follow = [];
+    var trends = [], tashs = [], who_to_follow = [], following = [], followers = [], utashs = [];
 	// get the trends from the database
     trendsdb.getTrends(function(error, ts){
       if(error){}
@@ -173,6 +173,13 @@ exports.home = function(req, res) {
     });
     // get the tashs for this user from the database
     tashsdb.getTashsByUsername(user.username, function(error, ts){
+      if(error){}
+      else{
+        utashs = ts;
+      }
+    });
+    // get the users news feed (users they follow + their own tashs)
+    tashsdb.getFeedForUsername(user.username, function(error, ts){
       if(error){}
       else{
         tashs = ts;
@@ -185,6 +192,18 @@ exports.home = function(req, res) {
         who_to_follow = flwrs;
       }
     });
+    userdb.getFollowersForUsername(user.username, function(error, flwrs){
+      if(error){}
+        else{
+          followers = flwrs;
+        }
+    });
+    userdb.getFollowingForUsername(user.username, function(error, flwng){
+      if(error){}
+        else{
+          following = flwng;
+        }
+    });
     res.render('home', { 
       title: 'Attitash - Home',
       message: '',
@@ -193,7 +212,9 @@ exports.home = function(req, res) {
       users : online,
       who_to_follow: who_to_follow,
       tashs: tashs,
-      numtashes: tashs.length,
+      numtashes: utashs.length,
+      numfollowing: following.length,
+      numfollowers: followers.length,
       trends: trends
   });}
 };
@@ -241,22 +262,38 @@ var user = req.session.user;
     res.redirect('/login');
   }
   else {
+    var tashs = [], following = [], followers = [];
   // get the tashs for this user from the database
-    tashsdb.getTashsByUsername(user.username, function(error, tashs){
+    tashsdb.getTashsByUsername(user.username, function(error, ts){
       if(error){}
       else{
-        res.render('me', { 
-          title: 'Attitash - Home',
-          message: 'Login Successful!',
-          username: user.username,
-          users : online,
-          password: user.password,
-          tashs: tashs,
-          numtashes: tashs.length,
-          who_to_follow: [],
-          trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
-        });
+        tashs = ts;
       }
+    });
+    userdb.getFollowingForUsername(user.username, function(error, flwng){
+      if(error){}
+      else{
+        following = flwng;
+      }
+    });
+    userdb.getFollowersForUsername(user.username, function(error, flwrs){
+      if(error){}
+      else{
+        followers = flwrs;
+      }
+    });
+    res.render('me', { 
+      title: 'Attitash - Home',
+      message: 'Login Successful!',
+      username: user.username,
+      users : online,
+      password: user.password,
+      tashs: tashs,
+      numtashes: tashs.length,
+      following: following,
+      followers: followers,
+      who_to_follow: [],
+      trends: ["attitash", "cs326", "jingleheimer", "roflmao", "bootstrap", "betterthantwitter", "tash"]
     });
   }
 };

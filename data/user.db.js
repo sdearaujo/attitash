@@ -63,6 +63,16 @@ exports.getFollowersForUsername = function(username, cb){
   cb('error getting followers');
 };
 
+exports.getFollowingForUsername = function(username, cb){
+  for(var i = 0; i < userdb.length; i++){
+    var u = userdb[i];
+    if(u.username === username){
+      cb(undefined, u.following);
+     }
+  }
+  cb('error getting following');
+};
+
 exports.getPotentialFollowers = function(username, cb){
   var flwrs;
   var who_to_follow = [];

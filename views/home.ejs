@@ -18,8 +18,8 @@
             </tr> 
             <tr>
               <td><%= numtashes %></td>
-              <td>1</td>
-              <td>1</td>
+              <td><%= numfollowing %></td>
+              <td><%= numfollowers %></td>
             </tr> 
           </thead>
           <tbody>
@@ -91,7 +91,7 @@
               <img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg">
             </a>
             <div class="media-body">
-              <span class="pull-right date">Mar 6</span>
+              <span class="pull-right date"><%= tashs[i].date %></span>
               <h5 class="media-heading"><a href="#"><%= tashs[i].author %></a> <small>@<%= tashs[i].author %></small></h5>
               <%= tashs[i].text %>
             </div>

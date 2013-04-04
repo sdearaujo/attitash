@@ -35,3 +35,20 @@ exports.getTashsByUsername = function(username, cb){
   }
   cb(undefined, tashs);
 };
+
+exports.getFeedForUsername = function(username, cb){
+  var following;
+  var feed = [];
+  userdb.getUser(username, function(error, user){
+    if(error){}
+    else{
+      following = user.following;
+    }
+    for(var i = 0; i < tashsdb.length; i++){
+      if(following.indexOf(tashsdb[i].author) !== -1 || tashsdb[i].author === username){
+        feed.push(tashsdb[i]);
+      }
+    }
+  });
+  cb(undefined, feed);
+};

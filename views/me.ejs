@@ -12,18 +12,33 @@
             <li><a href="#">Lists</a></li> 
           </div>
           <div class="well well-small">
-      <ul id="suggest-follow" class="nav nav-stacked">
+      <ul id="suggest-follow" class="nav nav-stacked me-follow">
         <li class="nav-header">Following</li>
-        <% for(var i=0; i<who_to_follow.length; i++) { %>
+        <% for(var i=0; i<following.length; i++) { %>
           <li>
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="<%= who_to_follow[i].img_src %>">
+              <img class="media-object img-rounded" src="images/attitash-dev-prof-pic.jpeg">
             </a>
             <div class="media-body">
-              <h5 class="media-heading"><a href="#"><%= who_to_follow[i].name %></a> <small>@<%= who_to_follow[i].username %></small><br>
-              <small>Followed by <a href="#"><u><%= who_to_follow[i].followed_by %></u></a> and 4 others</small></h5>
-              <a class="btn btn-primary btn-mini">Follow</a>
+              <h5 class="media-heading"><a href="#"><%= following[i] %></a> <small>@<%= following[i] %></small><br></h5>
+            </div>
+          </div>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+    <div class="well well-small">
+      <ul class="nav nav-stacked me-follow">
+        <li class="nav-header">Followers</li>
+        <% for(var i=0; i<followers.length; i++) { %>
+          <li>
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object img-rounded" src="images/attitash-dev-prof-pic.jpeg">
+            </a>
+            <div class="media-body">
+              <h5 class="media-heading"><a href="#"><%= followers[i] %></a> <small>@<%= followers[i] %></small><br></h5>
             </div>
           </div>
           </li>
@@ -61,8 +76,8 @@
               <tbody>
                 <tr>
                   <td><%= numtashes %></td>
-                  <td>3</td>
-                  <td>7</td>
+                  <td><%= following.length %></td>
+                  <td><%= followers.length %></td>
                   <td><a href="#dmModal" role="button" class="btn btn-primary" data-toggle="modal"><i class="icon-envelope icon-white"></i></a>
               <!-- Modal -->
               <div id="dmModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="dmModalLabel" aria-hidden="true">

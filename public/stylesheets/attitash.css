@@ -81,7 +81,8 @@
 
       #suggest-follow li,
       #suggest-follow .nav-header,
-      #trends .nav-header{
+      #trends .nav-header,
+      .me-follow li{
         padding: 0px 0px 10px 0px;
       }
 
