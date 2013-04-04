@@ -183,7 +183,6 @@ exports.home = function(req, res) {
       if(error){}
       else{
         who_to_follow = flwrs;
-        console.log(who_to_follow);
       }
     });
     res.render('home', { 
@@ -198,6 +197,18 @@ exports.home = function(req, res) {
       trends: trends
   });}
 };
+
+exports.follow = function(req, res){
+  var follower = req.query.follower;
+  var followee = req.query.followee;
+
+  userdb.addFollowerForUser(follower, followee, function(error){
+    if(error){}
+    else{
+      res.redirect('/home');
+    }
+  });
+}
 
 exports.online = function(req, res) {
   res.render('online', { title : 'Users Online',

@@ -41,16 +41,19 @@
     <div class="well well-small">
       <ul id="suggest-follow" class="nav nav-stacked">
         <li class="nav-header">Who To Follow</li>
-        <% for(var i=0; i<3; i++) { %>
+        <% for(var i=0; i<who_to_follow.length; i++) { %>
           <li>
           <div class="media">
             <a class="pull-left" href="#">
               <img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg">
             </a>
             <div class="media-body">
-              <h5 class="media-heading"><a href="#"><%= who_to_follow[i].fname %> <%= who_to_follow[i].lname %></a> <small>@<%= who_to_follow[i].username %></small><br>
+              <h5 class="media-heading"><a href=""><%= who_to_follow[i].fname %> <%= who_to_follow[i].lname %></a> <small>@<%= who_to_follow[i].username %></small><br>
               </h5>
-              <a class="btn btn-primary btn-mini btn-follow" href="">Follow</a>
+              <form method="post" action="/follow?follower=<%= username %>&followee=<%= who_to_follow[i].username %>">
+                <input type="submit" class="btn btn-primary btn-mini" value="Follow" />
+                <!-- <a class="btn btn-primary btn-mini btn-follow" type="submit">Follow</a> -->
+              </form>
             </div>
           </div>
           </li>

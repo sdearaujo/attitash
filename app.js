@@ -45,6 +45,8 @@ app.get('/connect', user.connect);
 
 app.post('/tash/create', user.tash);
 
+app.post('/follow', user.follow);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });

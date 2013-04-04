@@ -69,16 +69,33 @@ exports.getPotentialFollowers = function(username, cb){
   for(var i = 0; i < userdb.length; i++){
     var u = userdb[i];
     if(u.username === username){
-      flwrs = u.followers;
+      flwrs = u.following;
     }
   }
+  var following = false;
   for(var i = 0; i < userdb.length; i++){
-    for(var j = 0; j < flwrs.length; j++){
-      if(userdb[i].username !== flwrs[j]){
+    if(flwrs.indexOf(userdb[i].username) === -1){
+      if(userdb[i].username !== username){  
         who_to_follow.push(userdb[i]);
       }
     }
   }
   cb(undefined, who_to_follow);
+}
+
+exports.addFollowerForUser = function(follower, followee, cb){
+  var fr, fe;
+  for(var i = 0; i < userdb.length; i++){
+    var u = userdb[i];
+    if(u.username === follower){
+      fr = u;
+    }
+    if(u.username === followee){
+      fe = u;
+    }
+  }
+  fr.following.push(fe.username);
+  fe.followers.push(fr.username);
+  cb(undefined);
 }
 
