@@ -5,6 +5,7 @@ var trendsdb = require('../data/trends.db.js');
 var user = require('../lib/user.js');
 var tash = require('../lib/tash.js');
 var trend = require('../lib/trend.js');
+var user2 = require('../lib/user.js');
 
 // A logged in "database":
 var online = {};
@@ -161,9 +162,15 @@ exports.home = function(req, res) {
     res.redirect('/login');
   }
   else {
+<<<<<<< HEAD
     // create variable to keep the trends and tashs.
     var trends = [], tashs = [];
     // get the trends from the database
+=======
+  // create variable to keep the trends and tashs.
+    var trends = [], tashs = [], who_to_follow = [];
+	// get the trends from the database
+>>>>>>> 687ce77aa00cb2217648debf2414698f09303d18
     trendsdb.getTrends(function(error, ts){
       if(error){}
       else{
@@ -177,13 +184,39 @@ exports.home = function(req, res) {
         tashs = ts;
       }
     });
+<<<<<<< HEAD
+=======
+
+    // get the potential followers from the user database
+    user.getFollowers(function(error, followers){
+      if(error){}
+      else{
+        for(var i = 0; i < userdb.length; i++){
+          if(userdb[i].username != followers){
+            who_to_follow = userdb[i].username;
+          }
+        }
+      }
+    });
+
+	// call the home view with the following parameters:
+	// <b>title:</b> Attitash - Home
+    // <b>message:</b> empty
+    // <b>notification:</b> empty
+    // <b>username:</b> username from the session
+    // <b>users:</b> array of online users
+    // <b>who_to_follow:</b> empty array
+    // <b>tashs:</b> tashs for this user from the database
+    // <b>numtashes:</b> quantity of tashs
+    // <b>trends:</b> trends from the database
+>>>>>>> 687ce77aa00cb2217648debf2414698f09303d18
     res.render('home', { 
     title: 'Attitash - Home',
     message: '',
     notification: '',
     username: user.username,
     users : online,
-    who_to_follow: [],
+    who_to_follow: who_to_follow,
     tashs: tashs,
     numtashes: tashs.length,
     trends: trends
