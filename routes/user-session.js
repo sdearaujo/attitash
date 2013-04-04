@@ -5,6 +5,7 @@ var trendsdb = require('../data/trends.db.js');
 var user = require('../lib/user.js');
 var tash = require('../lib/tash.js');
 var trend = require('../lib/trend.js');
+var user2 = require('../lib/user.js');
 
 // A logged in "database":
 var online = {};
@@ -154,7 +155,7 @@ exports.home = function(req, res) {
   }
   else {
   // create variable to keep the trends and tashs.
-    var trends = [], tashs = [];
+    var trends = [], tashs = [], who_to_follow = [];
 	// get the trends from the database
     trendsdb.getTrends(function(error, ts){
       if(error){}
@@ -169,6 +170,19 @@ exports.home = function(req, res) {
         tashs = ts;
       }
     });
+
+    // get the potential followers from the user database
+    user.getFollowers(function(error, followers){
+      if(error){}
+      else{
+        for(var i = 0; i < userdb.length; i++){
+          if(userdb[i].username != followers){
+            who_to_follow = userdb[i].username;
+          }
+        }
+      }
+    });
+
 	// call the home view with the following parameters:
 	// <b>title:</b> Attitash - Home
     // <b>message:</b> empty
@@ -185,7 +199,7 @@ exports.home = function(req, res) {
     notification: '',
     username: user.username,
     users : online,
-    who_to_follow: [],
+    who_to_follow: who_to_follow,
     tashs: tashs,
     numtashes: tashs.length,
     trends: trends
