@@ -11,7 +11,7 @@ var online = {};
 exports.login = function(req, res){
   var user = req.session.user;
   // redirect if logged in
-  if(user !== undefined && online[user.uid] !== undefined){
+  if(user !== undefined){
     res.redirect('/home');
   }
   else{

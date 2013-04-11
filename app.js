@@ -30,6 +30,7 @@ app.configure('development', function(){
 });
 
 // request handlers for various pages, routes to functions
+app.get('/', routes.login);
 app.get('/login', routes.login);
 app.post('/login'  , routes.auth);
 
