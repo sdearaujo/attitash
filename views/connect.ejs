@@ -18,12 +18,14 @@
           <li>
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="<%= who_to_follow[i].img_src %>">
+              <img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg">
             </a>
             <div class="media-body">
-              <h5 class="media-heading"><a href="#"><%= who_to_follow[i].name %></a> <small>@<%= who_to_follow[i].username %></small><br>
-              <small>Followed by <a href="#"><u><%= who_to_follow[i].followed_by %></u></a> and 4 others</small></h5>
-              <a class="btn btn-primary btn-mini">Follow</a>
+              <h5 class="media-heading"><a href="#"><%= who_to_follow[i].fname %> <%= who_to_follow[i].lname %></a> <small>@<%= who_to_follow[i].uname %></small><br>
+              <form method="post" action="/follow?follower=<%= username %>&followee=<%= who_to_follow[i].uname %>">
+                <input type="submit" class="btn btn-primary btn-mini" value="Follow" />
+                <!-- <a class="btn btn-primary btn-mini btn-follow" type="submit">Follow</a> -->
+              </form>
             </div>
           </div>
           </li>
@@ -54,12 +56,12 @@
         <li>
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="<%= tashs[i].img_src %>">
+              <img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg">
             </a>
             <div class="media-body">
               <span class="pull-right date">Mar 6</span>
-              <h5 class="media-heading"><a href="#"><%= tashs[i].name %></a> <small>@<%= tashs[i].username %></small></h5>
-              <%= tashs[i].tash_text %>
+              <h5 class="media-heading"><a href="#"><%= tashs[i].fname %> <%= tashs[i].lname %></a> <small>@<%= tashs[i].uname %></small></h5>
+              <%= tashs[i].content %>
             </div>
           </div>
         </li>

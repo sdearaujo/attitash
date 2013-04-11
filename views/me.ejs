@@ -21,7 +21,7 @@
               <img class="media-object img-rounded" src="images/attitash-dev-prof-pic.jpeg">
             </a>
             <div class="media-body">
-              <h5 class="media-heading"><a href="#"><%= following[i] %></a> <small>@<%= following[i] %></small><br></h5>
+              <h5 class="media-heading"><a href="#"><%= following[i].fname %> <%= following[i].lname %></a> <small>@<%= following[i].uname %></small><br></h5>
             </div>
           </div>
           </li>
@@ -38,7 +38,7 @@
               <img class="media-object img-rounded" src="images/attitash-dev-prof-pic.jpeg">
             </a>
             <div class="media-body">
-              <h5 class="media-heading"><a href="#"><%= followers[i] %></a> <small>@<%= followers[i] %></small><br></h5>
+              <h5 class="media-heading"><a href="#"><%= followers[i].fname %> <%= followers[i].lname %></a> <small>@<%= followers[i].uname %></small><br></h5>
             </div>
           </div>
           </li>
@@ -75,7 +75,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><%= numtashes %></td>
+                  <td><%= tashs.length %></td>
                   <td><%= following.length %></td>
                   <td><%= followers.length %></td>
                   <td><a href="#dmModal" role="button" class="btn btn-primary" data-toggle="modal"><i class="icon-envelope icon-white"></i></a>
@@ -113,9 +113,9 @@
               <img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg">
             </a>
             <div class="media-body">
-              <span class="pull-right date">Mar 6</span>
-              <h5 class="media-heading"><a href="#"><%= tashs[i].author %></a> <small>@<%= tashs[i].author %></small></h5>
-              <%= tashs[i].text %>
+              <span class="pull-right date"><%= tashs[i].tdate %></span>
+              <h5 class="media-heading"><a href="#"><%= tashs[i].fname %> <%= tashs[i].lname %></a> <small>@<%= tashs[i].uname %></small></h5>
+              <%= tashs[i].content %>
             </div>
           </div>
         </li>

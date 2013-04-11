@@ -1,8 +1,8 @@
 {
-    "name"     : "user routes",
+    "name"     : "attitash webapp routes",
     "version" : "0.0.1",
     "author"   : "Attitash",
     "description" : "a library for user routes",
-    "main": "./user-session.js"
+    "main": "./index.js"
 }
 

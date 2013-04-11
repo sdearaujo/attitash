@@ -48,9 +48,9 @@
               <img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg">
             </a>
             <div class="media-body">
-              <h5 class="media-heading"><a href=""><%= who_to_follow[i].fname %> <%= who_to_follow[i].lname %></a> <small>@<%= who_to_follow[i].username %></small><br>
+              <h5 class="media-heading"><a href=""><%= who_to_follow[i].fname %> <%= who_to_follow[i].lname %></a> <small>@<%= who_to_follow[i].uname %></small><br>
               </h5>
-              <form method="post" action="/follow?follower=<%= username %>&followee=<%= who_to_follow[i].username %>">
+              <form method="post" action="/follow?follower=<%= username %>&followee=<%= who_to_follow[i].uname %>">
                 <input type="submit" class="btn btn-primary btn-mini" value="Follow" />
                 <!-- <a class="btn btn-primary btn-mini btn-follow" type="submit">Follow</a> -->
               </form>
@@ -76,8 +76,8 @@
       <ul class="nav nav-stacked">
         <li class="nav-header">Who's Online?</li>
         <ul>
-    <% for(var userid in users) { %>
-      <li><%= users[userid].username %></li>
+    <% for(var userid in online) { %>
+      <li><%= online[userid].uname %></li>
     <% } %>
       </ul></ul>
     </div><!--/.well -->
@@ -91,9 +91,9 @@
               <img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg">
             </a>
             <div class="media-body">
-              <span class="pull-right date"><%= tashs[i].date %></span>
-              <h5 class="media-heading"><a href="#"><%= tashs[i].author %></a> <small>@<%= tashs[i].author %></small></h5>
-              <%= tashs[i].text %>
+              <span class="pull-right date"><%= tashs[i].tdate %></span>
+              <h5 class="media-heading"><a href="#"><%= tashs[i].fname %> <%= tashs[i].lname %></a> <small>@<%= tashs[i].uname %></small></h5>
+              <%= tashs[i].content %>
             </div>
           </div>
         </li>

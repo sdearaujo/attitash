@@ -17,7 +17,7 @@ $('#send_tash,#send_tash_modal').submit(function(e) {
         url: "/tash/create",
         success: function(data, textStatus, jqXHR){
             console.log("DATA:" + data);
-        };
+        }
         error: function(jqXHR, textStatus, errorThrown){
             console.log("error: " + errorThrown);
         }
