@@ -6,7 +6,8 @@ var express = require('express')
   , routes = require('./routes/index.js')
   , http = require('http')
   , path = require('path')
-  , flash = require('connect-flash');
+  , flash = require('connect-flash')
+  , socketConnection = require('./socket/index.js');
 
 var app = express();
 
@@ -46,6 +47,14 @@ app.get('/connect', routes.connect);
 app.post('/tash/create', routes.tash);
 app.post('/follow', routes.follow);
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app);
+
+server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
+});
+
+var io = require('socket.io').listen(server);
+
+io.sockets.on('connection', function (socket) {
+  socketConnection.init(socket);
 });

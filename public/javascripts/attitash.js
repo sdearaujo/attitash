@@ -10,18 +10,18 @@ $('#send_tash .new_tash, #send_tash_modal .new_tash').keydown(function(e){
         return false;
     }
 });
-$('#send_tash,#send_tash_modal').submit(function(e) {
-    e.preventDefault();
-    $.ajax({
-        method: "POST",
-        url: "/tash/create",
-        success: function(data, textStatus, jqXHR){
-            console.log("DATA:" + data);
-        }
-        error: function(jqXHR, textStatus, errorThrown){
-            console.log("error: " + errorThrown);
-        }
-    });
+// $('#send_tash,#send_tash_modal').submit(function(e) {
+    // e.preventDefault();
+    // $.ajax({
+        // method: "POST",
+        // url: "/tash/create",
+        // success: function(data, textStatus, jqXHR){
+            // console.log("DATA:" + data);
+        // }
+        // error: function(jqXHR, textStatus, errorThrown){
+            // console.log("error: " + errorThrown);
+        // }
+    // });
     // e.preventDefault();
     // var that = $(this);
     // var queryString = '#' + $(this).attr('id') + ' .new_tash';
@@ -37,7 +37,7 @@ $('#send_tash,#send_tash_modal').submit(function(e) {
     // $('.alert-send_tash').fadeIn(200).delay(4000).fadeOut(1000);
     // $('#myModal').modal('hide');
     // return false;
-});
+// });
 
 $('.search-query').typeahead({
     source: ['Jerry Seinfeld', 'George Costanza', 'Cosmo Kramer', 'John Coschigano', 'Brain Dragunas', 'Samuel Nascimento', 'Anthony Battaglia'],
