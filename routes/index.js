@@ -110,28 +110,20 @@ exports.addUser = function(req, res){
         res.redirect('/register');
       }
       else{
-        // evry user is a follower of themselves, useful for generating the news feed
-        following.addFollowByUsername(username, username, function(err){
+        // log the user in and send them to the home screen
+        users.getUserByUsername(username, function(err, user){
           if(err){
-            res.send("err writing user!");
+            res.send("error getting user! " + err);
+          }
+          if(user === undefined){
+            res.send("cannot find user!");
           }
           else{
-            // log the user in and send them to the home screen
-            users.getUserByUsername(username, function(err, user){
-              if(err){
-                res.send("error getting user! " + err);
-              }
-              if(user === undefined){
-                res.send("cannot find user!");
-              }
-              else{
-                req.session.user = user;
-                online[user.uname] = user;
-                res.redirect('/home');
-              }
-            });
+            req.session.user = user;
+            online[user.uname] = user;
+            res.redirect('/home');
           }
-        });     
+        });   
       }
     });
   }
