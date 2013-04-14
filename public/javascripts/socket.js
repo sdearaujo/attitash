@@ -2,26 +2,16 @@
  
  $(function () {
 	socket.on('new tash error', function (err) {
-		console.log("error: " + err);
+		//what to do when a error come?
 	});
 	socket.on('new tash success', function(data){
-		client = JSON.stringify(data);
-		console.log(client);
+		//how can I add a new tash without refresh the page using ajax
 	});
 });
  
  $('#send_tash,#send_tash_modal').submit(function(e) {
     e.preventDefault();
-	socket.emit('new tash',{username: "jj", text: "aaaa"});
-    $.ajax({
-        method: "POST",
-        url: "/tash/create",
-        success: function(data, textStatus, jqXHR){
-            console.log("DATA:" + data);
-        }
-        error: function(jqXHR, textStatus, errorThrown){
-            console.log("error: " + errorThrown);
-        }
-    });
-	return false;
+	message = $('#send_tash .new_tash, #send_tash_modal .new_tash').val();
+	//username = how can I get the username here?
+	socket.emit('new tash',{ uname: "jj", text: message});
 });
