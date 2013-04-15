@@ -32,11 +32,12 @@
         </table>
       
         <form method="post" action="/tash/create" id="send_tash">
-          <textarea name="tash_text" class="new_tash expand" type="text" placeholder="Compose New Tash..."></textarea>
+          <textarea id="tash_content" name="tash_text" class="new_tash expand" type="text" placeholder="Compose New Tash..."></textarea>
           <span class="chars_left"><small>140</small></span>
           <input type="submit" class="btn btn-primary btn-mini pull-right" value="Tash" />
         </form>
-        <div class="alert alert-success alert-send_tash">Tash Sent!</div>
+        <div id="tash-success" class="alert alert-success">Tash Sent!</div>
+        <div id="tash-error" class="alert alert-error">Error sending Tash.  Please try again.</div>
       </div>
     <div class="well well-small">
       <ul id="suggest-follow" class="nav nav-stacked">
@@ -93,7 +94,7 @@
             <div class="media-body">
               <span class="pull-right date"><%= tashs[i].tdate %></span>
               <h5 class="media-heading"><a href="#"><%= tashs[i].fname %> <%= tashs[i].lname %></a> <small>@<%= tashs[i].uname %></small></h5>
-              <%= tashs[i].content %>
+              <div class="wrap-tash"><%= tashs[i].content %></div>
             </div>
           </div>
         </li>

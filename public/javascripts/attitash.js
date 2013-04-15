@@ -10,34 +10,34 @@ $('#send_tash .new_tash, #send_tash_modal .new_tash').keydown(function(e){
         return false;
     }
 });
-// $('#send_tash,#send_tash_modal').submit(function(e) {
-    // e.preventDefault();
-    // $.ajax({
-        // method: "POST",
-        // url: "/tash/create",
-        // success: function(data, textStatus, jqXHR){
-            // console.log("DATA:" + data);
-        // }
-        // error: function(jqXHR, textStatus, errorThrown){
-            // console.log("error: " + errorThrown);
-        // }
-    // });
-    // e.preventDefault();
-    // var that = $(this);
-    // var queryString = '#' + $(this).attr('id') + ' .new_tash';
-    // if($(queryString).val().length < 1){
-    //     $('.alert-error').fadeIn(200).delay(4000).fadeOut(200);
-    //     return false;
-    // }
-    // $('#tashs').prepend(
-    //     '<li><div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg"></a><div class="media-body"><span class="pull-right date">Mar 6</span><h5 class="media-heading"><a href="#">AttitashDev</a> <small>@AttitashDev</small></h5>' + $(queryString).val() + '</div></div></li>');
-    // $(queryString).val("");
-    // var textLabel = '#' + $(this).attr('id') + ' .chars_left > small';
-    // $(textLabel).text("140");
-    // $('.alert-send_tash').fadeIn(200).delay(4000).fadeOut(1000);
-    // $('#myModal').modal('hide');
-    // return false;
-// });
+
+$('#send_tash').submit(function(e){
+    e.preventDefault();
+    var content = $('#tash_content').val();
+    if(content.length == 0){
+        return false;
+    }
+    $.ajax({
+        method: "POST",
+        url: "/tash/create",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ "content":content }),
+        success: function(data, textStatus, jqXHR){
+            var tash = data[0];
+            var li = '<li><div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg"></a><div class="media-body"><span class="pull-right date">' + tash.tdate + '</span><h5 class="media-heading"><a href="#">' + tash.fname + ' ' + tash.lname + '</a> <small>@' + tash.uname + '</small></h5><div class="wrap-tash">' + tash.content + '</div></div></div></li>';
+            $(li).hide().prependTo('#tashs').fadeIn(600);
+            $('#tash_content').val('');
+            var textLabel = '#' + $(this).attr('id') + ' .chars_left > small';
+            $('#send_tash .chars_left > small').text("140");
+            $('#tash-success').fadeIn(500).delay(4000).fadeOut(1000);
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(errorThrown);
+            $('#tash-error').fadeIn(500).delay(5000).fadeOut(1000);
+        }
+    });
+});
 
 $('.search-query').typeahead({
     source: ['Jerry Seinfeld', 'George Costanza', 'Cosmo Kramer', 'John Coschigano', 'Brain Dragunas', 'Samuel Nascimento', 'Anthony Battaglia'],

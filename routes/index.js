@@ -150,28 +150,32 @@ exports.follow = function(req, res){
 // ## tash
 // Create a new tash.
 exports.tash = function(req, res){
-  
-  //get the user from the session
   var user = req.session.user;
-
-  // get the text for the tash
-  var text;
-  if(req.body.tash_text === undefined){
-    text = req.body.tash_text_modal;
+  if (user === undefined) {
+    req.flash('auth', 'Not logged in!');
+    res.redirect('/login');
   }
   else{
-    text = req.body.tash_text;
-  }
+    var uname = user.uname;
+    var content = req.body.content;
 
-  // store tash in database
-  tashs.addTash(user.uname, text, new Date().toISOString(), function(err){
-    if(err){
-      res.send("err creating tash!");
-    }
-    else{
-      res.redirect('/home');
-    }
-  });
+    tashs.addTash(uname, content, function(err){
+      if(err){
+        res.send("error adding tash!");
+      }
+      else{
+        tashs.getLastTash(uname, function(err, tash){
+          if(err){
+            res.send("error getting last tash!");
+          }
+          else{
+            // send json response data back to client to handle it in ajax success function
+            res.json(tash);
+          }
+        });
+      }
+    });
+  }
 };
 
 exports.home = function(req, res){
@@ -352,6 +356,10 @@ exports.connect = function(req, res) {
       }
     });
   }
+};
+
+exports.test = function(req, res){
+  res.json({ uname: "AnthonyBAjax" });
 };
 
 // ## settings

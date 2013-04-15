@@ -253,3 +253,8 @@ textarea#styled {
     border-right: 1px solid #eeeeee;
     background: #f5f5f5
 }
+
+.wrap-tash{
+  word-wrap: break-word;
+  width: 78%;
+}

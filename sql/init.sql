@@ -14,7 +14,7 @@ create table Users(
 create table Tashs(
 	uname varchar(50) not null,
 	content varchar(140) not null,
-	tdate text not null,
+	tdate timestamp default current_timestamp not null,
 	foreign key(uname) references Users(uname)
 );
 
@@ -32,23 +32,23 @@ insert into Users values
 	("AnthonyB", "anthony", "Anthony", "Battaglia", "atbattag@gmail.com");
 
 insert into Tashs values
-	("BrianD", "brian tash number 1", "2013-04-10 12:00:00.000"),
-	("BrianD", "brian tash number 2", "2013-05-10 12:00:00.000"),
-	("BrianD", "brian tash number 3", "2013-03-10 12:00:00.000"),
-	("BrianD", "brian tash number 4", "2013-04-10 12:00:00.000"),
-	("BrianD", "brian tash number 5", "2013-03-10 12:00:00.000"),
-	("SamN", "samuel tash number 1", "2013-02-10 12:00:00.000"),
-	("SamN", "samuel tash number 2", "2013-08-10 12:00:00.000"),
-	("SamN", "samuel tash number 3", "2013-12-10 12:00:00.000"),
-	("SamN", "samuel tash number 4", "2013-10-10 12:00:00.000"),
-	("JohnC", "john tash number 1", "2013-10-10 12:00:00.000"),
-	("JohnC", "john tash number 2", "2013-05-10 12:00:00.000"),
-	("JohnC", "john tash number 3", "2013-03-10 12:00:00.000"),
-	("AnthonyB", "anthony tash number 1", "2013-05-10 12:00:00.000"),
-	("AnthonyB", "anthony tash number 2", "2013-02-10 12:00:00.000"),
-	("AnthonyB", "anthony tash number 3", "2013-01-10 12:00:00.000"),
-	("AnthonyB", "anthony tash number 4", "2013-01-10 12:00:00.000"),
-	("AnthonyB", "anthony tash number 5", "2013-11-10 12:00:00.000");
+	("BrianD", "brian tash number 1", current_timestamp),
+	("BrianD", "brian tash number 2", current_timestamp),
+	("BrianD", "brian tash number 3", current_timestamp),
+	("BrianD", "brian tash number 4", current_timestamp),
+	("BrianD", "brian tash number 5", current_timestamp),
+	("SamN", "samuel tash number 1", current_timestamp),
+	("SamN", "samuel tash number 2", current_timestamp),
+	("SamN", "samuel tash number 3", current_timestamp),
+	("SamN", "samuel tash number 4", current_timestamp),
+	("JohnC", "john tash number 1", current_timestamp),
+	("JohnC", "john tash number 2", current_timestamp),
+	("JohnC", "john tash number 3", current_timestamp),
+	("AnthonyB", "anthony tash number 1", current_timestamp),
+	("AnthonyB", "anthony tash number 2", current_timestamp),
+	("AnthonyB", "anthony tash number 3", current_timestamp),
+	("AnthonyB", "anthony tash number 4", current_timestamp),
+	("AnthonyB", "anthony tash number 5", current_timestamp);
 
 insert into Following values
 	("AnthonyB", "AnthonyB"),
