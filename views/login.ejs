@@ -22,8 +22,8 @@
       <div class="well well-small">
         <img src="/images/logo.png" name="logo" class="img-rounded inline" id="logo"/></br>
  <div><h3><%= message %></h3></div><br>
-    <form method="post" action="/login">  
-          <input name="username" type="text" placeholder="Username"></br>
+    <form id="loginForm" method="post" action="/login">  
+          <input id="auname" name="username" type="text" placeholder="Username"></br>
             <input name="password" type="password" placeholder="Password"> </br></br>
           <button class="btn btn-primary"> Login </button> 
           <a href="/register"><input type="button" class="btn btn-primary" name="name" value="Register"></a> 
@@ -31,6 +31,10 @@
     </div>
 </div>  
 </div>
+
+<script src="/bootstrap/docs/assets/js/jquery.js"></script>
+<script src="/javascripts/jquery.cookie.js"></script>
+<script src="/javascripts/attitash.js"></script>
 
   </body>
 </html>

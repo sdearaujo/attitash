@@ -39,6 +39,15 @@ $('#send_tash').submit(function(e){
     });
 });
 
-$('.search-query').typeahead({
-    source: ['Jerry Seinfeld', 'George Costanza', 'Cosmo Kramer', 'John Coschigano', 'Brain Dragunas', 'Samuel Nascimento', 'Anthony Battaglia'],
+$('#loginForm').submit(function(){
+    var username = $('#auname').val();
+    $.cookie("auname", username);
+    console.log($.cookie("auname"));
+});
+
+$('#logout').click(function(){
+    var cookie = $.cookie("auname");
+    if(cookie){
+        $.removeCookie("auname");
+    }
 });
