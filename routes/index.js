@@ -354,6 +354,7 @@ exports.connect = function(req, res) {
   }
 };
 
+
 // ## settings
 // Route for settings page
 exports.settings = function(req, res){
