@@ -1,18 +1,68 @@
-var tashDB = require('../lib/tashs.js');
+var clients = {};
+var sockets;
+var socketsOfClients = {};
+
+exports.init = function (socket, io) {
+		sockets = io.sockets;
+    	socket.on('set username', function(userName) {
+		// Is this an existing user name?
+		if (clients[userName] === undefined) {
+		  // Does not exist ... so, proceed
+		  clients[userName] = socket.id;
+		  socketsOfClients[socket.id] = userName;
+		  userNameAvailable(socket.id, userName);
+		userJoined(userName, io);
+		} else
+		if (clients[userName] === socket.id) {
+		  // Ignore for now
+		} else {
+		  userNameAlreadyInUse(socket.id, userName);
+		}
+	  });
+
+	  socket.on('message', function(msg) {
+		var srcUser;
+		if (msg.inferSrcUser) {
+		  // Infer user name based on the socket id
+		  srcUser = socketsOfClients[socket.id];
+		} else {
+		  srcUser = msg.source;
+		}
+		  sockets.sockets[clients[msg.target]].emit('message', 
+			  {"source": srcUser,
+			   "message": msg.message,
+			   "target": msg.target});
+	  })
+
+	  socket.on('disconnect', function() {
+		var uName = socketsOfClients[socket.id];
+		delete socketsOfClients[socket.id];
+		delete clients[uName];
+	  // relay this message to all the clients
+		userLeft(uName);
+	  })
+	};
 
 
-exports.init = function (socket) {
-    	socket.on('new tash', function (data) {
-		client = JSON.stringify(data);
-		// add the websocket tash to the data base
-		tashDB.addTash(client.username, client.text, new Date().toISOString(), function(err){
-			if(err){
-				io.sockets.emit('new tash error', "error creating tash!");
-				
-				//if there are no errors emit the tash
-			}else{
-				io.sockets.emit('new tash success', data);
-			}
-    		});
-	});
+function userJoined(uName) {
+  Object.keys(socketsOfClients).forEach(function(sId) {
+    sockets.sockets[sId].emit('userJoined', { "userName": uName, "currentUsers": JSON.stringify(Object.keys(clients)) });
+  })
+}
+
+function userLeft(uName) {
+    sockets.emit('userLeft', { "currentUsers": JSON.stringify(Object.keys(clients)) });
+}
+
+function userNameAvailable(sId, uName) {
+  setTimeout(function() {
+    console.log('Sending welcome msg to ' + uName + ' at ' + sId);
+    sockets.sockets[sId].emit('welcome', { "userName" : uName, "currentUsers": JSON.stringify(Object.keys(clients)) });
+  }, 500);
+}
+
+function userNameAlreadyInUse(sId, uName) {
+  setTimeout(function() {
+    sockets.sockets[sId].emit('error', { "userNameInUse" : true });
+  }, 500);
 }
