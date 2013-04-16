@@ -55,6 +55,7 @@ var server = http.createServer(app).listen(3000, function(){
 */
 var io = socketio.listen(server);
 
+//connect to web sockets
 io.sockets.on('connection', function(socket) {
 	socketConnection.init(socket, io);
 });
