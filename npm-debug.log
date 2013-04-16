@@ -1,0 +1,344 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'sqlite3' ]
+2 info using npm@1.2.11
+3 info using node@v0.8.21
+4 verbose read json c:\Users\John James\attitash\package.json
+5 verbose read json c:\Users\John James\attitash\node_modules\connect\package.json
+6 verbose read json c:\Users\John James\attitash\node_modules\connect-flash\package.json
+7 verbose read json c:\Users\John James\attitash\node_modules\ejs\package.json
+8 verbose read json c:\Users\John James\attitash\node_modules\express\package.json
+9 verbose read json c:\Users\John James\attitash\node_modules\npm\package.json
+10 verbose read json c:\Users\John James\attitash\node_modules\socket.io\package.json
+11 verbose read json c:\Users\John James\attitash\node_modules\sqlite-shell-win32-x86-3071602.zip\package.json
+12 verbose from cache c:\Users\John James\attitash\package.json
+13 verbose readDependencies using package.json deps
+14 verbose cache add [ 'sqlite3@*', null ]
+15 verbose cache add name=undefined spec="sqlite3@*" args=["sqlite3@*",null]
+16 verbose parsed url { pathname: 'sqlite3@*', path: 'sqlite3@*', href: 'sqlite3@*' }
+17 verbose cache add name="sqlite3" spec="*" args=["sqlite3","*"]
+18 verbose parsed url { pathname: '*', path: '*', href: '*' }
+19 verbose addNamed [ 'sqlite3', '*' ]
+20 verbose addNamed [ null, '' ]
+21 silly lockFile 32be92e7-sqlite3 sqlite3@*
+22 verbose lock sqlite3@* C:\Users\John James\AppData\Roaming\npm-cache\32be92e7-sqlite3.lock
+23 silly addNameRange { name: 'sqlite3', range: '', hasData: false }
+24 verbose url raw sqlite3
+25 verbose url resolving [ 'https://registry.npmjs.org/', './sqlite3' ]
+26 verbose url resolved https://registry.npmjs.org/sqlite3
+27 info trying registry request attempt 1 at 15:16:35
+28 verbose etag "7NAAFP4NS0C9OK5JDAYJKQ6T2"
+29 http GET https://registry.npmjs.org/sqlite3
+30 http 304 https://registry.npmjs.org/sqlite3
+31 silly registry.get cb [ 304,
+31 silly registry.get   { server: 'CouchDB/1.3.0 (Erlang OTP/R15B03)',
+31 silly registry.get     etag: '"7NAAFP4NS0C9OK5JDAYJKQ6T2"',
+31 silly registry.get     date: 'Tue, 16 Apr 2013 19:16:38 GMT',
+31 silly registry.get     'content-length': '0' } ]
+32 verbose etag sqlite3 from cache
+33 silly addNameRange number 2 { name: 'sqlite3', range: '', hasData: true }
+34 silly addNameRange versions [ 'sqlite3',
+34 silly addNameRange   [ '2.0.0',
+34 silly addNameRange     '2.0.1',
+34 silly addNameRange     '2.0.2',
+34 silly addNameRange     '2.0.3',
+34 silly addNameRange     '2.0.4',
+34 silly addNameRange     '2.0.5',
+34 silly addNameRange     '2.0.6',
+34 silly addNameRange     '2.0.7',
+34 silly addNameRange     '2.0.8',
+34 silly addNameRange     '2.0.9',
+34 silly addNameRange     '2.0.10',
+34 silly addNameRange     '2.0.11',
+34 silly addNameRange     '2.0.12',
+34 silly addNameRange     '2.0.13',
+34 silly addNameRange     '2.0.14',
+34 silly addNameRange     '2.0.15',
+34 silly addNameRange     '2.0.16',
+34 silly addNameRange     '2.0.17',
+34 silly addNameRange     '2.0.18',
+34 silly addNameRange     '2.1.0',
+34 silly addNameRange     '2.1.1',
+34 silly addNameRange     '2.1.2',
+34 silly addNameRange     '2.1.3',
+34 silly addNameRange     '2.1.4',
+34 silly addNameRange     '2.1.5',
+34 silly addNameRange     '2.1.7' ] ]
+35 verbose addNamed [ 'sqlite3', '2.1.7' ]
+36 verbose addNamed [ '2.1.7', '2.1.7' ]
+37 silly lockFile cb8bb12f-sqlite3-2-1-7 sqlite3@2.1.7
+38 verbose lock sqlite3@2.1.7 C:\Users\John James\AppData\Roaming\npm-cache\cb8bb12f-sqlite3-2-1-7.lock
+39 verbose read json C:\Users\John James\AppData\Roaming\npm-cache\sqlite3\2.1.7\package\package.json
+40 silly lockFile cb8bb12f-sqlite3-2-1-7 sqlite3@2.1.7
+41 silly lockFile cb8bb12f-sqlite3-2-1-7 sqlite3@2.1.7
+42 silly lockFile 32be92e7-sqlite3 sqlite3@*
+43 silly lockFile 32be92e7-sqlite3 sqlite3@*
+44 silly resolved [ { name: 'sqlite3',
+44 silly resolved     description: 'Asynchronous, non-blocking SQLite3 bindings',
+44 silly resolved     version: '2.1.7',
+44 silly resolved     homepage: 'http://github.com/developmentseed/node-sqlite3',
+44 silly resolved     author:
+44 silly resolved      { name: 'Development Seed',
+44 silly resolved        email: 'info@developmentseed.org',
+44 silly resolved        url: 'http://developmentseed.org/' },
+44 silly resolved     contributors:
+44 silly resolved      [ [Object],
+44 silly resolved        [Object],
+44 silly resolved        [Object],
+44 silly resolved        [Object],
+44 silly resolved        [Object],
+44 silly resolved        [Object],
+44 silly resolved        [Object],
+44 silly resolved        [Object],
+44 silly resolved        [Object],
+44 silly resolved        [Object],
+44 silly resolved        [Object],
+44 silly resolved        [Object],
+44 silly resolved        [Object],
+44 silly resolved        [Object] ],
+44 silly resolved     repository:
+44 silly resolved      { type: 'git',
+44 silly resolved        url: 'git://github.com/developmentseed/node-sqlite3.git' },
+44 silly resolved     devDependencies: { step: '0.0.4', mocha: '~1.7' },
+44 silly resolved     engines: { node: '>= 0.6.13 && < 0.11.0' },
+44 silly resolved     scripts: { test: 'mocha -R spec', install: 'node-gyp rebuild' },
+44 silly resolved     licenses: [ [Object] ],
+44 silly resolved     main: './lib/sqlite3',
+44 silly resolved     gypfile: true,
+44 silly resolved     readme: '# NAME\n\nnode-sqlite3 - Asynchronous, non-blocking [SQLite3](http://sqlite.org/) bindings for [node.js](https://github.com/joyent/node) 0.2-0.4 (versions 2.0.x), **0.6.13+ and 0.8.x** (versions 2.1.x).\n\n\n\n# USAGE\n\nInstall with `npm install sqlite3`.\n\n``` js\nvar sqlite3 = require(\'sqlite3\').verbose();\nvar db = new sqlite3.Database(\':memory:\');\n\ndb.serialize(function() {\n  db.run("CREATE TABLE lorem (info TEXT)");\n\n  var stmt = db.prepare("INSERT INTO lorem VALUES (?)");\n  for (var i = 0; i < 10; i++) {\n      stmt.run("Ipsum " + i);\n  }\n  stmt.finalize();\n\n  db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {\n      console.log(row.id + ": " + row.info);\n  });\n});\n\ndb.close();\n```\n\n\n\n# FEATURES\n\n* Straightforward query and parameter binding interface\n* Full Buffer/Blob support\n* Extensive [debugging support](https://github.com/developmentseed/node-sqlite3/wiki/Debugging)\n* [Query serialization](https://github.com/developmentseed/node-sqlite3/wiki/Control-Flow) API\n* [Extension support](https://github.com/developmentseed/node-sqlite3/wiki/Extensions)\n* Big test suite\n* Written in modern C++ and tested for memory leaks\n\n\n\n# API\n\nSee the [API documentation](https://github.com/developmentseed/node-sqlite3/wiki) in the wiki.\n\n\n# BUILDING\n\nMake sure you have the sources for `sqlite3` installed. Mac OS X ships with these by default. If you don\'t have them installed, install the `-dev` package with your package manager, e.g. `apt-get install libsqlite3-dev` for Debian/Ubuntu. Make sure that you have at least `libsqlite3` >= 3.6.\n\nBulding also requires node-gyp to be installed. You can do this with npm:\n\n    npm install -g node-gyp\n\nTo obtain and build the bindings:\n\n    git clone git://github.com/developmentseed/node-sqlite3.git\n    cd node-sqlite3\n    ./configure\n    make\n\nYou can also use [`npm`](https://github.com/isaacs/npm) to download and install them:\n\n    npm install sqlite3\n\n\n\n# TESTS\n\n[expresso](https://github.com/visionmedia/expresso) is required to run unit tests.\n\n    npm install expresso\n    make test\n\n\n\n# CONTRIBUTORS\n\n* [Konstantin Käfer](https://github.com/kkaefer)\n* [Dane Springmeyer](https://github.com/springmeyer)\n* [Will White](https://github.com/willwhite)\n* [Orlando Vazquez](https://github.com/orlandov)\n* [Artem Kustikov](https://github.com/artiz)\n* [Eric Fredricksen](https://github.com/grumdrig)\n* [John Wright](https://github.com/mrjjwright)\n* [Ryan Dahl](https://github.com/ry)\n* [Tom MacWright](https://github.com/tmcw)\n* [Carter Thaxton](https://github.com/carter-thaxton)\n* [Audrius Kažukauskas](https://github.com/audriusk)\n* [Johannes Schauer](https://github.com/pyneo)\n\n\n\n# ACKNOWLEDGEMENTS\n\nThanks to [Orlando Vazquez](https://github.com/orlandov),\n[Eric Fredricksen](https://github.com/grumdrig) and\n[Ryan Dahl](https://github.com/ry) for their SQLite bindings for node, and to mraleph on Freenode\'s #v8 for answering questions.\n\nDevelopment of this module is sponsored by [Development Seed](http://developmentseed.org/).\n\n\n# LICENSE\n\n`node-sqlite3` is [BSD licensed](https://github.com/developmentseed/node-sqlite3/raw/master/LICENSE).\n',
+44 silly resolved     readmeFilename: 'README.md',
+44 silly resolved     _id: 'sqlite3@2.1.7',
+44 silly resolved     _from: 'sqlite3@*' } ]
+45 info install sqlite3@2.1.7 into c:\Users\John James\attitash
+46 info installOne sqlite3@2.1.7
+47 verbose from cache C:\Users\John James\AppData\Roaming\npm-cache\sqlite3\2.1.7\package\package.json
+48 info c:\Users\John James\attitash\node_modules\sqlite3 unbuild
+49 verbose read json c:\Users\John James\attitash\node_modules\sqlite3\package.json
+50 verbose tar unpack C:\Users\John James\AppData\Roaming\npm-cache\sqlite3\2.1.7\package.tgz
+51 silly lockFile 8603fe8a-es-attitash-node-modules-sqlite3 c:\Users\John James\attitash\node_modules\sqlite3
+52 verbose lock c:\Users\John James\attitash\node_modules\sqlite3 C:\Users\John James\AppData\Roaming\npm-cache\8603fe8a-es-attitash-node-modules-sqlite3.lock
+53 silly lockFile 57459ba2--cache-sqlite3-2-1-7-package-tgz C:\Users\John James\AppData\Roaming\npm-cache\sqlite3\2.1.7\package.tgz
+54 verbose lock C:\Users\John James\AppData\Roaming\npm-cache\sqlite3\2.1.7\package.tgz C:\Users\John James\AppData\Roaming\npm-cache\57459ba2--cache-sqlite3-2-1-7-package-tgz.lock
+55 silly gunzTarPerm modes [ '755', '644' ]
+56 silly gunzTarPerm extractEntry package.json
+57 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+58 silly gunzTarPerm extractEntry .npmignore
+59 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+60 silly gunzTarPerm extractEntry README.md
+61 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+62 silly gunzTarPerm extractEntry LICENSE
+63 silly gunzTarPerm modified mode [ 'LICENSE', 438, 420 ]
+64 silly gunzTarPerm extractEntry sqlite3.js
+65 silly gunzTarPerm modified mode [ 'sqlite3.js', 438, 420 ]
+66 silly gunzTarPerm extractEntry deps/sqlite3/README
+67 silly gunzTarPerm modified mode [ 'deps/sqlite3/README', 438, 420 ]
+68 silly gunzTarPerm extractEntry deps/sqlite3/Makefile.in
+69 silly gunzTarPerm modified mode [ 'deps/sqlite3/Makefile.in', 438, 420 ]
+70 silly gunzTarPerm extractEntry deps/sqlite3/config.guess
+71 silly gunzTarPerm modified mode [ 'deps/sqlite3/config.guess', 438, 420 ]
+72 silly gunzTarPerm extractEntry deps/sqlite3/config.sub
+73 silly gunzTarPerm modified mode [ 'deps/sqlite3/config.sub', 438, 420 ]
+74 silly gunzTarPerm extractEntry deps/sqlite3/configure
+75 silly gunzTarPerm modified mode [ 'deps/sqlite3/configure', 438, 420 ]
+76 silly gunzTarPerm extractEntry deps/sqlite3/configure.ac
+77 silly gunzTarPerm modified mode [ 'deps/sqlite3/configure.ac', 438, 420 ]
+78 silly gunzTarPerm extractEntry deps/sqlite3/depcomp
+79 silly gunzTarPerm modified mode [ 'deps/sqlite3/depcomp', 438, 420 ]
+80 silly gunzTarPerm extractEntry deps/sqlite3/INSTALL
+81 silly gunzTarPerm modified mode [ 'deps/sqlite3/INSTALL', 438, 420 ]
+82 silly gunzTarPerm extractEntry deps/sqlite3/install-sh
+83 silly gunzTarPerm modified mode [ 'deps/sqlite3/install-sh', 438, 420 ]
+84 silly gunzTarPerm extractEntry deps/sqlite3/ltmain.sh
+85 silly gunzTarPerm modified mode [ 'deps/sqlite3/ltmain.sh', 438, 420 ]
+86 silly gunzTarPerm extractEntry deps/sqlite3/Makefile.am
+87 silly gunzTarPerm modified mode [ 'deps/sqlite3/Makefile.am', 438, 420 ]
+88 silly gunzTarPerm extractEntry deps/sqlite3/binding.gyp
+89 silly gunzTarPerm modified mode [ 'deps/sqlite3/binding.gyp', 438, 420 ]
+90 silly gunzTarPerm extractEntry deps/sqlite3/missing
+91 silly gunzTarPerm modified mode [ 'deps/sqlite3/missing', 438, 420 ]
+92 silly gunzTarPerm extractEntry deps/sqlite3/aclocal.m4
+93 silly gunzTarPerm modified mode [ 'deps/sqlite3/aclocal.m4', 438, 420 ]
+94 silly gunzTarPerm extractEntry deps/sqlite3/shell.c
+95 silly gunzTarPerm modified mode [ 'deps/sqlite3/shell.c', 438, 420 ]
+96 silly gunzTarPerm extractEntry deps/sqlite3/sqlite3.1
+97 silly gunzTarPerm modified mode [ 'deps/sqlite3/sqlite3.1', 438, 420 ]
+98 silly gunzTarPerm extractEntry deps/sqlite3/sqlite3.c
+99 silly gunzTarPerm modified mode [ 'deps/sqlite3/sqlite3.c', 438, 420 ]
+100 silly gunzTarPerm extractEntry deps/sqlite3/sqlite3.h
+101 silly gunzTarPerm modified mode [ 'deps/sqlite3/sqlite3.h', 438, 420 ]
+102 silly gunzTarPerm extractEntry deps/sqlite3/sqlite3.pc
+103 silly gunzTarPerm modified mode [ 'deps/sqlite3/sqlite3.pc', 438, 420 ]
+104 silly gunzTarPerm extractEntry deps/sqlite3/sqlite3.pc.in
+105 silly gunzTarPerm modified mode [ 'deps/sqlite3/sqlite3.pc.in', 438, 420 ]
+106 silly gunzTarPerm extractEntry deps/sqlite3/sqlite3ext.h
+107 silly gunzTarPerm modified mode [ 'deps/sqlite3/sqlite3ext.h', 438, 420 ]
+108 silly gunzTarPerm extractEntry deps/sqlite3/tea/README
+109 silly gunzTarPerm modified mode [ 'deps/sqlite3/tea/README', 438, 420 ]
+110 silly gunzTarPerm extractEntry deps/sqlite3/tea/license.terms
+111 silly gunzTarPerm modified mode [ 'deps/sqlite3/tea/license.terms', 438, 420 ]
+112 silly gunzTarPerm extractEntry deps/sqlite3/tea/configure.in
+113 silly gunzTarPerm modified mode [ 'deps/sqlite3/tea/configure.in', 438, 420 ]
+114 silly gunzTarPerm extractEntry deps/sqlite3/tea/doc/sqlite3.n
+115 silly gunzTarPerm modified mode [ 'deps/sqlite3/tea/doc/sqlite3.n', 438, 420 ]
+116 silly gunzTarPerm extractEntry deps/sqlite3/tea/generic/tclsqlite3.c
+117 silly gunzTarPerm modified mode [ 'deps/sqlite3/tea/generic/tclsqlite3.c', 438, 420 ]
+118 silly gunzTarPerm extractEntry deps/sqlite3/tea/configure
+119 silly gunzTarPerm modified mode [ 'deps/sqlite3/tea/configure', 438, 420 ]
+120 silly gunzTarPerm extractEntry deps/sqlite3/tea/Makefile.in
+121 silly gunzTarPerm modified mode [ 'deps/sqlite3/tea/Makefile.in', 438, 420 ]
+122 silly gunzTarPerm extractEntry deps/sqlite3/tea/pkgIndex.tcl.in
+123 silly gunzTarPerm modified mode [ 'deps/sqlite3/tea/pkgIndex.tcl.in', 438, 420 ]
+124 silly gunzTarPerm extractEntry deps/sqlite3/tea/aclocal.m4
+125 silly gunzTarPerm modified mode [ 'deps/sqlite3/tea/aclocal.m4', 438, 420 ]
+126 silly gunzTarPerm extractEntry deps/sqlite3/tea/tclconfig/install-sh
+127 silly gunzTarPerm modified mode [ 'deps/sqlite3/tea/tclconfig/install-sh', 438, 420 ]
+128 silly gunzTarPerm extractEntry deps/sqlite3/tea/tclconfig/tcl.m4
+129 silly gunzTarPerm modified mode [ 'deps/sqlite3/tea/tclconfig/tcl.m4', 438, 420 ]
+130 silly gunzTarPerm extractEntry deps/sqlite3/tea/win/makefile.vc
+131 silly gunzTarPerm modified mode [ 'deps/sqlite3/tea/win/makefile.vc', 438, 420 ]
+132 silly gunzTarPerm extractEntry deps/sqlite3/tea/win/nmakehlp.c
+133 silly gunzTarPerm modified mode [ 'deps/sqlite3/tea/win/nmakehlp.c', 438, 420 ]
+134 silly gunzTarPerm extractEntry deps/sqlite3/tea/win/rules.vc
+135 silly gunzTarPerm modified mode [ 'deps/sqlite3/tea/win/rules.vc', 438, 420 ]
+136 silly gunzTarPerm extractEntry examples/simple-chaining.js
+137 silly gunzTarPerm modified mode [ 'examples/simple-chaining.js', 438, 420 ]
+138 silly gunzTarPerm extractEntry lib/index.js
+139 silly gunzTarPerm modified mode [ 'lib/index.js', 438, 420 ]
+140 silly gunzTarPerm extractEntry lib/sqlite3.js
+141 silly gunzTarPerm modified mode [ 'lib/sqlite3.js', 438, 420 ]
+142 silly gunzTarPerm extractEntry lib/trace.js
+143 silly gunzTarPerm modified mode [ 'lib/trace.js', 438, 420 ]
+144 silly gunzTarPerm extractEntry benchmark/insert.js
+145 silly gunzTarPerm modified mode [ 'benchmark/insert.js', 438, 420 ]
+146 silly gunzTarPerm extractEntry benchmark/insert-transaction.sql
+147 silly gunzTarPerm modified mode [ 'benchmark/insert-transaction.sql', 438, 420 ]
+148 silly gunzTarPerm extractEntry Makefile
+149 silly gunzTarPerm modified mode [ 'Makefile', 438, 420 ]
+150 silly gunzTarPerm extractEntry configure
+151 silly gunzTarPerm modified mode [ 'configure', 438, 420 ]
+152 silly gunzTarPerm extractEntry binding.gyp
+153 silly gunzTarPerm modified mode [ 'binding.gyp', 438, 420 ]
+154 silly gunzTarPerm extractEntry src/async.h
+155 silly gunzTarPerm modified mode [ 'src/async.h', 438, 420 ]
+156 silly gunzTarPerm extractEntry src/database.cc
+157 silly gunzTarPerm modified mode [ 'src/database.cc', 438, 420 ]
+158 silly gunzTarPerm extractEntry src/database.h
+159 silly gunzTarPerm modified mode [ 'src/database.h', 438, 420 ]
+160 silly gunzTarPerm extractEntry src/macros.h
+161 silly gunzTarPerm modified mode [ 'src/macros.h', 438, 420 ]
+162 silly gunzTarPerm extractEntry src/node_sqlite3.cc
+163 silly gunzTarPerm modified mode [ 'src/node_sqlite3.cc', 438, 420 ]
+164 silly gunzTarPerm extractEntry src/statement.cc
+165 silly gunzTarPerm modified mode [ 'src/statement.cc', 438, 420 ]
+166 silly gunzTarPerm extractEntry src/statement.h
+167 silly gunzTarPerm modified mode [ 'src/statement.h', 438, 420 ]
+168 silly gunzTarPerm extractEntry src/threading.h
+169 silly gunzTarPerm modified mode [ 'src/threading.h', 438, 420 ]
+170 silly gunzTarPerm extractEntry test/affected.test.js
+171 silly gunzTarPerm modified mode [ 'test/affected.test.js', 438, 420 ]
+172 silly gunzTarPerm extractEntry test/fts-content.test.js
+173 silly gunzTarPerm modified mode [ 'test/fts-content.test.js', 438, 420 ]
+174 silly gunzTarPerm extractEntry test/map.test.js
+175 silly gunzTarPerm modified mode [ 'test/map.test.js', 438, 420 ]
+176 silly gunzTarPerm extractEntry test/named_columns.test.js
+177 silly gunzTarPerm modified mode [ 'test/named_columns.test.js', 438, 420 ]
+178 silly gunzTarPerm extractEntry test/extension.test.js
+179 silly gunzTarPerm modified mode [ 'test/extension.test.js', 438, 420 ]
+180 silly gunzTarPerm extractEntry test/blob.test.js
+181 silly gunzTarPerm modified mode [ 'test/blob.test.js', 438, 420 ]
+182 silly gunzTarPerm extractEntry test/open_close.test.js
+183 silly gunzTarPerm modified mode [ 'test/open_close.test.js', 438, 420 ]
+184 silly gunzTarPerm extractEntry test/other_objects.test.js
+185 silly gunzTarPerm modified mode [ 'test/other_objects.test.js', 438, 420 ]
+186 silly gunzTarPerm extractEntry test/parallel_insert.test.js
+187 silly gunzTarPerm modified mode [ 'test/parallel_insert.test.js', 438, 420 ]
+188 silly gunzTarPerm extractEntry test/prepare.test.js
+189 silly gunzTarPerm modified mode [ 'test/prepare.test.js', 438, 420 ]
+190 silly gunzTarPerm extractEntry test/exec.test.js
+191 silly gunzTarPerm modified mode [ 'test/exec.test.js', 438, 420 ]
+192 silly gunzTarPerm extractEntry test/profile.test.js
+193 silly gunzTarPerm modified mode [ 'test/profile.test.js', 438, 420 ]
+194 silly gunzTarPerm extractEntry test/each.test.js
+195 silly gunzTarPerm modified mode [ 'test/each.test.js', 438, 420 ]
+196 silly gunzTarPerm extractEntry test/rerun.test.js
+197 silly gunzTarPerm modified mode [ 'test/rerun.test.js', 438, 420 ]
+198 silly gunzTarPerm extractEntry test/database_fail.test.js
+199 silly gunzTarPerm modified mode [ 'test/database_fail.test.js', 438, 420 ]
+200 silly gunzTarPerm extractEntry test/scheduling.test.js
+201 silly gunzTarPerm modified mode [ 'test/scheduling.test.js', 438, 420 ]
+202 silly gunzTarPerm extractEntry test/constants.test.js
+203 silly gunzTarPerm modified mode [ 'test/constants.test.js', 438, 420 ]
+204 silly gunzTarPerm extractEntry test/serialization.test.js
+205 silly gunzTarPerm modified mode [ 'test/serialization.test.js', 438, 420 ]
+206 silly gunzTarPerm extractEntry test/cache.test.js
+207 silly gunzTarPerm modified mode [ 'test/cache.test.js', 438, 420 ]
+208 silly gunzTarPerm extractEntry test/trace.test.js
+209 silly gunzTarPerm modified mode [ 'test/trace.test.js', 438, 420 ]
+210 silly gunzTarPerm extractEntry test/named_params.test.js
+211 silly gunzTarPerm modified mode [ 'test/named_params.test.js', 438, 420 ]
+212 silly gunzTarPerm extractEntry test/unicode.test.js
+213 silly gunzTarPerm modified mode [ 'test/unicode.test.js', 438, 420 ]
+214 silly gunzTarPerm extractEntry test/null_error.test.js
+215 silly gunzTarPerm modified mode [ 'test/null_error.test.js', 438, 420 ]
+216 silly gunzTarPerm extractEntry test/support/createdb.js
+217 silly gunzTarPerm modified mode [ 'test/support/createdb.js', 438, 420 ]
+218 silly gunzTarPerm extractEntry test/support/helper.js
+219 silly gunzTarPerm modified mode [ 'test/support/helper.js', 438, 420 ]
+220 silly gunzTarPerm extractEntry test/support/elmo.png
+221 silly gunzTarPerm modified mode [ 'test/support/elmo.png', 438, 420 ]
+222 silly gunzTarPerm extractEntry test/support/prepare.db
+223 silly gunzTarPerm modified mode [ 'test/support/prepare.db', 438, 420 ]
+224 silly gunzTarPerm extractEntry test/support/script.sql
+225 silly gunzTarPerm modified mode [ 'test/support/script.sql', 438, 420 ]
+226 verbose read json c:\Users\John James\attitash\node_modules\sqlite3\package.json
+227 silly lockFile 8603fe8a-es-attitash-node-modules-sqlite3 c:\Users\John James\attitash\node_modules\sqlite3
+228 silly lockFile 8603fe8a-es-attitash-node-modules-sqlite3 c:\Users\John James\attitash\node_modules\sqlite3
+229 silly lockFile 57459ba2--cache-sqlite3-2-1-7-package-tgz C:\Users\John James\AppData\Roaming\npm-cache\sqlite3\2.1.7\package.tgz
+230 silly lockFile 57459ba2--cache-sqlite3-2-1-7-package-tgz C:\Users\John James\AppData\Roaming\npm-cache\sqlite3\2.1.7\package.tgz
+231 info preinstall sqlite3@2.1.7
+232 verbose from cache c:\Users\John James\attitash\node_modules\sqlite3\package.json
+233 verbose readDependencies using package.json deps
+234 verbose from cache c:\Users\John James\attitash\node_modules\sqlite3\package.json
+235 verbose readDependencies using package.json deps
+236 silly resolved []
+237 verbose about to build c:\Users\John James\attitash\node_modules\sqlite3
+238 info build c:\Users\John James\attitash\node_modules\sqlite3
+239 verbose from cache c:\Users\John James\attitash\node_modules\sqlite3\package.json
+240 verbose linkStuff [ false,
+240 verbose linkStuff   false,
+240 verbose linkStuff   false,
+240 verbose linkStuff   'c:\\Users\\John James\\attitash\\node_modules' ]
+241 info linkStuff sqlite3@2.1.7
+242 verbose linkBins sqlite3@2.1.7
+243 verbose linkMans sqlite3@2.1.7
+244 verbose rebuildBundles sqlite3@2.1.7
+245 info install sqlite3@2.1.7
+246 verbose unsafe-perm in lifecycle true
+247 silly exec cmd "/c" "node-gyp rebuild"
+248 silly cmd,/c,node-gyp rebuild,c:\Users\John James\attitash\node_modules\sqlite3 spawning
+249 info sqlite3@2.1.7 Failed to exec install script
+250 info c:\Users\John James\attitash\node_modules\sqlite3 unbuild
+251 verbose from cache c:\Users\John James\attitash\node_modules\sqlite3\package.json
+252 info preuninstall sqlite3@2.1.7
+253 info uninstall sqlite3@2.1.7
+254 verbose true,c:\Users\John James\attitash\node_modules,c:\Users\John James\attitash\node_modules unbuild sqlite3@2.1.7
+255 info postuninstall sqlite3@2.1.7
+256 error sqlite3@2.1.7 install: `node-gyp rebuild`
+256 error `cmd "/c" "node-gyp rebuild"` failed with 1
+257 error Failed at the sqlite3@2.1.7 install script.
+257 error This is most likely a problem with the sqlite3 package,
+257 error not with npm itself.
+257 error Tell the author that this fails on your system:
+257 error     node-gyp rebuild
+257 error You can get their info via:
+257 error     npm owner ls sqlite3
+257 error There is likely additional logging output above.
+258 error System Windows_NT 6.1.7600
+259 error command "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "sqlite3"
+260 error cwd c:\Users\John James\attitash
+261 error node -v v0.8.21
+262 error npm -v 1.2.11
+263 error code ELIFECYCLE
+264 verbose exit [ 1, true ]
