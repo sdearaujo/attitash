@@ -59,7 +59,7 @@ var io = socketio.listen(server);
 var clients = {};
 
 var socketsOfClients = {};
-
+//connect to web sockets
 io.sockets.on('connection', function(socket) {
   socket.on('set username', function(userName) {
     // Is this an existing user name?
