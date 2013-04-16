@@ -32,11 +32,12 @@
         </table>
       
         <form method="post" action="/tash/create" id="send_tash">
-          <textarea name="tash_text" class="new_tash expand" type="text" placeholder="Compose New Tash..."></textarea>
+          <textarea id="tash_content" name="tash_text" class="new_tash expand" type="text" placeholder="Compose New Tash..."></textarea>
           <span class="chars_left"><small>140</small></span>
           <input type="submit" class="btn btn-primary btn-mini pull-right" value="Tash" />
         </form>
-        <div class="alert alert-success alert-send_tash">Tash Sent!</div>
+        <div id="tash_success" class="alert alert-success">Tash Sent!</div>
+        <div id="tash_error" class="alert alert-error">Error sending tash</div>
       </div>
     <div class="well well-small">
       <ul id="suggest-follow" class="nav nav-stacked">

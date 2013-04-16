@@ -30,11 +30,11 @@ $('#send_tash').submit(function(e){
             $('#tash_content').val('');
             var textLabel = '#' + $(this).attr('id') + ' .chars_left > small';
             $('#send_tash .chars_left > small').text("140");
-            $('#tash-success').fadeIn(500).delay(4000).fadeOut(1000);
+            $('#tash_success').fadeIn(500).delay(4000).fadeOut(1000);
         },
         error: function(jqXHR, textStatus, errorThrown){
             console.log(errorThrown);
-            $('#tash-error').fadeIn(500).delay(5000).fadeOut(1000);
+            $('#tash_error').fadeIn(500).delay(5000).fadeOut(1000);
         }
     });
 });
