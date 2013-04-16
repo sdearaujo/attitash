@@ -1,5 +1,7 @@
 var socket;
 var myUserName;
+var users = $("#users");
+var selected = $("#selected");
 
 socket = io.connect();
 
@@ -7,43 +9,29 @@ function enableMsgInput(enable) {
   $('input#msg').prop('disabled', !enable);
 }
 
-function enableUsernameField(enable) {
-  $('input#userName').prop('disabled', !enable);
-}
-
 function appendNewMessage(msg) {
   var html;
-  if (msg.target == "All") {
-    html = "<span class='allMsg'>" + msg.source + " : " + msg.message + "</span><br/>"
-  } else {
-    // It is a private message to me
-    html = "<span class='privMsg'>" + msg.source + " (P) : " + msg.message + "</span><br/>"
-  }
+    html = "<span class='privMsg'>" + msg.source + " : " + msg.message + "</span><br/>"
   $('#msgWindow').append(html);
 }
 
 function appendNewUser(uName, notify) {
-  $('select#users').append($('<option></option>').val(uName).html(uName));
-  if (notify && (myUserName !== uName) && (myUserName !== 'All'))
-    $('span#msgWindow').append("<span class='adminMsg'>==>" + uName + " just joined <==<br/>")
+  users.append('<li><a class="userNick" href="#chatModal" data-toggle="modal">'+ uName +'</a></li>');
+  $('.userNick').on("click", function() {
+                selected.html($(this).text());
+        });
 }
 
-function handleUserLeft(msg) {
-    $("select#users option[value='" + msg.userName + "']").remove();
-}
-
-function setFeedback(fb) {
-  $('span#feedback').html(fb);
-}
-
-function setUsername(username) {
-    myUserName = username;
-    socket.emit('set username', username, function(data) { console.log('emit set username', data); });
-    console.log('Set user name as ' + username);
+function setUsername() {
+  myUserName = $.cookie("auname");
+    socket.emit('set username', $.cookie("auname"), function(data) { console.log('emit set username', data); });
+    console.log('Set user name as ' + $.cookie("auname"));
 }
 
 function sendMessage() {
-    var trgtUser = $('select#users').val();
+    var trgtUser = selected.text();
+    var you = $.cookie("auname");
+
     socket.emit('message', 
                 {
                   "inferSrcUser": true,
@@ -51,28 +39,36 @@ function sendMessage() {
                   "message": $('input#msg').val(),
                   "target": trgtUser
                 });
+
+    socket.emit('message', 
+                {
+                  "inferSrcUser": true,
+                  "source": "",
+                  "message": $('input#msg').val(),
+                  "target": you
+                });
     $('input#msg').val("");
 }
 
 function setCurrentUsers(usersStr) {
-    $('select#users >option').remove()
-    appendNewUser('All', false)
+    users.html('');
     JSON.parse(usersStr).forEach(function(name) {
         appendNewUser(name, false);
     });
-    $('select#users').val('All').attr('selected', true);
-}
+     $('.userNick').on("click", function() {
+                selected.html($(this).text());
+        });
+ }
 
 $(function() {
   enableMsgInput(false);
   setUsername();
-
   socket.on('userJoined', function(msg) {
     appendNewUser(msg.userName, true);
   });
   
   socket.on('userLeft', function(msg) {
-    handleUserLeft(msg);
+    setCurrentUsers(msg.currentUsers);
   });
 
   socket.on('message', function(msg) {
@@ -80,26 +76,8 @@ $(function() {
   });
 
   socket.on('welcome', function(msg) {
-    setFeedback("<span style='color: green'> Username available. You can begin chatting.</span>");
     setCurrentUsers(msg.currentUsers)
     enableMsgInput(true);
-    enableUsernameField(false);
-  });
-
-  socket.on('error', function(msg) {
-      if (msg.userNameInUse) {
-          setFeedback("<span style='color: red'> Username already in use. Try another name.</span>");
-      }
-  });
-  
-  $('input#userName').change(setUsername);
-  $('input#userName').keypress(function(e) {
-      if (e.keyCode == 13) {
-          setUsername();
-          e.stopPropagation();
-          e.stopped = true;
-          e.preventDefault();
-      }
   });
   
   $('input#msg').keypress(function(e) {

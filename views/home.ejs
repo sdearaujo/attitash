@@ -75,36 +75,21 @@
     <div class="well well-small">
       <ul class="nav nav-stacked">
         <li class="nav-header">Who's Online?</li>
-        <ul>
-    <% for(var userid in online) { %>
-    <% if( userid !== username) { %>
-      <li><a href="#chatModal" data-toggle="modal"><%= online[userid].uname %></a></li>
-    <% } %>
-    <% } %>
+        <ul><div id="users"><ul></ul></div>
+        
     <!-- Modal -->
               <div id="chatModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="chatModalLabel" aria-hidden="true">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                  <h3 id="chatModalLabel">Chat with <%= online[userid].uname %></h3>
+                  <h3 id="chatModalLabel">Chat with <span id="selected">broadcast</span></h3>
                 </div>
                 <div class="modal-body">
-                  <h1>Chat</h1>
-                <label for="userName">User name: (Hit Enter) </label>
-              <input id="userName" type="text" size="30"/><span id="feedback"></span>
-                <p></p>
-                  <div id="msgWindow" class="shadow"></div>
-                <p></p>
-            <div><br/>
-             <table>
-               <tr>
-                <td>
-              <select id="users" style="width: 100px"></select>
-              </td>
-              <td>
-             <input id="msg" type="text" style="width: 600px" disabled="true"/>
-            </td>
-          </tr>
-           </table>
+              <div id="msgWindow"></div>
+              <p></p>
+              <div><br/>
+
+                      <input id="msg" type="text" style="width: 530px; height: 50px" disabled="true"/>
+
               </div>
                 </div>
               </div> 

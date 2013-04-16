@@ -7,7 +7,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , flash = require('connect-flash')
-  , socketio = require('socket.io');
+  , socketio = require('socket.io')
+  , socketConnection = require('./socket/index.js');
 
 var app = express();
 
@@ -54,7 +55,6 @@ var server = http.createServer(app).listen(3000, function(){
 */
 
 var io = socketio.listen(server);
-var chatApp = require('./chat');
 
 var clients = {};
 
@@ -85,19 +85,10 @@ io.sockets.on('connection', function(socket) {
     } else {
       srcUser = msg.source;
     }
-    if (msg.target == "All") {
-      // broadcast
-      io.sockets.emit('message',
-          {"source": srcUser,
-           "message": msg.message,
-           "target": msg.target});
-    } else {
-      // Look up the socket id
       io.sockets.sockets[clients[msg.target]].emit('message', 
           {"source": srcUser,
            "message": msg.message,
            "target": msg.target});
-    }
   })
 
   socket.on('disconnect', function() {
@@ -105,24 +96,23 @@ io.sockets.on('connection', function(socket) {
     delete socketsOfClients[socket.id];
     delete clients[uName];
   // relay this message to all the clients
-  userLeft(uName);
+    userLeft(uName);
   })
 })
 
 function userJoined(uName) {
   Object.keys(socketsOfClients).forEach(function(sId) {
-    io.sockets.sockets[sId].emit('userJoined', { "userName": uName });
+    io.sockets.sockets[sId].emit('userJoined', { "userName": uName, "currentUsers": JSON.stringify(Object.keys(clients)) });
   })
 }
 
 function userLeft(uName) {
-    io.sockets.emit('userLeft', { "userName": uName });
+    io.sockets.emit('userLeft', { "currentUsers": JSON.stringify(Object.keys(clients)) });
 }
 
 function userNameAvailable(sId, uName) {
   setTimeout(function() {
     console.log('Sending welcome msg to ' + uName + ' at ' + sId);
-  
     io.sockets.sockets[sId].emit('welcome', { "userName" : uName, "currentUsers": JSON.stringify(Object.keys(clients)) });
   }, 500);
 }
