@@ -3,12 +3,12 @@
 <head>
   <title>index.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" media="all" href="../doc-style.css" />
-  <script src="../doc-filelist.js"></script>
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
   <script>
-    var relativeDir = "../", thisFile = "home/samuel//routes/index.js", defaultSidebar = true;
+    var relativeDir = "", thisFile = "home/anthonyb/dev/attitash//index.js", defaultSidebar = true;
   </script>
-  <script src="../doc-script.js"></script>
+  <script src="doc-script.js"></script>
 </head>
 <body>
   <div id="sidebar_wrapper">
@@ -19,16 +19,31 @@
     <div id="tree"></div>
     <div id="headings">
       <div class="heading h2">
-        <a href="#me">me</a>
+        <a href="#login">login</a>
+      </div>
+      <div class="heading h2">
+        <a href="#auth">auth</a>
+      </div>
+      <div class="heading h2">
+        <a href="#logout">logout</a>
+      </div>
+      <div class="heading h2">
+        <a href="#register">register</a>
+      </div>
+      <div class="heading h2">
+        <a href="#adduser">addUser</a>
+      </div>
+      <div class="heading h2">
+        <a href="#follow">follow</a>
+      </div>
+      <div class="heading h2">
+        <a href="#tash">tash</a>
       </div>
       <div class="heading h2">
         <a href="#discover">discover</a>
       </div>
       <div class="heading h2">
         <a href="#connect">connect</a>
-      </div>
-      <div class="heading h2">
-        <a href="#register">register</a>
       </div>
       <div class="heading h2">
         <a href="#settings">settings</a>
@@ -41,17 +56,21 @@
   <tbody>
       <tr>
         <td class="docs">
-<div class="pilwrap" id="me">
-  <h2>
-    <a href="#me" class="pilcrow">&#182;</a>
-    me
-  </h2>
-</div>
-
-
-<p>Route for me page</p>
+          <h1>index.js</h1>
         </td>
-        <td class="code highlight"><div class="highlight"><pre><span class="nx">exports</span><span class="p">.</span><span class="nx">me</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<p>Modules required to access the database</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;../lib/users.js&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">tashs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;../lib/tashs.js&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">following</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;../lib/following.js&quot;</span><span class="p">);</span>
+
 
 </pre></div>
         </td>
@@ -61,97 +80,10 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
 </div>
-<p>call the me view with the following parameters:
-<b>title:</b> Attitash - Me
-<b>user:</b> AttitashDev
-<b>username:</b> AttitashDev
-<b>tashs:</b> array of fake tashs 
-<b>who_to_follow:</b> array of fake profiles
-<b>trends:</b> array of fake trends</p>
+<p>who's logged on?</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;me&#39;</span><span class="p">,</span> <span class="p">{</span> 
-    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Me&#39;</span><span class="p">,</span>
-    <span class="nx">user</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
-    <span class="nx">userName</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
-    <span class="nx">tashs</span><span class="o">:</span> <span class="p">[</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/attitash-dev-prof-pic.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;AttitashDev&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span>
-      <span class="p">},</span>
-      
-    <span class="p">],</span>
-    <span class="nx">who_to_follow</span><span class="o">:</span> <span class="p">[</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/george.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;George Costanza&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Costanza&quot;</span><span class="p">,</span> 
-        <span class="nx">followed_by</span><span class="o">:</span> <span class="s2">&quot;Windows&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/kramer.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Cosmo Kramer&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;K-Man&quot;</span><span class="p">,</span> 
-        <span class="nx">followed_by</span><span class="o">:</span> <span class="s2">&quot;Jerry Seinfeld&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/sein.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Jerry Seinfeld&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Seinfeld&quot;</span><span class="p">,</span> 
-        <span class="nx">followed_by</span><span class="o">:</span> <span class="s2">&quot;Twitter&quot;</span>
-      <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="nx">trends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;attitash&quot;</span><span class="p">,</span> <span class="s2">&quot;cs326&quot;</span><span class="p">,</span> <span class="s2">&quot;jingleheimer&quot;</span><span class="p">,</span> <span class="s2">&quot;roflmao&quot;</span><span class="p">,</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">,</span> <span class="s2">&quot;betterthantwitter&quot;</span><span class="p">,</span> <span class="s2">&quot;tash&quot;</span><span class="p">]</span>
-  <span class="p">});</span>
-<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">online</span> <span class="o">=</span> <span class="p">{};</span>
 
 
 </pre></div>
@@ -159,18 +91,19 @@
       </tr>
       <tr>
         <td class="docs">
-<div class="pilwrap" id="discover">
+<div class="pilwrap" id="login">
   <h2>
-    <a href="#discover" class="pilcrow">&#182;</a>
-    discover
+    <a href="#login" class="pilcrow">&#182;</a>
+    login
   </h2>
 </div>
 
 
-<p>Route for discover page</p>
+<p>Provides a user login view.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">discover</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">login</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
 
 </pre></div>
         </td>
@@ -180,111 +113,117 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
 </div>
-<p>call the discover view with the following parameters:
-<b>title:</b> Attitash - Discover
-<b>user:</b> AttitashDev
-<b>username:</b> AttitashDev
-<b>tashs:</b> array of fake tashs 
-<b>who_to_follow:</b> array of fake profiles
-<b>trends:</b> array of fake trends</p>
+<p>redirect if logged in</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;discover&#39;</span><span class="p">,</span> <span class="p">{</span> 
-    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Discover&#39;</span><span class="p">,</span>
-    <span class="nx">user</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
-    <span class="nx">userName</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
-    <span class="nx">tashs</span><span class="o">:</span> <span class="p">[</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/81302971/facebook_favicon_large_2_normal.png&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Facebook&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;facebook&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;@Twitter we&#39;re losing all of our users too! #Attitash&quot;</span><span class="p">,</span>
-        <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/81302971/facebook_favicon_large_2_normal.png&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/windows.png&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Windows&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Windows&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Windows 8 is off to a worse start than Vista! #letsgo #metro&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/twitter.png&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Twitter&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Twitter&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Attitash has stolen all of our users! #ohno #attitash&quot;</span>  
+  <span class="k">if</span><span class="p">(</span><span class="nx">user</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">){</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/home&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span><span class="p">{</span>
 
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2479480809/mz1rwdt3gafsda7vc3bc_normal.png&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;NHL&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;NHL&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Can anybody stop the @Blackhawks? #wow&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/1639045599/twcilogo_blue_300_normal.png&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;The Weather Channel&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;weatherchannel&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;More crappy weather expected for Amherst, MA #whatasurprise&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/1980294624/DJT_Headshot_V2_normal.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Donald Trump&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;realDonaldTrump&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Invested $500K in @AttitashDev months before launch #easiestmoneyiveevermade&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2176846885/-5-1_normal.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;TechCrunch&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;TechCrunch&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Meet the new social media application that&#39;s leaving Twitter wondering what happened #Attitash&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/1824717932/Forbes_Icon_normal.png&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Forbes&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Forbes&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;@AttitashDev raises $500M in Series A funding #goodbyetwitter&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2622227823/gjh9bijjnrnrb8hderzb_normal.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Life At Google&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;googlejobs&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Really hope @AttitashDev comes and works for us someday #googleplusstinks&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/1325797300/2804546757_5d034c1d29_normal.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Most Interesting Man In The World&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;DosEquisMan&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;I don&#39;t always use social media, but when I do...I use #Attitash&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2945466711/12e018532d913494d841f79da5dd70bf_normal.png&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;LinkedIn&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;LinkedIn&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Why we&#39;re choosing #Attitash over Twitter #becauseitsbetter&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2733309600/9d7fe1c410d086364129c720e089ebf2_normal.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Kate Upton&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;KateUpton&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Hey @AttitashDev guys...call me? :)&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2186836571/128x128_twitter_bbc_world_normal.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;BBC News (World)&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;BBCWorld&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;#Attitash is largest social network in the world, Twitter a distant 2nd #whatsatweetanyway&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/937374385/Mark_Zuckerberg_szykuja_3268108_normal.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Mark Zuckerberg&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;zuckerberg&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Sooo I just used #Attitash for the first time...#shuttingdownfacebook #thisiswaycooler&quot;</span>
-      <span class="p">},</span>
-    <span class="p">],</span>
-    <span class="nx">who_to_follow</span><span class="o">:</span> <span class="p">[</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/george.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;George Costanza&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Costanza&quot;</span><span class="p">,</span> 
-        <span class="nx">followed_by</span><span class="o">:</span> <span class="s2">&quot;Windows&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/kramer.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Cosmo Kramer&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;K-Man&quot;</span><span class="p">,</span> 
-        <span class="nx">followed_by</span><span class="o">:</span> <span class="s2">&quot;Jerry Seinfeld&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/sein.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Jerry Seinfeld&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Seinfeld&quot;</span><span class="p">,</span> 
-        <span class="nx">followed_by</span><span class="o">:</span> <span class="s2">&quot;Twitter&quot;</span>
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>Grab any messages being sent to use from redirect.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">authmessage</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span>   <span class="o">:</span> <span class="s1">&#39;User Login&#39;</span><span class="p">,</span>
+                          <span class="nx">message</span> <span class="o">:</span> <span class="nx">authmessage</span> <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="auth">
+  <h2>
+    <a href="#auth" class="pilcrow">&#182;</a>
+    auth
+  </h2>
+</div>
+
+
+<p>Performs <strong>basic</strong> user authentication.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">auth</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>Pull the values from the form</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">username</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">password</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>Perform the user lookup.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">users</span><span class="p">.</span><span class="nx">getUserByUsername</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error getting user! &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>query returned nothing!</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;cannot find user!&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">pwd</span> <span class="o">==</span> <span class="nx">password</span><span class="p">){</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+        <span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">]</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/home&#39;</span><span class="p">);</span>
       <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="nx">trends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;attitash&quot;</span><span class="p">,</span> <span class="s2">&quot;cs326&quot;</span><span class="p">,</span> <span class="s2">&quot;jingleheimer&quot;</span><span class="p">,</span> <span class="s2">&quot;roflmao&quot;</span><span class="p">,</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">,</span> <span class="s2">&quot;betterthantwitter&quot;</span><span class="p">,</span> <span class="s2">&quot;tash&quot;</span><span class="p">]</span>
+      <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>found user but something went wrong. wrong password</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;wrong password!&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
   <span class="p">});</span>
 <span class="p">};</span>
 
@@ -294,18 +233,19 @@
       </tr>
       <tr>
         <td class="docs">
-<div class="pilwrap" id="connect">
+<div class="pilwrap" id="logout">
   <h2>
-    <a href="#connect" class="pilcrow">&#182;</a>
-    connect
+    <a href="#logout" class="pilcrow">&#182;</a>
+    logout
   </h2>
 </div>
 
 
-<p>Route for connect page</p>
+<p>Deletes user info &amp; session - then redirects to login.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">connect</span><span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">logout</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  
 
 </pre></div>
         </td>
@@ -313,114 +253,71 @@
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
 </div>
-<p>call the connect view with the following parameters:
-<b>title:</b> Attitash - Connect
-<b>user:</b> AttitashDev
-<b>username:</b> AttitashDev
-<b>tashs:</b> array of fake tashs 
-<b>who_to_follow:</b> array of fake profiles
-<b>trends:</b> array of fake trends</p>
+<p>get the user from the session</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;connect&#39;</span><span class="p">,</span> <span class="p">{</span> 
-    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Connect&#39;</span><span class="p">,</span>
-    <span class="nx">user</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
-    <span class="nx">userName</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
-    <span class="nx">tashs</span><span class="o">:</span> <span class="p">[</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/81302971/facebook_favicon_large_2_normal.png&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Facebook&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;facebook&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;@Twitter we&#39;re losing all of our users too! #Attitash&quot;</span><span class="p">,</span>
-        <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/81302971/facebook_favicon_large_2_normal.png&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/windows.png&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Windows&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Windows&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Windows 8 is off to a worse start than Vista! #letsgo #metro&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/twitter.png&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Twitter&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Twitter&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Attitash has stolen all of our users! #ohno #attitash&quot;</span>  
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
 
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2479480809/mz1rwdt3gafsda7vc3bc_normal.png&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;NHL&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;NHL&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Can anybody stop the @Blackhawks? #wow&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/1639045599/twcilogo_blue_300_normal.png&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;The Weather Channel&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;weatherchannel&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;More crappy weather expected for Amherst, MA #whatasurprise&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/1980294624/DJT_Headshot_V2_normal.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Donald Trump&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;realDonaldTrump&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Invested $500K in @AttitashDev months before launch #easiestmoneyiveevermade&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2176846885/-5-1_normal.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;TechCrunch&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;TechCrunch&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Meet the new social media application that&#39;s leaving Twitter wondering what happened #Attitash&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/1824717932/Forbes_Icon_normal.png&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Forbes&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Forbes&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;@AttitashDev raises $500M in Series A funding #goodbyetwitter&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2622227823/gjh9bijjnrnrb8hderzb_normal.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Life At Google&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;googlejobs&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Really hope @AttitashDev comes and works for us someday #googleplusstinks&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/1325797300/2804546757_5d034c1d29_normal.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Most Interesting Man In The World&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;DosEquisMan&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;I don&#39;t always use social media, but when I do...I use #Attitash&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2945466711/12e018532d913494d841f79da5dd70bf_normal.png&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;LinkedIn&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;LinkedIn&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Why we&#39;re choosing #Attitash over Twitter #becauseitsbetter&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2733309600/9d7fe1c410d086364129c720e089ebf2_normal.jpeg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Kate Upton&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;KateUpton&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Hey @AttitashDev guys...call me? :)&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/2186836571/128x128_twitter_bbc_world_normal.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;BBC News (World)&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;BBCWorld&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;#Attitash is largest social network in the world, Twitter a distant 2nd #whatsatweetanyway&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;https://si0.twimg.com/profile_images/937374385/Mark_Zuckerberg_szykuja_3268108_normal.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Mark Zuckerberg&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;zuckerberg&quot;</span><span class="p">,</span> 
-        <span class="nx">tash_text</span><span class="o">:</span> <span class="s2">&quot;Sooo I just used #Attitash for the first time...#shuttingdownfacebook #thisiswaycooler&quot;</span>
-      <span class="p">},</span>
-    <span class="p">],</span>
-    <span class="nx">who_to_follow</span><span class="o">:</span> <span class="p">[</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/george.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;George Costanza&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Costanza&quot;</span><span class="p">,</span> 
-        <span class="nx">followed_by</span><span class="o">:</span> <span class="s2">&quot;Windows&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/kramer.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Cosmo Kramer&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;K-Man&quot;</span><span class="p">,</span> 
-        <span class="nx">followed_by</span><span class="o">:</span> <span class="s2">&quot;Jerry Seinfeld&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span> <span class="nx">img_src</span><span class="o">:</span> <span class="s2">&quot;images/sein.jpg&quot;</span><span class="p">,</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Jerry Seinfeld&quot;</span><span class="p">,</span>
-        <span class="nx">username</span><span class="o">:</span> <span class="s2">&quot;Seinfeld&quot;</span><span class="p">,</span> 
-        <span class="nx">followed_by</span><span class="o">:</span> <span class="s2">&quot;Twitter&quot;</span>
-      <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="nx">trends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;attitash&quot;</span><span class="p">,</span> <span class="s2">&quot;cs326&quot;</span><span class="p">,</span> <span class="s2">&quot;jingleheimer&quot;</span><span class="p">,</span> <span class="s2">&quot;roflmao&quot;</span><span class="p">,</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">,</span> <span class="s2">&quot;betterthantwitter&quot;</span><span class="p">,</span> <span class="s2">&quot;tash&quot;</span><span class="p">]</span>
-  <span class="p">});</span>
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>if the user is not logged, show the message "Not logged in!" and redirect to the login page</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;Not logged in!&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<p>remove the user from the the array of online users</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">delete</span> <span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">];</span>
+  <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<p>delete the user from the session</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">delete</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<p>redirect to login page</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
 <span class="p">};</span>
 
 
@@ -441,6 +338,8 @@
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">register</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">authmessage</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+  <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
 
 </pre></div>
         </td>
@@ -448,13 +347,618 @@
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
 </div>
-<p>call the register view with the following parameters:
-<b>title:</b> Attitash - Register</p>
+<p>get the user from the session</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;register&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Register&#39;</span> <span class="p">});</span>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/home&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span><span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;register&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Register&#39;</span><span class="p">,</span> <span class="nx">message</span><span class="o">:</span> <span class="nx">authmessage</span> <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="adduser">
+  <h2>
+    <a href="#adduser" class="pilcrow">&#182;</a>
+    addUser
+  </h2>
+</div>
+
+
+<p>Provides a route to create a new user.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">addUser</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+<p>values obtained from the form</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">username</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">password</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">fname</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">fname</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">lname</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">lname</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">email</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">;</span>
+  
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
+</div>
+<p>check if the values are not undefined</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span><span class="p">(</span><span class="nx">username</span> <span class="o">&amp;&amp;</span> <span class="nx">password</span> <span class="o">&amp;&amp;</span> <span class="nx">fname</span> <span class="o">&amp;&amp;</span> <span class="nx">lname</span> <span class="o">&amp;&amp;</span> <span class="nx">email</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
+</div>
+<p>put user in the database</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">users</span><span class="p">.</span><span class="nx">addUser</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">fname</span><span class="p">,</span> <span class="nx">lname</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-23" id="section-23">&#182;</a>
+</div>
+<p>could be another error, right now assume username is taken is reason insert failed</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;Username already exists!&#39;</span><span class="p">);</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/register&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-24" id="section-24">&#182;</a>
+</div>
+<p>log the user in and send them to the home screen</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">users</span><span class="p">.</span><span class="nx">getUserByUsername</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">){</span>
+          <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error getting user! &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
+          <span class="p">}</span>
+          <span class="k">if</span><span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">){</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;cannot find user!&quot;</span><span class="p">);</span>
+          <span class="p">}</span>
+          <span class="k">else</span><span class="p">{</span>
+            <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+            <span class="nx">online</span><span class="p">[</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">]</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/home&#39;</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">});</span>   
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="follow">
+  <h2>
+    <a href="#follow" class="pilcrow">&#182;</a>
+    follow
+  </h2>
+</div>
+
+
+<p>handler for following another user</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">follow</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-26" id="section-26">&#182;</a>
+</div>
+<p>grab the values from the query string</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">follower</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">follower</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">followee</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">followee</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-27" id="section-27">&#182;</a>
+</div>
+<p>put new relation in the database</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">following</span><span class="p">.</span><span class="nx">addFollowByUsername</span><span class="p">(</span><span class="nx">follower</span><span class="p">,</span> <span class="nx">followee</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error following &quot;</span> <span class="o">+</span> <span class="nx">followee</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/home&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="tash">
+  <h2>
+    <a href="#tash" class="pilcrow">&#182;</a>
+    tash
+  </h2>
+</div>
+
+
+<p>Create a new tash.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">tash</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;Not logged in!&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span><span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">uname</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">content</span><span class="p">;</span>
+
+    <span class="nx">tashs</span><span class="p">.</span><span class="nx">addTash</span><span class="p">(</span><span class="nx">uname</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error adding tash!&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span><span class="p">{</span>
+        <span class="nx">tashs</span><span class="p">.</span><span class="nx">getLastTash</span><span class="p">(</span><span class="nx">uname</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">tash</span><span class="p">){</span>
+          <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error getting last tash!&quot;</span><span class="p">);</span>
+          <span class="p">}</span>
+          <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-29" id="section-29">&#182;</a>
+</div>
+<p>send json response data back to client to handle it in ajax success function</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">tash</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">home</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;Not logged in!&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-30" id="section-30">&#182;</a>
+</div>
+<p>get the news feed</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">tashs</span><span class="p">.</span><span class="nx">getNewsFeed</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">_tashs</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error getting tashs! &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-31" id="section-31">&#182;</a>
+</div>
+<p>get who to follow</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">following</span><span class="p">.</span><span class="nx">getWhoToFollowByUsername</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">who_to_follow</span><span class="p">){</span>
+          <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error getting who to follow! &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
+          <span class="p">}</span>
+          <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-32" id="section-32">&#182;</a>
+</div>
+<p>get number of tashs by this user</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">tashs</span><span class="p">.</span><span class="nx">countTashsByUsername</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">numTashes</span><span class="p">){</span>
+              <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error counting tashs! &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
+              <span class="p">}</span>
+              <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-33" id="section-33">&#182;</a>
+</div>
+<p>get number of followers for this user</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                <span class="nx">following</span><span class="p">.</span><span class="nx">countFollowersByUsername</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">numFollowers</span><span class="p">){</span>
+                  <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error counting followers! &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);}</span>
+                  <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-34" id="section-34">&#182;</a>
+</div>
+<p>get number of users this user is following</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                    <span class="nx">following</span><span class="p">.</span><span class="nx">countFollowingByUsername</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">numFollowing</span><span class="p">){</span>
+                      <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error counting following! &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);}</span>
+                      <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-35" id="section-35">&#182;</a>
+</div>
+<p>finally...render it all</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                        <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="p">{</span> 
+                          <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Home&#39;</span><span class="p">,</span>
+                          <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                          <span class="nx">notification</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                          <span class="nx">username</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span>
+                          <span class="nx">online</span> <span class="o">:</span> <span class="nx">online</span><span class="p">,</span>
+                          <span class="nx">who_to_follow</span><span class="o">:</span> <span class="nx">who_to_follow</span><span class="p">,</span>
+                          <span class="nx">tashs</span><span class="o">:</span> <span class="nx">_tashs</span><span class="p">,</span>
+                          <span class="nx">numtashes</span><span class="o">:</span> <span class="nx">numTashes</span><span class="p">.</span><span class="nx">tash_count</span><span class="p">,</span>
+                          <span class="nx">numfollowing</span><span class="o">:</span> <span class="nx">numFollowing</span><span class="p">.</span><span class="nx">following_count</span><span class="p">,</span>
+                          <span class="nx">numfollowers</span><span class="o">:</span> <span class="nx">numFollowers</span><span class="p">.</span><span class="nx">follower_count</span><span class="p">,</span>
+                          <span class="nx">trends</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;attitash&#39;</span><span class="p">,</span> <span class="s1">&#39;cs326&#39;</span><span class="p">,</span> <span class="s1">&#39;balsamiq&#39;</span><span class="p">,</span> <span class="s1">&#39;betterthantwitter&#39;</span><span class="p">,</span> <span class="s1">&#39;tash&#39;</span><span class="p">]</span>
+                        <span class="p">});</span>
+                      <span class="p">}</span>
+                    <span class="p">});</span>
+                  <span class="p">}</span>
+                <span class="p">});</span>             
+              <span class="p">}</span>
+            <span class="p">});</span>
+          <span class="p">}</span>
+        <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">me</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;Not logged in!&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-36" id="section-36">&#182;</a>
+</div>
+<p>get the news feed</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">tashs</span><span class="p">.</span><span class="nx">getTashsByUsername</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">_tashs</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error getting tashs! &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-37" id="section-37">&#182;</a>
+</div>
+<p>get who to follow</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">following</span><span class="p">.</span><span class="nx">getWhoToFollowByUsername</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">who_to_follow</span><span class="p">){</span>
+          <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error getting who to follow! &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
+          <span class="p">}</span>
+          <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-38" id="section-38">&#182;</a>
+</div>
+<p>get followers of this user</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">following</span><span class="p">.</span><span class="nx">getFollowersByUsername</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">followers</span><span class="p">){</span>
+              <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error getting followers! &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);}</span>
+              <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-39" id="section-39">&#182;</a>
+</div>
+<p>get users this user is following</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                <span class="nx">following</span><span class="p">.</span><span class="nx">getFollowingByUsername</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">following</span><span class="p">){</span>
+                  <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error getting following! &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);}</span>
+                  <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-40" id="section-40">&#182;</a>
+</div>
+<p>finally...render it all</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;me&#39;</span><span class="p">,</span> <span class="p">{</span> 
+                      <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Me&#39;</span><span class="p">,</span>
+                      <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                      <span class="nx">notification</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                      <span class="nx">username</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span>
+                      <span class="nx">online</span> <span class="o">:</span> <span class="nx">online</span><span class="p">,</span>
+                      <span class="nx">who_to_follow</span><span class="o">:</span> <span class="nx">who_to_follow</span><span class="p">,</span>
+                      <span class="nx">tashs</span><span class="o">:</span> <span class="nx">_tashs</span><span class="p">,</span>
+                      <span class="nx">following</span><span class="o">:</span> <span class="nx">following</span><span class="p">,</span>
+                      <span class="nx">followers</span><span class="o">:</span> <span class="nx">followers</span><span class="p">,</span>
+                      <span class="nx">trends</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;attitash&#39;</span><span class="p">,</span> <span class="s1">&#39;cs326&#39;</span><span class="p">,</span> <span class="s1">&#39;balsamiq&#39;</span><span class="p">,</span> <span class="s1">&#39;betterthantwitter&#39;</span><span class="p">,</span> <span class="s1">&#39;tash&#39;</span><span class="p">]</span>
+                    <span class="p">});</span>
+                  <span class="p">}</span>
+                <span class="p">});</span>
+              <span class="p">}</span>
+            <span class="p">});</span>             
+          <span class="p">}</span>
+        <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="discover">
+  <h2>
+    <a href="#discover" class="pilcrow">&#182;</a>
+    discover
+  </h2>
+</div>
+
+
+<p>Route for discover page</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">discover</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-42" id="section-42">&#182;</a>
+</div>
+<p>get the user from the session</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-43" id="section-43">&#182;</a>
+</div>
+<p>if the user is not logged, show the message "Not logged in!" and redirect to the login page</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;Not logged in!&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">following</span><span class="p">.</span><span class="nx">getWhoToFollowByUsername</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">who_to_follow</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error getting who to follow!&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span><span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;discover&#39;</span><span class="p">,</span> <span class="p">{</span> 
+          <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Discover&#39;</span><span class="p">,</span>
+          <span class="nx">username</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span>
+          <span class="nx">users</span> <span class="o">:</span> <span class="nx">online</span><span class="p">,</span>
+          <span class="nx">tashs</span><span class="o">:</span> <span class="p">[],</span>
+          <span class="nx">who_to_follow</span><span class="o">:</span> <span class="nx">who_to_follow</span><span class="p">,</span>
+          <span class="nx">trends</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;attitash&#39;</span><span class="p">,</span> <span class="s1">&#39;cs326&#39;</span><span class="p">,</span> <span class="s1">&#39;balsamiq&#39;</span><span class="p">,</span> <span class="s1">&#39;betterthantwitter&#39;</span><span class="p">,</span> <span class="s1">&#39;tash&#39;</span><span class="p">]</span>
+        <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="connect">
+  <h2>
+    <a href="#connect" class="pilcrow">&#182;</a>
+    connect
+  </h2>
+</div>
+
+
+<p>Route for connect page</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">connect</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-45" id="section-45">&#182;</a>
+</div>
+<p>get the user from the session</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-46" id="section-46">&#182;</a>
+</div>
+<p>if the user is not logged, show the message "Not logged in!" and redirect to the login page</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;Not logged in!&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">following</span><span class="p">.</span><span class="nx">getWhoToFollowByUsername</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">who_to_follow</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error getting who to follow!&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span><span class="p">{</span>
+        <span class="nx">tashs</span><span class="p">.</span><span class="nx">getTashsByFollowing</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">_tashs</span><span class="p">){</span>
+          <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;error getting tashs by following!&quot;</span><span class="p">);</span>
+          <span class="p">}</span>
+          <span class="k">else</span><span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;connect&#39;</span><span class="p">,</span> <span class="p">{</span> 
+              <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Connect&#39;</span><span class="p">,</span>
+              <span class="nx">username</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">uname</span><span class="p">,</span>
+              <span class="nx">users</span> <span class="o">:</span> <span class="nx">online</span><span class="p">,</span>
+              <span class="nx">tashs</span><span class="o">:</span> <span class="nx">_tashs</span><span class="p">,</span>
+              <span class="nx">who_to_follow</span><span class="o">:</span> <span class="nx">who_to_follow</span><span class="p">,</span>
+              <span class="nx">trends</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;attitash&#39;</span><span class="p">,</span> <span class="s1">&#39;cs326&#39;</span><span class="p">,</span> <span class="s1">&#39;balsamiq&#39;</span><span class="p">,</span> <span class="s1">&#39;betterthantwitter&#39;</span><span class="p">,</span> <span class="s1">&#39;tash&#39;</span><span class="p">]</span>
+            <span class="p">});</span>
+          <span class="p">}</span>
+        <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">test</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span> <span class="nx">uname</span><span class="o">:</span> <span class="s2">&quot;AnthonyBAjax&quot;</span> <span class="p">});</span>
 <span class="p">};</span>
 
 
@@ -482,19 +986,35 @@
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+  <a class="pilcrow" href="#section-48" id="section-48">&#182;</a>
 </div>
-<p>call the settings view with the following parameters:
-<b>title:</b> Attitash
-<b>user:</b> AttitashDev
-<b>username:</b> AttitashDev</p>
+<p>get the user from the session</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-49" id="section-49">&#182;</a>
+</div>
+<p>if the user is not logged, show the message "Not logged in!" and redirect to the login page</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;Not logged in!&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;settings&#39;</span><span class="p">,</span> <span class="p">{</span>
-      <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash&#39;</span><span class="p">,</span>
-      <span class="nx">user</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span><span class="p">,</span>
-      <span class="nx">userName</span><span class="o">:</span> <span class="s1">&#39;AttitashDev&#39;</span>
+      <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Attitash - Settings&#39;</span><span class="p">,</span>
+      <span class="nx">user</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">fname</span><span class="p">,</span>
+      <span class="nx">username</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">username</span>
     <span class="p">})</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 </pre></div>
         </td>

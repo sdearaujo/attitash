@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>tashs.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "", thisFile = "home/anthonyb/dev/attitash//tashs.js", defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>tashs.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">sqlite3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;sqlite3&#39;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>Connect to the database:</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sqlite3</span><span class="p">.</span><span class="nx">Database</span><span class="p">(</span><span class="s1">&#39;./data/attitash.db&#39;</span><span class="p">);</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">addTash</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">callback</span><span class="p">){</span>
+  <span class="nx">db</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s1">&#39;insert into Tashs values (?, ?, current_timestamp)&#39;</span><span class="p">,</span>
+    <span class="nx">username</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span>
+    <span class="nx">exports</span><span class="p">.</span><span class="nx">getLastTash</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">callback</span><span class="p">));</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getLastTash</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">callback</span><span class="p">){</span>
+  <span class="nx">db</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;select u.fname as fname, u.lname as lname, t.uname as uname, t.content as content, t.tdate as tdate from Users u, Tashs t where t.uname=? and t.uname=u.uname order by t.tdate desc limit 1&#39;</span><span class="p">,</span>
+    <span class="nx">username</span><span class="p">,</span>
+    <span class="nx">callback</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getTashsByUsername</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">uname</span><span class="p">,</span> <span class="nx">callback</span><span class="p">){</span>
+  <span class="nx">db</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;select u.fname, u.lname, u.uname, t.content, t.tdate from Users u, Tashs t where t.uname=? and t.uname=u.uname order by t.tdate desc&#39;</span><span class="p">,</span>
+    <span class="nx">uname</span><span class="p">,</span>
+    <span class="nx">callback</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">countTashsByUsername</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">uname</span><span class="p">,</span> <span class="nx">callback</span><span class="p">){</span>
+  <span class="nx">db</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;select count(*) as tash_count from Tashs t where t.uname=?&#39;</span><span class="p">,</span>
+    <span class="nx">uname</span><span class="p">,</span>
+    <span class="nx">callback</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getTashsByFollowing</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">uname</span><span class="p">,</span> <span class="nx">callback</span><span class="p">){</span>
+  <span class="nx">db</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;select t.uname as uname, t.content as content, t.tdate as tdate, u.fname as fname, u.lname as lname from Tashs t join (select f.followee from Following f where f.follower=? and f.followee!=?) as tmp on tmp.followee=t.uname join Users u on u.uname=t.uname order by t.tdate desc&#39;</span><span class="p">,</span>
+    <span class="nx">uname</span><span class="p">,</span> <span class="nx">uname</span><span class="p">,</span>
+    <span class="nx">callback</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getNewsFeed</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">uname</span><span class="p">,</span> <span class="nx">callback</span><span class="p">){</span>
+  <span class="nx">db</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;select t.uname as uname, t.content as content, t.tdate as tdate, u.fname as fname, u.lname as lname from Tashs t join (select f.followee from Following f where f.follower=?) as tmp on tmp.followee=t.uname join Users u on u.uname=t.uname order by t.tdate desc&#39;</span><span class="p">,</span>
+    <span class="nx">uname</span><span class="p">,</span>
+    <span class="nx">callback</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>
