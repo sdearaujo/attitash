@@ -214,6 +214,9 @@ exports.home = function(req, res){
                       if(err){res.send("error counting following! " + err);}
                       else{
                         // finally...render it all
+                        for(var i = 0; i < _tashs.length; i++){
+                          _tashs[i].content = formatTash(_tashs[i].content);
+                        }
                         res.render('home', { 
                           title: 'Attitash - Home',
                           message: '',
@@ -358,10 +361,6 @@ exports.connect = function(req, res) {
   }
 };
 
-exports.test = function(req, res){
-  res.json({ uname: "AnthonyBAjax" });
-};
-
 // ## settings
 // Route for settings page
 exports.settings = function(req, res){
@@ -380,3 +379,29 @@ exports.settings = function(req, res){
     })
   }
 };
+
+function formatTash(tash){
+        var finalContent = "";
+        array = tash.split(" ");
+        for(var i = 0; i<array.length; i++){
+                if(array[i].charAt(0) == '#'){
+                                finalContent = finalContent.concat("<a href=\"");
+                                finalContent = finalContent.concat(array[i]);
+                                finalContent = finalContent.concat("\">");
+                                finalContent = finalContent.concat(array[i]);
+                                finalContent = finalContent.concat("</a>");
+                }
+                else if(array[i].charAt(0) == '@'){
+                                finalContent = finalContent.concat("<a href=\"");
+                                finalContent = finalContent.concat(array[i]);
+                                finalContent = finalContent.concat("\">");
+                                finalContent = finalContent.concat(array[i]);
+                                finalContent = finalContent.concat("</a>");
+                }
+                else{
+                        finalContent = finalContent.concat(array[i]);
+                }
+                finalContent = finalContent.concat(" ");
+        }
+        return finalContent;
+}

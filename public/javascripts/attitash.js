@@ -25,7 +25,8 @@ $('#send_tash').submit(function(e){
         data: JSON.stringify({ "content":content }),
         success: function(data, textStatus, jqXHR){
             var tash = data[0];
-            var li = '<li><div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg"></a><div class="media-body"><span class="pull-right date">' + tash.tdate + '</span><h5 class="media-heading"><a href="#">' + tash.fname + ' ' + tash.lname + '</a> <small>@' + tash.uname + '</small></h5><div class="wrap-tash">' + tash.content + '</div></div></div></li>';
+            var formattedTash = formatTash(tash.content);
+            var li = '<li><div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg"></a><div class="media-body"><span class="pull-right date">' + tash.tdate + '</span><h5 class="media-heading"><a href="#">' + tash.fname + ' ' + tash.lname + '</a> <small>@' + tash.uname + '</small></h5><div class="wrap-tash">' + formattedTash + '</div></div></div></li>';
             $(li).hide().prependTo('#tashs').fadeIn(600);
             $('#tash_content').val('');
             var textLabel = '#' + $(this).attr('id') + ' .chars_left > small';
@@ -51,3 +52,29 @@ $('#logout').click(function(){
         $.removeCookie("auname");
     }
 });
+
+function formatTash(tash){
+        var finalContent = "";
+        array = tash.split(" ");
+        for(var i = 0; i<array.length; i++){
+                if(array[i].charAt(0) == '#'){
+                                finalContent = finalContent.concat("<a href=\"");
+                                finalContent = finalContent.concat(array[i]);
+                                finalContent = finalContent.concat("\">");
+                                finalContent = finalContent.concat(array[i]);
+                                finalContent = finalContent.concat("</a>");
+                }
+                else if(array[i].charAt(0) == '@'){
+                                finalContent = finalContent.concat("<a href=\"");
+                                finalContent = finalContent.concat(array[i]);
+                                finalContent = finalContent.concat("\">");
+                                finalContent = finalContent.concat(array[i]);
+                                finalContent = finalContent.concat("</a>");
+                }
+                else{
+                        finalContent = finalContent.concat(array[i]);
+                }
+                finalContent = finalContent.concat(" ");
+        }
+        return finalContent;
+}
