@@ -5,13 +5,37 @@ var selected = $("#selected");
 
 socket = io.connect();
 
+var chatTable = {};
+
+$('#chatModal').bind('hide', function(){
+  $('#msgWindow').html('');
+});
+
+$('#chatModal').bind('show', function(){
+  $('#msgWindow').html('');
+  var selectedUser = $('#selected').html();
+  var chatLog = chatTable[selectedUser];
+  if(chatLog){
+    for(var i = 0; i < chatLog.length; i++){
+      var msg = JSON.parse(chatLog[i]);
+      var html;
+      html = "<span class='privMsg'>" + msg.source + " : " + msg.message + "</span><br/>"
+      $('#msgWindow').prepend(html);
+    }
+  }
+});
+
 function enableMsgInput(enable) {
   $('input#msg').prop('disabled', !enable);
 }
 
 function appendNewMessage(msg) {
+  if(msg.messageTarget !== selected.text())
+    return;
+  var chatLog = chatTable[msg.messageTarget];
+  var msg = JSON.parse(chatLog[0]);
   var html;
-    html = "<span class='privMsg'>" + msg.source + " : " + msg.message + "</span><br/>"
+  html = "<span class='privMsg'>" + msg.source + " : " + msg.message + "</span><br/>"
   $('#msgWindow').append(html);
 }
 
@@ -37,6 +61,7 @@ function sendMessage() {
                   "inferSrcUser": true,
                   "source": "",
                   "message": $('input#msg').val(),
+                  "messageTarget": you,
                   "target": trgtUser
                 });
 
@@ -45,6 +70,7 @@ function sendMessage() {
                   "inferSrcUser": true,
                   "source": "",
                   "message": $('input#msg').val(),
+                  "messageTarget": trgtUser,
                   "target": you
                 });
     $('input#msg').val("");
@@ -72,6 +98,14 @@ $(function() {
   });
 
   socket.on('message', function(msg) {
+    console.log("msg target: " + msg.messageTarget);
+    var chatLog = chatTable[msg.messageTarget];
+    if(chatLog){
+      chatLog.unshift(JSON.stringify({"source": msg.source, "message": msg.message}));
+    }
+    else{
+      chatTable[msg.messageTarget] = [JSON.stringify({"source": msg.source, "message": msg.message})];
+    }
     appendNewMessage(msg);
   });
 

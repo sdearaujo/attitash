@@ -31,6 +31,7 @@ exports.init = function (socket, io) {
 		  sockets.sockets[clients[msg.target]].emit('message', 
 			  {"source": srcUser,
 			   "message": msg.message,
+			   "messageTarget": msg.messageTarget,
 			   "target": msg.target});
 	  })
 
