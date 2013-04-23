@@ -32,11 +32,13 @@ exports.auth = function(req, res){
   // Perform the user lookup.
   users.getUserByUsername(username, function(err, user){
     if(err){
-      res.send("error getting user! " + err);
+      req.flash('auth', 'error getting user!');
+      res.redirect('/login');
     }
     if(user === undefined){
       // query returned nothing!
-      res.send("cannot find user!");
+      req.flash('auth', 'cannot find user!');
+      res.redirect('/login');
     }
     else{
       if(user.pwd == password){
@@ -46,7 +48,8 @@ exports.auth = function(req, res){
       }
       else{
         // found user but something went wrong. wrong password
-        res.send("wrong password!");
+        req.flash('auth', 'wrong passowrd!');
+        res.redirect('/login');
       }
     }
   });
