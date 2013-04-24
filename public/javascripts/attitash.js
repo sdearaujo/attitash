@@ -26,11 +26,13 @@ $('#send_tash').submit(function(e){
         success: function(data, textStatus, jqXHR){
             var tash = data[0];
             var formattedTash = formatTash(tash.content);
-            var li = '<li><div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg"></a><div class="media-body"><span class="pull-right date">' + tash.tdate + '</span><h5 class="media-heading"><a href="#">' + tash.fname + ' ' + tash.lname + '</a> <small>@' + tash.uname + '</small></h5><div class="wrap-tash">' + formattedTash + '</div></div></div></li>';
+            var imgsrc = "\"/images/" + tash.uname + ".jpeg\"";
+            var li = '<li><div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src='+imgsrc+'></a><div class="media-body"><span class="pull-right date">' + tash.tdate + '</span><h5 class="media-heading"><a href="#">' + tash.fname + ' ' + tash.lname + '</a> <small>@' + tash.uname + '</small></h5><div class="wrap-tash">' + formattedTash + '</div></div></div></li>';
             $(li).hide().prependTo('#tashs').fadeIn(600);
             $('#tash_content').val('');
             var textLabel = '#' + $(this).attr('id') + ' .chars_left > small';
             $('#send_tash .chars_left > small').text("140");
+            $('#numtashes').text(parseInt($('#numtashes').text())+1);
             $('#tash_success').fadeIn(500).delay(4000).fadeOut(1000);
         },
         error: function(jqXHR, textStatus, errorThrown){
@@ -55,11 +57,13 @@ $('#send_tash_modal').submit(function(e){
         success: function(data, textStatus, jqXHR){
             var tash = data[0];
             var formattedTash = formatTash(tash.content);
-            var li = '<li><div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg"></a><div class="media-body"><span class="pull-right date">' + tash.tdate + '</span><h5 class="media-heading"><a href="#">' + tash.fname + ' ' + tash.lname + '</a> <small>@' + tash.uname + '</small></h5><div class="wrap-tash">' + formattedTash + '</div></div></div></li>';
+            var imgsrc = "\"/images/" + tash.uname + ".jpeg\"";
+            var li = '<li><div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src='+imgsrc+'></a><div class="media-body"><span class="pull-right date">' + tash.tdate + '</span><h5 class="media-heading"><a href="#">' + tash.fname + ' ' + tash.lname + '</a> <small>@' + tash.uname + '</small></h5><div class="wrap-tash">' + formattedTash + '</div></div></div></li>';
             $(li).hide().prependTo('#tashs').fadeIn(600);
             $('#tash_modal_content').val('');
             var textLabel = '#' + $(this).attr('id') + ' .chars_left > small';
             $('#send_tash .chars_left > small').text("140");
+            $('#numtashes').text(parseInt($('#numtashes').text())+1);
             $('#tash_modal_success').fadeIn(500).delay(4000).fadeOut(1000);
         },
         error: function(jqXHR, textStatus, errorThrown){

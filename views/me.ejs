@@ -18,7 +18,7 @@
           <li>
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="images/attitash-dev-prof-pic.jpeg">
+              <img class="media-object img-rounded" src="images/<%= following[i].uname %>.jpeg">
             </a>
             <div class="media-body">
               <h5 class="media-heading"><a href="#"><%= following[i].fname %> <%= following[i].lname %></a> <small>@<%= following[i].uname %></small><br></h5>
@@ -35,7 +35,7 @@
           <li>
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="images/attitash-dev-prof-pic.jpeg">
+              <img class="media-object img-rounded" src="images/<%= followers[i].uname %>.jpeg">
             </a>
             <div class="media-body">
               <h5 class="media-heading"><a href="#"><%= followers[i].fname %> <%= followers[i].lname %></a> <small>@<%= followers[i].uname %></small><br></h5>
@@ -110,7 +110,7 @@
         <li>
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg">
+              <img class="media-object img-rounded" src="/images/<%= tashs[i].uname %>.jpeg">
             </a>
             <div class="media-body">
               <span class="pull-right date"><%= tashs[i].tdate %></span>
