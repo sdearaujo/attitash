@@ -123,3 +123,23 @@ $(function() {
       }
   });
 });
+
+// only create the socket if a user that just came online is in the set that this request returns?
+// not sure how/where to do this
+
+// $.ajax({
+//     method: "GET",
+//     url: "/followers/mutual",
+//     dataType: "json",
+//     contentType: "application/json; charset=utf-8",
+//     data: JSON.stringify({ "username": $.cookie("auname") }),
+//     success: function(data, textStatus, jqXHR){
+//       // data is an array of Objects, with each Object having ann attribute 'follower'
+//       // ex: if AnthonyB had BrianD and JohnC as mutual followers, data array would
+//       //   look like: data[0].follower: "BrianD", data[1].follower: "JohnC"
+//       console.log(data);
+//     },
+//     error: function(jqXHR, textStatus, errorThrown){
+//       console.log(errorThrown);
+//     }
+// });

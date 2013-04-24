@@ -178,6 +178,25 @@ exports.tash = function(req, res){
   }
 };
 
+exports.getMutualFollowers = function(req, res){
+  var user = req.session.user;
+  if (user === undefined) {
+    req.flash('auth', 'Not logged in!');
+    res.redirect('/login');
+  }
+  else{
+    var uname = user.uname;
+    following.getMutualFollowersByUsername(uname, function(err, mfollowers){
+      if(err){
+        res.send("error getting mutual followers! " + err);
+      }
+      else{
+        res.json(mfollowers);
+      }
+    });
+  }
+};
+
 exports.home = function(req, res){
 
   var user = req.session.user;
