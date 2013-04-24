@@ -32,11 +32,13 @@ exports.auth = function(req, res){
   // Perform the user lookup.
   users.getUserByUsername(username, function(err, user){
     if(err){
-      res.send("error getting user! " + err);
+      req.flash('auth', 'error getting user!');
+      res.redirect('/login');
     }
     if(user === undefined){
       // query returned nothing!
-      res.send("cannot find user!");
+      req.flash('auth', 'cannot find user!');
+      res.redirect('/login');
     }
     else{
       if(user.pwd == password){
@@ -46,7 +48,8 @@ exports.auth = function(req, res){
       }
       else{
         // found user but something went wrong. wrong password
-        res.send("wrong password!");
+        req.flash('auth', 'wrong passowrd!');
+        res.redirect('/login');
       }
     }
   });
@@ -382,7 +385,7 @@ exports.connect = function(req, res) {
 
 // ## settings
 // Route for settings page
-exports.settings = function(req, res){
+exports.settings = function(req, res) {
   //get the user from the session
   var user = req.session.user;
   //if the user is not logged, show the message "Not logged in!" and redirect to the login page
@@ -391,11 +394,21 @@ exports.settings = function(req, res){
     res.redirect('/login');
   }
   else {
-    res.render('settings', {
-      title: 'Attitash - Settings',
-      user: user.fname,
-      username: user.username
-    })
+    following.getWhoToFollowByUsername(user.uname, function(err, who_to_follow){
+      if(err){
+        res.send("error getting who to follow!");
+      }
+      else{
+        res.render('settings', { 
+          title: 'Attitash - Settings',
+          username: user.uname,
+          users : online,
+          tashs: [],
+          who_to_follow: who_to_follow,
+          trends: ['attitash', 'cs326', 'balsamiq', 'betterthantwitter', 'tash']
+        });
+      }
+    });
   }
 };
 
