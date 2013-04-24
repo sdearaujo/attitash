@@ -366,7 +366,7 @@ exports.connect = function(req, res) {
 
 // ## settings
 // Route for settings page
-exports.settings = function(req, res){
+exports.settings = function(req, res) {
   //get the user from the session
   var user = req.session.user;
   //if the user is not logged, show the message "Not logged in!" and redirect to the login page
@@ -375,11 +375,21 @@ exports.settings = function(req, res){
     res.redirect('/login');
   }
   else {
-    res.render('settings', {
-      title: 'Attitash - Settings',
-      user: user.fname,
-      username: user.username
-    })
+    following.getWhoToFollowByUsername(user.uname, function(err, who_to_follow){
+      if(err){
+        res.send("error getting who to follow!");
+      }
+      else{
+        res.render('settings', { 
+          title: 'Attitash - Settings',
+          username: user.uname,
+          users : online,
+          tashs: [],
+          who_to_follow: who_to_follow,
+          trends: ['attitash', 'cs326', 'balsamiq', 'betterthantwitter', 'tash']
+        });
+      }
+    });
   }
 };
 

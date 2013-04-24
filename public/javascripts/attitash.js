@@ -40,6 +40,35 @@ $('#send_tash').submit(function(e){
     });
 });
 
+$('#send_tash_modal').submit(function(e){
+    e.preventDefault();
+    var content = $('#tash_modal_content').val();
+    if(content.length == 0){
+        return false;
+    }
+    $.ajax({
+        method: "POST",
+        url: "/tash/create",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ "content":content }),
+        success: function(data, textStatus, jqXHR){
+            var tash = data[0];
+            var formattedTash = formatTash(tash.content);
+            var li = '<li><div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg"></a><div class="media-body"><span class="pull-right date">' + tash.tdate + '</span><h5 class="media-heading"><a href="#">' + tash.fname + ' ' + tash.lname + '</a> <small>@' + tash.uname + '</small></h5><div class="wrap-tash">' + formattedTash + '</div></div></div></li>';
+            $(li).hide().prependTo('#tashs').fadeIn(600);
+            $('#tash_modal_content').val('');
+            var textLabel = '#' + $(this).attr('id') + ' .chars_left > small';
+            $('#send_tash .chars_left > small').text("140");
+            $('#tash_modal_success').fadeIn(500).delay(4000).fadeOut(1000);
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(errorThrown);
+            $('#tash_modal_error').fadeIn(500).delay(5000).fadeOut(1000);
+        }
+    });
+});
+
 $('#loginForm').submit(function(){
     var username = $('#auname').val();
     $.cookie("auname", username);
