@@ -10,7 +10,7 @@
           <li>
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="/images/attitash-dev-prof-pic.jpeg">
+              <img class="media-object img-rounded" src="/images/<%= who_to_follow[i].uname %>.jpeg">
             </a>
             <div class="media-body">
               <h5 class="media-heading"><a href="#"><%= who_to_follow[i].fname %> <%= who_to_follow[i].lname %></a> <small>@<%= who_to_follow[i].uname %></small><br>
@@ -40,26 +40,18 @@
           <div class="span8">
  <div class="well well-small">
       <ul id="suggest-follow" class="nav nav-stacked">
-        <h3>Account</h3><h4>Change your basic account, Tash privacy, and location settings.<h4>
-
-      </ul>
-    </div>
-    <ul id="fattashs" class="nav nav-stacked">
-      <% for(var i=0; i<tashs.length; i++) { %>
-        <li>
-          <div class="media">
-            <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="<%= tashs[i].img_src %>">
-            </a>
-            <div class="media-body">
-              <span class="pull-right date">Mar 6</span>
-              <h5 class="media-heading"><a href="#"><%= tashs[i].name %></a> <small>@<%= tashs[i].username %></small></h5>
-              <%= tashs[i].tash_text %>
-            </div>
-          </div>
-        </li>
-      <% } %>
-    </ul>
+        <h3>Account</h3><h4>Change your password.<h4>
+        <form id="pwdreset" action="/user/pwdreset" method="POST">
+          <label>Old Password</label>
+          <input id="old" name="old" name="password" type="password" value="" class="input-xlarge">
+          <label>New Password</label>
+          <input id="new" name="newPwd" name="password" type="password" value="" class="input-xlarge">
+          <label>Confirm New Password</label>
+          <input id="confirmNew" name="password" type="password" value="" class="input-xlarge"><br>
+        </form>
+        <button form="pwdreset" class="btn btn-primary">Submit</button>
+        <div class="alert alert-error">New Password and Confirm Password don't match!</div>
+  </div>
   </div><!--/span8-->
 </div><!--/row-->
 </div><!--/container-->

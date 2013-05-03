@@ -86,6 +86,14 @@ $('#logout').click(function(){
     }
 });
 
+$('#pwdreset').submit(function(e){
+    if($('#new').val() !== $('#confirmNew').val()){
+        $('.alert-error').fadeIn(500).delay(2500).fadeOut(500);
+        return false;
+    }
+    return true;
+});
+
 function formatTash(tash){
         var finalContent = "";
         array = tash.split(" ");
