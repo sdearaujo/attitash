@@ -363,11 +363,14 @@ exports.connect = function(req, res) {
         res.send("error getting who to follow!");
       }
       else{
-        tashs.getTashsByFollowing(user.uname, function(err, _tashs){
+        tashs.getTashsByMention("%@"+user.uname+"%", function(err, _tashs){
           if(err){
-            res.send("error getting tashs by following!");
+            res.send("error getting tashs by mention!"+err);
           }
           else{
+            for(var i = 0; i < _tashs.length; i++){
+                          _tashs[i].content = formatTash(_tashs[i].content);
+                        }
             res.render('connect', { 
               title: 'Attitash - Connect',
               username: user.uname,

@@ -59,7 +59,7 @@ function userNameAvailable(sId, uName) {
   setTimeout(function() {
     console.log('Sending welcome msg to ' + uName + ' at ' + sId);
     sockets.sockets[sId].emit('welcome', { "userName" : uName, "currentUsers": JSON.stringify(Object.keys(clients)) });
-  }, 500);
+  }, 10);
 }
 
 function userNameAlreadyInUse(sId, uName) {
