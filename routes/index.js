@@ -564,6 +564,37 @@ exports.settings = function(req, res) {
   }
 };
 
+exports.resetPassword = function(req, res){
+  //get the user from the session
+  var user = req.session.user;
+  //if the user is not logged, show the message "Not logged in!" and redirect to the login page
+  if (user === undefined) {
+    req.flash('auth', 'Not logged in!');
+    res.redirect('/login');
+  }
+  var old = req.body.old;
+  var newPwd = req.body.newPwd;
+
+  users.getUserByUsername(user.username, function(err, u){
+    if(err){
+      res.send("Error getting user!");
+    }
+    else{
+      if(user.pwd === old){
+        users.updatePassword(user.uname, newPwd, function(err){
+          if(err){
+            res.send("error updating pwd: " + err)
+          }
+          else{
+            res.redirect('/settings');    
+          }
+        });
+      }
+    }
+  });
+
+}
+
 function formatTash(tash){
         var finalContent = "";
         array = tash.split(" ");
