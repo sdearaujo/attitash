@@ -3,11 +3,25 @@
 ## How to Run
 You can run our app using `node app.js`
  
-## Project Assignment 04
+## Project Assignment 05
+
+### User Accounts
+-Use any of these accounts to log in and interact with attitash
+-u: BrianD p: brian
+-u: AnthonyB p: anthony
+-u: JohnC p: john
+-u: SamN p: samuel
+-u: realDonaldTrump p: donald
+-u: TechCrunch p: techcrunch
+-u: nodejs p: nodejs
+-u: BarackObama p: barack
+(if one doesn't work most likely due to testing change password feature ;)
+
+-feel free to create your own account
 
 Here is a list of the files and the additions we made:
 
-- sql/init.txt: Creates initial database tables and insert some base data
+- sql/init.sql: Creates initial database tables and insert some base data
 - lib/users.js: Accesses the database and provides functions for users
 - lib/tashs.js: Accesses the database and provides functions for tashs
 - lib/following.js: Accesses the database and provides functions for trends
