@@ -279,6 +279,8 @@ exports.getUserProfile = function(req, res){
       res.send("Cannot find user " + username);
     }
     else{
+      if(!user)res.send("Connot Find User"+ username);
+      else{
       tashs.getTashsByUsername(user.uname, function(err, _tashs){
         if(err){
           res.send("error getting tashs! " + err);
@@ -323,9 +325,75 @@ exports.getUserProfile = function(req, res){
         }
       });
     }
+    }
   });
 }
 };
+
+exports.getTrendPage = function(req, res){
+  var u = req.session.user;
+
+  if (u === undefined) {
+    req.flash('auth', 'Not logged in!');
+    res.redirect('/login');
+  }
+  else{
+  var trend = req.params.trend;
+  users.getUserByUsername(username, function(err, user){
+    if(err){
+      res.send("Cannot find user " + username);
+    }
+    else{
+      tashs.getTashsByUsername(user.uname, function(err, _tashs){
+        if(err){
+          res.send("error getting tashs! " + err);
+        }
+        else{
+          following.getFollowersByUsername(user.uname, function(err, followers){
+              if(err){res.send("error getting followers! " + err);}
+              else{
+                // get users this user is following
+                following.getFollowingByUsername(user.uname, function(err, following){
+                  if(err){res.send("error getting following! " + err);}
+                  else{
+                    // finally...render it all
+                    for(var i = 0; i < _tashs.length; i++){
+                          _tashs[i].content = formatTash(_tashs[i].content);
+                    }
+                    var followBtn = -1;
+                    for(var i = 0; i < followers.length; i++){
+                      if(followers[i].uname === u.uname){
+                        followBtn = i;
+                        break;
+                      }
+                    }
+                    res.render('me', { 
+                      title: 'Attitash',
+                      message: '',
+                      notification: '',
+                      username: user.uname,
+                      activeUser: u.uname,
+                      online : online,
+                      who_to_follow: [],
+                      tashs: _tashs,
+                      following: following,
+                      followers: followers,
+                      followBtn: followBtn,
+                      trends: ['attitash', 'cs326', 'balsamiq', 'betterthantwitter', 'tash']
+                    });
+                  }
+                });
+              }
+          });             
+        }
+      });
+    }
+  });
+}
+};
+
+
+
 
 exports.me = function(req, res){
   var u = req.session.user;
@@ -405,16 +473,26 @@ exports.discover = function(req, res) {
         res.send("error getting who to follow!");
       }
       else{
+        tashs.getTashsByHashTag("%#%", function(err, _tashs){
+          if(err){
+            res.send("error getting tashs by mention!"+err);
+          }
+          else{
+            for(var i = 0; i < _tashs.length; i++){
+                          _tashs[i].content = formatTash(_tashs[i].content);
+                        }
         res.render('discover', { 
           title: 'Attitash - Discover',
           username: user.uname,
           users : online,
-          tashs: [],
+          tashs: _tashs,
           who_to_follow: who_to_follow,
           trends: ['attitash', 'cs326', 'balsamiq', 'betterthantwitter', 'tash']
         });
       }
     });
+  }
+  });
   }
 };
 
@@ -491,6 +569,7 @@ function formatTash(tash){
         array = tash.split(" ");
         for(var i = 0; i<array.length; i++){
                 if(array[i].charAt(0) == '#'){
+                  var href = array[i].substring(0, array[i].length);
                                 finalContent = finalContent.concat("<a href=\"");
                                 finalContent = finalContent.concat(array[i]);
                                 finalContent = finalContent.concat("\">");

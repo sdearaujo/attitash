@@ -47,6 +47,7 @@ app.post('/tash/create', routes.tash);
 app.post('/follow', routes.follow);
 app.get('/followers/mutual', routes.getMutualFollowers);
 app.get('/:username', routes.getUserProfile);
+app.get('/:trend', routes.getTrendPage);
 
 var server = http.createServer(app).listen(3000, function(){
   console.log("Express server listening on port "+ app.get('port') +" in "+ app.get('env') +" mode.");
