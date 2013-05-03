@@ -18,7 +18,7 @@
           <li>
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="images/<%= following[i].uname %>.jpeg">
+              <img class="media-object img-rounded" src="/images/<%= following[i].uname %>.jpeg">
             </a>
             <div class="media-body">
               <h5 class="media-heading"><a href="#"><%= following[i].fname %> <%= following[i].lname %></a> <small>@<%= following[i].uname %></small><br></h5>
@@ -35,7 +35,7 @@
           <li>
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object img-rounded" src="images/<%= followers[i].uname %>.jpeg">
+              <img class="media-object img-rounded" src="/images/<%= followers[i].uname %>.jpeg">
             </a>
             <div class="media-body">
               <h5 class="media-heading"><a href="#"><%= followers[i].fname %> <%= followers[i].lname %></a> <small>@<%= followers[i].uname %></small><br></h5>
@@ -63,7 +63,16 @@
           <div id="profile" class="well sidebar-nav">
             <img class="displayed img-polaroid" src="/images/attitash-dev-prof-pic-large.jpeg" />
             <h3><%= username %></h3>  
-            <h4>@<%= username %></h4>  
+            <h4>@<%= username %>
+              <% if(followBtn < 0 && username !== activeUser) {%>
+                <form method="post" action="/follow?follower=<%= username %>&followee=<%= activeUser %>">
+                  <input type="submit" class="btn btn-primary btn-mini" value="Follow" />
+                </form>
+              <% } %>
+              <!-- <form method="post" action="/follow?follower=<%= username %>&followee=<%= username %>">
+                <input type="submit" class="btn btn-primary btn-mini" value="Follow" />
+              </form> -->
+            </h4>
             <table class="table table-condensed2">
               <thead>
                 <tr>
@@ -114,8 +123,8 @@
             </a>
             <div class="media-body">
               <span class="pull-right date"><%= tashs[i].tdate %></span>
-              <h5 class="media-heading"><a href="#"><%= tashs[i].fname %> <%= tashs[i].lname %></a> <small>@<%= tashs[i].uname %></small></h5>
-              <%= tashs[i].content %>
+              <h5 class="media-heading"><a href="<=% tashs[i].uname %>"><%= tashs[i].fname %> <%= tashs[i].lname %></a> <small><%= tashs[i].uname %></small></h5>
+              <%- tashs[i].content %>
             </div>
           </div>
         </li>
