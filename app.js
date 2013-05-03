@@ -47,6 +47,7 @@ app.post('/tash/create', routes.tash);
 app.post('/follow', routes.follow);
 app.get('/followers/mutual', routes.getMutualFollowers);
 app.get('/:username', routes.getUserProfile);
+app.get('/:trend', routes.getTrendPage);
 
 app.post('/user/pwdreset', routes.resetPassword);
 
