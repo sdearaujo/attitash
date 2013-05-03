@@ -6,15 +6,15 @@ You can run our app using `node app.js`
 ## Project Assignment 05
 
 ### User Accounts
--Use any of these accounts to log in and interact with attitash
--u: BrianD p: brian
--u: AnthonyB p: anthony
--u: JohnC p: john
--u: SamN p: samuel
--u: realDonaldTrump p: donald
--u: TechCrunch p: techcrunch
--u: nodejs p: nodejs
--u: BarackObama p: barack
+- Use any of these accounts to log in and interact with attitash
+- u: BrianD p: brian
+- u: AnthonyB p: anthony
+- u: JohnC p: john
+- u: SamN p: samuel
+- u: realDonaldTrump p: donald
+- u: TechCrunch p: techcrunch
+- u: nodejs p: nodejs
+- u: BarackObama p: barack
 (if one doesn't work most likely due to testing change password feature ;)
 
 -feel free to create your own account
