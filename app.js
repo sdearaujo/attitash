@@ -51,7 +51,7 @@ app.get('/:trend', routes.getTrendPage);
 
 app.post('/user/pwdreset', routes.resetPassword);
 
-var server = http.createServer(app).listen(3000, function(){
+var server = http.createServer(app).listen(process.env.PORT || 5000, function(){
   console.log("Express server listening on port "+ app.get('port') +" in "+ app.get('env') +" mode.");
 });
 
