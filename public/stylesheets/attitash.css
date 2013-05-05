@@ -283,3 +283,8 @@ textarea#styled {
 ul{
   list-style-image: url(/images/comment_add.png);
 }
+
+footer ul li{
+  float: left;
+  padding-right: 5px;
+}
